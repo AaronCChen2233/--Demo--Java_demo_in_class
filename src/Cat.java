@@ -1,4 +1,11 @@
-package PACKAGE_NAME;
+public class Cat extends Animal {
+    @Override
+    public void sleep() {
+        System.out.println("They sleep on a couch.");
+    }
 
-public class Cat {
+    @Override
+    public void eat() {
+        System.out.println("They eat fish.");
+    }
 }
