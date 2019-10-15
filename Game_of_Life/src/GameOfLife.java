@@ -18,10 +18,11 @@ public class GameOfLife {
 
         //Windows test
         JFrame frame = new JFrame("GameOfLifeWindows");
+        frame.setContentPane(new GameOfLifeWindows().mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        
+
 
         Random r = new Random();
         /*input grid width*/
