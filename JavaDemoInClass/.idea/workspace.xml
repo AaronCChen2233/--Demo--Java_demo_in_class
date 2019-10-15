@@ -2,21 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6307893e-b895-42e9-a9af-ef2c9f74c81c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/AnimalTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Cat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CheckPalindrome.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Fish.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/FourSeasons.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/StudentInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/StudentInfoTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TwoDArrayOutput.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_demo_in_class/Animal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_demo_in_class/Animal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_demo_in_class/Dog.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_demo_in_class/Dog.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_demo_in_class/Pig.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_demo_in_class/Pig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_demo_in_class/AnimalTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_demo_in_class/AnimalTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_demo_in_class/CheckPalindrome.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_demo_in_class/CheckPalindrome.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_demo_in_class/FourSeasons.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_demo_in_class/FourSeasons.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_demo_in_class/StudentInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_demo_in_class/StudentInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_demo_in_class/TwoDArrayOutput.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_demo_in_class/TwoDArrayOutput.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AnimalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AnimalTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CheckPalindrome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CheckPalindrome.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FourSeasons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FourSeasons.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StudentInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StudentInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StudentInfoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StudentInfoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TwoDArrayOutput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TwoDArrayOutput.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,8 +41,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SpringBootTest/test2/build.gradle" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -59,7 +56,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.CheckPalindrome">
+  <component name="RunManager" selected="Application.FourSeasons">
     <configuration name="AnimalTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="AnimalTest" />
       <module name="java_demo_in_class" />
@@ -68,6 +65,8 @@
       </method>
     </configuration>
     <configuration name="CheckPalindrome" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="11" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="CheckPalindrome" />
       <module name="java_demo_in_class" />
       <method v="2">
@@ -95,12 +94,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.AnimalTest" />
+      <item itemvalue="Application.CheckPalindrome" />
+      <item itemvalue="Application.FourSeasons" />
+      <item itemvalue="Application.StudentInfoTest" />
+      <item itemvalue="Application.TwoDArrayOutput" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CheckPalindrome" />
-        <item itemvalue="Application.StudentInfoTest" />
         <item itemvalue="Application.FourSeasons" />
+        <item itemvalue="Application.CheckPalindrome" />
         <item itemvalue="Application.TwoDArrayOutput" />
+        <item itemvalue="Application.StudentInfoTest" />
         <item itemvalue="Application.AnimalTest" />
       </list>
     </recent_temporary>
@@ -123,7 +129,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -139,6 +147,14 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="tryAgainYesNo.toLowerCase()" />
+        <watch expression="tryAgainYesNo.toLowerCase() == &quot;n&quot;" />
+        <watch expression="tryAgainYesNo == &quot;n&quot;" />
+        <watch expression="tryAgainYesNo.toLowerCase().equals(&quot;n&quot;)" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/intellij_create_project_test$HelloWorld.ic" NAME="HelloWorld Coverage Results" MODIFIED="1570470074654" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

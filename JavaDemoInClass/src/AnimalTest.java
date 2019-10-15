@@ -1,5 +1,6 @@
 public class AnimalTest {
     public static void main(String[] args) {
+        /*initialize*/
         Animal animal = new Animal();
         Fish fish = new Fish();
         Dog dog = new Dog();

@@ -20,13 +20,29 @@ public class StudentInfo {
         return gender;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setStudent_ID(String student_ID) {
+        this.student_ID = student_ID;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     /***
-     *
      * @param _name
      * @param _age
      * @param _student_ID
      * @param _male
      */
+
     public StudentInfo(String _name, int _age, String _student_ID, String _gender) {
         name = _name;
         age = _age;
