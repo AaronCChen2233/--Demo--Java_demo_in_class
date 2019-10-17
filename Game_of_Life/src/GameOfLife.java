@@ -6,7 +6,6 @@ public class GameOfLife {
     private static int generationTimes = 0;
 
     public static void main(String[] args) throws InterruptedException {
-
         /*input grid width*/
         Scanner input = new Scanner(System.in);
         System.out.println("Here will create a grid and random origin cell");
@@ -14,7 +13,7 @@ public class GameOfLife {
         int gridx = input.nextInt();
         System.out.print("Please input grid height : ");
         int gridy = input.nextInt();
-        System.out.print("Please input max generation times (if you want infinite please type 0): ");
+        System.out.print("Please input max generation times (if you want infinite please type -1): ");
         int maxGenerationTimes = input.nextInt();
 
         int[][] origin = CreateRandomCellGrid(gridy, gridx);
@@ -30,22 +29,23 @@ public class GameOfLife {
 //        };
 
 //        input.close();
-        System.out.println(generationTimes++);
-        OutputCellPlayGrid(origin);
         while (true) {
+            System.out.println(generationTimes);
+            OutputCellPlayGrid(origin);
+            origin = NextGeneration(origin);
+
             if (generationTimes == maxGenerationTimes) {
                 System.out.println("Ooops is time to stop!");
                 break;
             }
 
-            System.out.println(generationTimes);
-            origin = NextGeneration(origin);
-            System.out.println();
-
             if (!CheckAllCellAlive(origin)) {
                 System.out.println("Ooops All cells are dead");
                 break;
             }
+
+            Thread.sleep(350);
+            generationTimes++;
         }
     }
 
@@ -96,24 +96,7 @@ public class GameOfLife {
                 }
             }
         }
-        generationTimes++;
-        /*output*/
-        OutputCellPlayGrid(next);
-
-        Thread.sleep(300);
         return next;
-    }
-
-    private static void OutputCellPlayGrid(int[][] next) {
-        /*for convert to String, for clear to see*/
-        String[][] nextStr = new String[next.length][next[0].length];
-        for (int i = 0; i < next.length; i++) {
-            for (int j = 0; j < next[i].length; j++) {
-                nextStr[i][j] = next[i][j] == 0 ? " " : "■";
-            }
-            System.out.print(Arrays.toString(nextStr[i]));
-            System.out.println();
-        }
     }
 
     private static int GetNeighbourAliveCount(int[][] cells, int i, int j) {
@@ -143,6 +126,18 @@ public class GameOfLife {
             }
         }
         return neighbourAliveCount;
+    }
+
+    private static void OutputCellPlayGrid(int[][] next) {
+        /*for convert to String, for clear to see*/
+        String[][] nextStr = new String[next.length][next[0].length];
+        for (int i = 0; i < next.length; i++) {
+            for (int j = 0; j < next[i].length; j++) {
+                nextStr[i][j] = next[i][j] == 0 ? " " : "■";
+            }
+            System.out.print(Arrays.toString(nextStr[i]));
+            System.out.println();
+        }
     }
 
     private static int[][] CreateRandomCellGrid(int gridx, int gridy) {
