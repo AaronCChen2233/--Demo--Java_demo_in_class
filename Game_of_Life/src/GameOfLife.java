@@ -13,10 +13,12 @@ public class GameOfLife {
         int gridx = input.nextInt();
         System.out.print("Please input grid height : ");
         int gridy = input.nextInt();
+        System.out.print("Please input percent which is for create random alive cell : ");
+        int percent = input.nextInt();
         System.out.print("Please input max generation times (if you want infinite please type -1): ");
         int maxGenerationTimes = input.nextInt();
 
-        int[][] origin = CreateRandomCellGrid(gridy, gridx);
+        int[][] origin = CreateRandomCellGrid(gridy, gridx, percent);
 
         /*for test date*/
 //        int origin[][] = {
@@ -140,12 +142,12 @@ public class GameOfLife {
         }
     }
 
-    private static int[][] CreateRandomCellGrid(int gridx, int gridy) {
+    private static int[][] CreateRandomCellGrid(int gridx, int gridy, int precent) {
 
         int origin[][] = new int[gridx][gridy];
         for (int i = 0; i < gridx; i++) {
             for (int j = 0; j < gridy; j++) {
-                origin[i][j] = RandomBooleanByPercent(50) ? 1 : 0;
+                origin[i][j] = RandomBooleanByPercent(precent) ? 1 : 0;
             }
         }
         return origin;
