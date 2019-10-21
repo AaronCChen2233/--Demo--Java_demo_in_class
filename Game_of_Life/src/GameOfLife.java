@@ -1,5 +1,3 @@
-import javax.swing.*;
-import java.io.IOException;
 import java.util.*;
 
 public class GameOfLife {
@@ -140,6 +138,14 @@ public class GameOfLife {
             System.out.print(Arrays.toString(nextStr[i]));
             System.out.println();
         }
+//        String outputString = "";
+//        for (int i = 0; i < next.length; i++) {
+//            for (int j = 0; j < next[i].length; j++) {
+//                outputString += next[i][j] == 0 ? " ☐" : " \uD83C\uDD70";
+//            }
+//            outputString += "\n";
+//        }
+//        System.out.println(outputString);
     }
 
     private static int[][] CreateRandomCellGrid(int gridx, int gridy, int precent) {
