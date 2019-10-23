@@ -8,6 +8,7 @@ public class Application {
     ApplicationModel model;
     ApplicationView view;
     ApplicationController controller;
+    final static private String _APP_VERSION = "0.0.1";
 
     Application(String[] args) {
         initialize();
@@ -37,9 +38,7 @@ public class Application {
             instance.view.ShowBasicUsageInformation();
         } else {
             instance.view.PrintcommandLine();
-        }
-        for(int i = 0 ; i<6;i++){
-            instance.view.log(i,"This is test for different type");
+            instance.model.DoArgument();
         }
     }
 }

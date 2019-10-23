@@ -15,7 +15,7 @@ public class Main {
         isUseUpperLetter = true;
         isUseLowerLetter = true;
         isUseNumberLetter = true;
-        passwordLength = 4;
+        passwordLength = 6;
         String testPwd = GenerateRandomPassword();
         System.out.println(testPwd);
         input.next();
