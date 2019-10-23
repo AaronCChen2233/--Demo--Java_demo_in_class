@@ -20,11 +20,11 @@ public class BaseView {
     final static public void log(int level, String message) {
         switch (level) {
             case 0: {
-                System.out.println("[" + date + "]" + " - " + (char) 27 + "[34m" + "[Startup]" + (char) 27 + "[0m" + " - " + message);
+                System.out.println("[" + date + "]" + " - " + (char) 27 + "[44m" + "[Startup]" + (char) 27 + "[0m" + " - " + message);
                 break;
             }
             case 1: {
-                System.out.println("[" + date + "]" + " - " + (char) 27 + "[32m" + "[Info]" + (char) 27 + "[0m" + " - " + message);
+                System.out.println("[" + date + "]" + " - " + (char) 27 + "[34m" + "[Info]" + (char) 27 + "[0m" + " - " + message);
                 break;
             }
             case 2: {
@@ -36,11 +36,11 @@ public class BaseView {
                 break;
             }
             case 4: {
-                System.out.println("[" + date + "]" + " - " + (char) 27 + "[37m" + "[Exception]" + (char) 27 + "[0m" + " - " + message);
+                System.out.println("[" + date + "]" + " - " + (char) 27 + "[47m" + "[Exception]" + (char) 27 + "[0m" + " - " + message);
                 break;
             }
             case 5: {
-                System.out.println("[" + date + "]" + " - "+ (char) 27 + "[0;91m" + "[Shutdown]"+ (char) 27 + "[0m" + " - " + message);
+                System.out.println("[" + date + "]" + " - "+ (char) 27 + "[41m" + "[Shutdown]"+ (char) 27 + "[0m" + " - " + message);
                 break;
             }
             default: {
