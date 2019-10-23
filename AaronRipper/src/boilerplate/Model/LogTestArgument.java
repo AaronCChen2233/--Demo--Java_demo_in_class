@@ -11,7 +11,7 @@ public class LogTestArgument extends Argument {
     @Override
     public void DoFunction() {
         for (int i = 0; i < 6; i++) {
-            bView.log(i, "This is test for different type");
+            bView.log(i, "This is test for different type "+ this.paramaters.toString());
         }
     }
 }

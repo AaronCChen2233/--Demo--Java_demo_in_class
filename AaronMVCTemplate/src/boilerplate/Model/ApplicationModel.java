@@ -18,14 +18,23 @@ public class ApplicationModel extends BaseModel {
     }
 
     public void DoArgument() {
-        logTestArgument = new LogTestArgument(new ArrayList<String>(Arrays.asList("-logtest")),false,false,"This is log Test Argument",new ArrayList<>());
-        for (String c : commandLine) {
-            /*if commandLine have switch which mean it is a Argument*/
-            if(Switchs.allownSwitch.contains(c.charAt(0))){
-               if( logTestArgument.arguments.contains(c)){
-                   logTestArgument.DoFunction();
-               }
+        commandLine.add("-");
+        logTestArgument = new LogTestArgument(new ArrayList<String>(Arrays.asList("logtest", "lt")), false, false, "This is log Test Argument", new ArrayList<>());
+        ArrayList<String> tempParamaters = new ArrayList<String>();
+        String ThisArgument = "-";
 
+        for (String c : commandLine) {
+            /*if commandLine have switch which mean it is a Argument if not is Paramater*/
+            if (!Switchs.allownSwitch.contains(c.charAt(0))) {
+                tempParamaters.add(c);
+
+            } else {
+                if (logTestArgument.arguments.contains(ThisArgument.substring(1, ThisArgument.length()))) {
+                    logTestArgument.setParamaters(tempParamaters);
+                    logTestArgument.DoFunction();
+                }
+                tempParamaters = new ArrayList<String>();
+                ThisArgument = c;
             }
         }
     }

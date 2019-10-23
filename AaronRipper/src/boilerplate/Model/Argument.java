@@ -8,8 +8,12 @@ public abstract class Argument extends BaseModel {
     private boolean hasParamaters;
     private boolean requiresParamaters;
     private String description;
-    private ArrayList<String> paramaters = new ArrayList<String>();
+    public ArrayList<String> paramaters = new ArrayList<String>();
     public abstract void DoFunction();
+
+    public void setParamaters(ArrayList<String> paramaters) {
+        this.paramaters = paramaters;
+    }
 
     public Argument(ArrayList<String> argument, boolean hasParamaters, boolean requiresParamaters, String description, ArrayList<String> paramaters) {
         this.arguments = argument;
