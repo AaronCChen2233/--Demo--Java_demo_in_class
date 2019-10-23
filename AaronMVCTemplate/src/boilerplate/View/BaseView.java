@@ -58,4 +58,6 @@ public class BaseView {
     public void setbModel(BaseModel bModel) {
         this.bModel = bModel;
     }
+
+
 }

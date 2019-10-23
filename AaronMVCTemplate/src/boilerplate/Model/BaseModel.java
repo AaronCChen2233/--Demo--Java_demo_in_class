@@ -6,8 +6,6 @@ import boilerplate.View.BaseView;
 import java.util.ArrayList;
 
 public class BaseModel {
-
-
     BaseController bController;
     BaseView bView;
 

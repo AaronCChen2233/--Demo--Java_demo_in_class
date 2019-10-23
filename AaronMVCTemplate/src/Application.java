@@ -34,7 +34,7 @@ public class Application {
     public static void main(String[] args) {
         instance = new Application(args);
         if (args.length == 0) {
-            instance.view.log(2, "You can try put some args EX: -? -h -c");
+            instance.view.ShowBasicUsageInformation();
         } else {
             instance.view.PrintcommandLine();
         }

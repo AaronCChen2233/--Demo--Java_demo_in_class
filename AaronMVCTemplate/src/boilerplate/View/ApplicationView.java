@@ -8,4 +8,8 @@ public class ApplicationView extends BaseView {
             System.out.println(l);
         }
     }
+
+    public void ShowBasicUsageInformation() {
+        log(2, "You can try put some args EX: -? -h -c");
+    }
 }
