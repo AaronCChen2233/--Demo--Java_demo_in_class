@@ -38,5 +38,8 @@ public class Application {
         } else {
             instance.view.PrintcommandLine();
         }
+        for(int i = 0 ; i<6;i++){
+            instance.view.log(i,"This is test for different type");
+        }
     }
 }

@@ -9,7 +9,7 @@ public class BaseView {
     BaseController bController;
     BaseModel bModel;
 
-    final static private Date date=new java.util.Date();
+    final static private Date date = new java.util.Date();
     final static private int _STARTUP = 0;
     final static private int _INFO = 1;
     final static private int _WARN = 2;
@@ -20,31 +20,31 @@ public class BaseView {
     final static public void log(int level, String message) {
         switch (level) {
             case 0: {
-                System.out.println("[" + date + "]" + " - [Startup] - " + message);
+                System.out.println("[" + date + "]" + " - " + (char) 27 + "[34m" + "[Startup]" + (char) 27 + "[0m" + " - " + message);
                 break;
             }
             case 1: {
-                System.out.println("[" + date + "]" + " - [Info] - " + message);
+                System.out.println("[" + date + "]" + " - " + (char) 27 + "[32m" + "[Info]" + (char) 27 + "[0m" + " - " + message);
                 break;
             }
             case 2: {
-                System.out.println("[" + date + "]" + " - [Warning] - " + message);
+                System.out.println("[" + date + "]" + " - " + (char) 27 + "[33m" + "[Warning]" + (char) 27 + "[0m" + " - " + message);
                 break;
             }
             case 3: {
-                System.out.println("[" + date + "]" + " - [Error] - " + message);
+                System.out.println("[" + date + "]" + " - " + (char) 27 + "[31m" + "[Error]" + (char) 27 + "[0m" + " - " + message);
                 break;
             }
             case 4: {
-                System.out.println("[" + date + "]" + " - [Exception] - " + message);
+                System.out.println("[" + date + "]" + " - " + (char) 27 + "[37m" + "[Exception]" + (char) 27 + "[0m" + " - " + message);
                 break;
             }
             case 5: {
-                System.out.println("[" + date + "]" + " - [Shutdown] - " + message);
+                System.out.println("[" + date + "]" + " - "+ (char) 27 + "[0;91m" + "[Shutdown]"+ (char) 27 + "[0m" + " - " + message);
                 break;
             }
             default: {
-                System.out.println("[" + date + "]" + " - [Unknown] - " + message);
+                System.out.println("[" + date + "]" + " - "+ (char) 27 + "[0;97m" + "[Unknown]"+ (char) 27 + "[0m" + " - " + message);
                 break;
             }
 
