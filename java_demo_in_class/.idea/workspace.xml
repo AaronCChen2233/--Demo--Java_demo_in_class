@@ -2,13 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6307893e-b895-42e9-a9af-ef2c9f74c81c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Chess/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Chess/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Chess/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Chess/src/Chess.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Chess/src/StartGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Game_of_Life/out/production/Game_of_Life/GameOfLife.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Game_of_Life/out/production/Game_of_Life/GameOfLife.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Game_of_Life/src/GameOfLife.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Game_of_Life/src/GameOfLife.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AaronRipper/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AaronRipper/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AaronRipper/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AaronRipper/src/Application.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AaronRipper/src/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AaronRipper/src/boilerplate/ApplicationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AaronRipper/src/boilerplate/ApplicationModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AaronRipper/src/boilerplate/ApplicationView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AaronRipper/src/boilerplate/BaseController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AaronRipper/src/boilerplate/BaseModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AaronRipper/src/boilerplate/BaseView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AaronRipper/src/boilerplate/Console.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AaronRipper/src/boilerplate/Debug.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AaronRipper/src/boilerplate/Logger.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AaronRipper/src/boilerplate/Testing.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,7 +43,7 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../AaronRipper" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
   </component>
   <component name="RunDashboard">
