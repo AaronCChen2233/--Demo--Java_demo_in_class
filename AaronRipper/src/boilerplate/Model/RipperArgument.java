@@ -28,7 +28,7 @@ public class RipperArgument extends Argument {
     static boolean isAllowSpecifyWordGreaterThanMaxLength = false;
     static int passwordMinLength = 8;
     static int passwordMaxLength = 8;
-    static int generateCount = 10;
+    static int generateCount = 3;
     static String specifyWord = "abc";
 
     public RipperArgument(ArrayList<String> argument, boolean hasParamaters, boolean requiresParamaters, String description, ArrayList<String> paramaters) {
@@ -55,7 +55,7 @@ public class RipperArgument extends Argument {
             log(2, "Ooops that something wrong");
             log(1, "You can type -Run [use upper letter? (y/n)] [use lower letter? (y/n)] [use number? (y/n)] [use palindrome? (y/n)] [generate reverses ? (y/n)] [min Length(int)] [max Length(int)] [generate count(int)] [specify word(String)]");
             log(1, "EX: -generate y y y n n 8 8 10 abc");
-            log(1,"But don't worry we will ask you some question then generate passwords ");
+            log(1, "But don't worry we will ask you some question then generate passwords ");
             GeneratePasswordByAsk();
         }
         for (int i = 0; i < generateCount; i++) {
@@ -264,16 +264,22 @@ public class RipperArgument extends Argument {
         return generatePassword;
     }
 
+    public void AaronRipper() {
+        String matchedPassword = "";
+        String generateFrom = "";
+        generateFrom += GetCharBy('A', 26);
+        generateFrom += GetCharBy('a', 26);
+        generateFrom += GetCharBy('0', 10);
+        int paswordLength = Integer.valueOf(paramaters.get(0));
+        System.out.println(MatchPassword("", paswordLength, generateFrom, paswordLength + 1, "*"));
+    }
+
     public static String MatchPassword(String password) {
         String matchedPassword = "";
         String generateFrom = "";
         generateFrom += GetCharBy('A', 26);
         generateFrom += GetCharBy('a', 26);
         generateFrom += GetCharBy('0', 10);
-
-//        for (int i = 1; i < 3; i++) {
-//            MatchPassword("", i, generateFrom, i+1, password);
-//        }
 
         int paswordLength = password.length();
         System.out.println("your password is " + MatchPassword("", paswordLength, generateFrom, paswordLength + 1, password));
@@ -298,6 +304,10 @@ public class RipperArgument extends Argument {
             if (matchedPassword.equals(password)) {
                 return matchedPassword;
             }
+        }
+
+        if (testLength - level - 1 < 0) {
+            return "*";
         }
 
         return matchedPassword.substring(0, testLength - level - 1);

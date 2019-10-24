@@ -19,7 +19,7 @@ public class ApplicationModel extends BaseModel {
     public void DoArgument() {
         commandLine.add("-");
         logTestArgument = new LogTestArgument(new ArrayList<String>(Arrays.asList("logtest", "lt")), false, false, "This is log Test Argument", new ArrayList<>());
-        ripperArgument = new RipperArgument(new ArrayList<String>(Arrays.asList("generate", "Generate", "Byask", "byask")), false, false, "This is log Test Argument", new ArrayList<>());
+        ripperArgument = new RipperArgument(new ArrayList<String>(Arrays.asList("generate", "Generate", "Byask", "byask", "AaronRipper")), false, false, "This is log Test Argument", new ArrayList<>());
 
         ArrayList<String> tempParamaters = new ArrayList<String>();
         String ThisArgument = "-";
@@ -45,6 +45,10 @@ public class ApplicationModel extends BaseModel {
                         case "Byask":
                         case "byask": {
                             ripperArgument.GeneratePasswordByAsk();
+                        }
+                        case "AaronRipper":{
+                            ripperArgument.setParamaters(tempParamaters);
+                            ripperArgument.AaronRipper();
                         }
                     }
                 }
