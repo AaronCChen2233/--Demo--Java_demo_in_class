@@ -1,14 +1,8 @@
-package boilerplate.View;
-
-import boilerplate.Controller.BaseController;
-import boilerplate.Model.BaseModel;
+package AaronChenTools;
 
 import java.util.Date;
 
-public class BaseView {
-    BaseController bController;
-    BaseModel bModel;
-
+public class Log {
     final static private Date date = new java.util.Date();
     final static private int _DEFULT = -1;
     final static private int _STARTUP = 0;
@@ -55,14 +49,4 @@ public class BaseView {
 
         }
     }
-
-    public void setbController(BaseController bController) {
-        this.bController = bController;
-    }
-
-    public void setbModel(BaseModel bModel) {
-        this.bModel = bModel;
-    }
-
-
 }

@@ -22,4 +22,8 @@ public abstract class Argument extends BaseModel {
         this.description = description;
         this.paramaters = paramaters;
     }
+
+    public Argument(){
+
+    }
 }

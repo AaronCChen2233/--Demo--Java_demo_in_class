@@ -10,7 +10,9 @@ public class ApplicationView extends BaseView {
     }
 
     public void ShowBasicUsageInformation() {
-        log(2, "You can try put some args EX: -? -h -c");
-        log(2, "You can try -logtest");
+        log(1, "You can type -Generate [use upper letter? (y/n)] [use lower letter? (y/n)] [use number? (y/n)] [use palindrome? (y/n)] [generate reverses ? (y/n)] [min Length(int)] [max Length(int)] [generate count(int)] [specify word(String)]");
+        log(1, "EX: -Generate y y y n n 8 8 10 abc");
+        log(1, "You can use '-byask' we will ask you some question then generate password");
+        log(1, "Here is we generate use default Setting");
     }
 }

@@ -1,13 +1,12 @@
 package boilerplate.Model;
 
-import boilerplate.View.ApplicationView;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ApplicationModel extends BaseModel {
     public ArrayList<String> commandLine = new ArrayList<String>();
     private LogTestArgument logTestArgument;
+    private RipperArgument ripperArgument;
 
     public ArrayList getCommandLine() {
         return commandLine;
@@ -20,6 +19,8 @@ public class ApplicationModel extends BaseModel {
     public void DoArgument() {
         commandLine.add("-");
         logTestArgument = new LogTestArgument(new ArrayList<String>(Arrays.asList("logtest", "lt")), false, false, "This is log Test Argument", new ArrayList<>());
+        ripperArgument = new RipperArgument(new ArrayList<String>(Arrays.asList("generate", "Generate", "Byask", "byask")), false, false, "This is log Test Argument", new ArrayList<>());
+
         ArrayList<String> tempParamaters = new ArrayList<String>();
         String ThisArgument = "-";
 
@@ -33,9 +34,30 @@ public class ApplicationModel extends BaseModel {
                     logTestArgument.setParamaters(tempParamaters);
                     logTestArgument.DoFunction();
                 }
+                if (ripperArgument.arguments.contains(ThisArgument.substring(1, ThisArgument.length()))) {
+                    switch (ThisArgument.substring(1, ThisArgument.length())) {
+                        case "generate":
+                        case "Generate": {
+                            ripperArgument.setParamaters(tempParamaters);
+                            ripperArgument.DoFunction();
+                            break;
+                        }
+                        case "Byask":
+                        case "byask": {
+                            ripperArgument.GeneratePasswordByAsk();
+                        }
+                    }
+                }
+
                 tempParamaters = new ArrayList<String>();
                 ThisArgument = c;
             }
         }
+    }
+
+    public void Rundefault() {
+        ripperArgument = new RipperArgument();
+        ripperArgument.GenerateAllPassword();
+//        ripperArgument.GeneratePasswordByAsk();
     }
 }
