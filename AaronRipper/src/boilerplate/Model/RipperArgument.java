@@ -59,9 +59,7 @@ public class RipperArgument extends Argument {
             log(1, "But don't worry we will ask you some question then generate passwords ");
             GeneratePasswordByAsk();
         }
-        for (int i = 0; i < generateCount; i++) {
-            log(1, "Generate password " + (i + 1) + ": " + GenerateARandomPassword());
-        }
+        GenerateAllPassword();
     }
 
     public static boolean AskYesNoQuestion(String askMessage) {
@@ -207,15 +205,21 @@ public class RipperArgument extends Argument {
             generatePassword = GenerateARandomPassword();
             log(1, "Generate password " + (i + 1) + ": " + generatePassword);
             generatedStrings.add(generatePassword);
-        }
 
-        if (isGenerateReverses) {
-            StringBuilder stringBuilder = new StringBuilder();
-            for (int i = 0; i < generatedStrings.size(); i++) {
-                stringBuilder = new StringBuilder(generatedStrings.get(i));
-                log(1, "Generate password " + (i + 1) + " (reverse version): " + stringBuilder.reverse());
+            if (isGenerateReverses) {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder = new StringBuilder(generatePassword);
+                log(1, "Generate password " + (i + 1) +": "+ stringBuilder.reverse() +" (this is reverse version)");
             }
         }
+
+//        if (isGenerateReverses) {
+//            StringBuilder stringBuilder = new StringBuilder();
+//            for (int i = generatedStrings.size()-1; i >= 0; i--) {
+//                stringBuilder = new StringBuilder(generatedStrings.get(i));
+//                log(1, "Generate password " + (i + 1) + " (reverse version): " + stringBuilder.reverse());
+//            }
+//        }
     }
 
     private static String GenerateARandomPassword() {

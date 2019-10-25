@@ -45,10 +45,12 @@ public class ApplicationModel extends BaseModel {
                         case "Byask":
                         case "byask": {
                             ripperArgument.GeneratePasswordByAsk();
+                            break;
                         }
                         case "AaronRipper":{
                             ripperArgument.setParamaters(tempParamaters);
                             ripperArgument.AaronRipper();
+                            break;
                         }
                     }
                 }
