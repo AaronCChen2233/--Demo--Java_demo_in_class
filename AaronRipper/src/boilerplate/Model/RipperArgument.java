@@ -30,6 +30,7 @@ public class RipperArgument extends Argument {
     static int passwordMaxLength = 8;
     static int generateCount = 3;
     static String specifyWord = "abc";
+    static String ripperSpecifyWord = "";
 
     public RipperArgument(ArrayList<String> argument, boolean hasParamaters, boolean requiresParamaters, String description, ArrayList<String> paramaters) {
         super(argument, hasParamaters, requiresParamaters, description, paramaters);
@@ -267,10 +268,15 @@ public class RipperArgument extends Argument {
     public void AaronRipper() {
         String matchedPassword = "";
         String generateFrom = "";
+
+        int paswordLength = Integer.valueOf(paramaters.get(0));
+        ripperSpecifyWord = paramaters.get(1);
+
         generateFrom += GetCharBy('A', 26);
         generateFrom += GetCharBy('a', 26);
         generateFrom += GetCharBy('0', 10);
-        int paswordLength = Integer.valueOf(paramaters.get(0));
+        generateFrom +=ripperSpecifyWord;
+
         System.out.println(MatchPassword("", paswordLength, generateFrom, paswordLength + 1, "*"));
     }
 
