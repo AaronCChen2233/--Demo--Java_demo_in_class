@@ -274,7 +274,7 @@ public class RipperArgument extends Argument {
         String generateFrom = "";
 
         int paswordLength = Integer.valueOf(paramaters.get(0));
-        ripperSpecifyWord = paramaters.get(1);
+        ripperSpecifyWord = paramaters.size() <= 1 ? "" : paramaters.get(1);
 
         generateFrom += GetCharBy('A', 26);
         generateFrom += GetCharBy('a', 26);
