@@ -2,11 +2,7 @@ import boilerplate.Controller.ApplicationController;
 import boilerplate.Model.ApplicationModel;
 import boilerplate.View.ApplicationView;
 
-import java.util.Random;
-import java.util.Scanner;
-
 public class Main {
-
     static Main instance;
     ApplicationModel model;
     ApplicationView view;
@@ -39,7 +35,6 @@ public class Main {
         instance = new Main(args);
         if (args.length == 0) {
             instance.view.ShowBasicUsageInformation();
-            instance.model.Rundefault();
         } else {
             instance.model.DoArgument();
         }
