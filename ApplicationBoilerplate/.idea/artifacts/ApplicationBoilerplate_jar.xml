@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ApplicationBoilerplate:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ApplicationBoilerplate_jar</output-path>
+    <root id="archive" name="ApplicationBoilerplate.jar">
+      <element id="module-output" name="ApplicationBoilerplate" />
+    </root>
+  </artifact>
+</component>
