@@ -49,4 +49,8 @@ public class StudentInfo {
         student_ID = _student_ID;
         gender = _gender;
     }
+
+    public StudentInfo(){
+
+    }
 }

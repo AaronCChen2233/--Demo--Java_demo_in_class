@@ -10,10 +10,11 @@ public class CommandLine {
     public CommandLine(String[] arguments) {
         Arguments = arguments;
         Collections.addAll(Argumentslist, Arguments);
-        Debug.logInfo("I see arguments: Count(" + arguments.length + ")");
+//        Debug.logInfo("I see arguments: Count(" + arguments.length + ")");
         if (arguments.length == 0) {
-            Debug.logWarning("I see arguments: Count(" + arguments.length + ") you can try -runtest [testTimes (int)]");
-            Debug.logWarning("EX: -runtest 5");
+            Debug.logWarning("If you wnat run test type -runtest [TestTimes(int)]EX: -runtest 5");
+            Debug.logWarning("If you want run as window type -runwindow EX: -runwindow ");
+            Debug.logWarning("I see arguments: Count(" + arguments.length + ") we will start this game by use terminal");
         }
     }
 

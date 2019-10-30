@@ -2,21 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6307893e-b895-42e9-a9af-ef2c9f74c81c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../AaronRipper/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AaronRipper/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AaronRipper/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AaronRipper/src/Application.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AaronRipper/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AaronRipper/src/boilerplate/ApplicationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AaronRipper/src/boilerplate/ApplicationModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AaronRipper/src/boilerplate/ApplicationView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AaronRipper/src/boilerplate/BaseController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AaronRipper/src/boilerplate/BaseModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AaronRipper/src/boilerplate/BaseView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AaronRipper/src/boilerplate/Console.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AaronRipper/src/boilerplate/Debug.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AaronRipper/src/boilerplate/Logger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AaronRipper/src/boilerplate/Testing.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Tic_Tac_Toe/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Tic_Tac_Toe/src/Tic_Tac_ToeWindow.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Tic_Tac_Toe/src/Tic_Tac_ToeWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tic_Tac_Toe/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Tic_Tac_Toe/src/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tic_Tac_Toe/src/Tic_Tac_Toe.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Tic_Tac_Toe/src/Tic_Tac_Toe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StudentInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StudentInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StudentInfoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StudentInfoTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,8 +37,9 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../AaronRipper" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -139,6 +134,11 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -151,6 +151,11 @@
           <url>file://$PROJECT_DIR$/src/CheckPalindrome.java</url>
           <line>4</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/StudentInfo.java</url>
+          <line>7</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
