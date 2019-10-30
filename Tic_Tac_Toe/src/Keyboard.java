@@ -42,10 +42,25 @@ public class Keyboard {
         return scanner.nextShort();
     }//	Reads a short value from the user
 
-    
+
     public static boolean hasNext()
     {
         return scanner.hasNext();
     } // returns if there is input waiting
+
+    public static int AskNumberQuestion(String askMessage) {
+        int answer;
+        while (true) {
+            System.out.println(askMessage);
+            if (scanner.hasNextInt()) {
+                answer = scanner.nextInt();
+                break;
+            } else {
+                Console.println("Please type a number");
+                scanner.next();
+            }
+        }
+        return answer;
+    }
 
 }
