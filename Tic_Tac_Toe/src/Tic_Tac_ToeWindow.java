@@ -114,7 +114,6 @@ public class Tic_Tac_ToeWindow extends JFrame {
                         } else {
                             messageLabel.setText("Winner is " + winner);
                         }
-
                     }
                     break;
                 }

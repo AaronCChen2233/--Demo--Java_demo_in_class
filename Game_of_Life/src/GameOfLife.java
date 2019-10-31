@@ -1,54 +1,6 @@
 import java.util.*;
 
 public class GameOfLife {
-    private static int generationTimes = 0;
-
-    public static void main(String[] args) throws InterruptedException {
-        /*input grid width*/
-        Scanner input = new Scanner(System.in);
-        System.out.println("Here will create a grid and random origin cell");
-        System.out.print("Please input grid width : ");
-        int gridx = input.nextInt();
-        System.out.print("Please input grid height : ");
-        int gridy = input.nextInt();
-        System.out.print("Please input percent which is for create random alive cell : ");
-        int percent = input.nextInt();
-        System.out.print("Please input max generation times (if you want infinite please type -1): ");
-        int maxGenerationTimes = input.nextInt();
-
-        int[][] origin = CreateRandomCellGrid(gridy, gridx, percent);
-
-        /*for test date*/
-//        int origin[][] = {
-//                {0, 0, 0, 0, 0, 0},
-//                {0, 0, 0, 0, 0, 0},
-//                {0, 0, 0, 1, 0, 0},
-//                {0, 1, 0, 0, 1, 0},
-//                {0, 1, 0, 0, 1, 0},
-//                {0, 0, 1, 0, 0, 0},
-//        };
-
-//        input.close();
-        while (true) {
-            System.out.println(generationTimes);
-            OutputCellPlayGrid(origin);
-            origin = NextGeneration(origin);
-
-            if (generationTimes == maxGenerationTimes) {
-                System.out.println("Ooops is time to stop!");
-                break;
-            }
-
-            if (!CheckAllCellAlive(origin)) {
-                System.out.println("Ooops All cells are dead");
-                break;
-            }
-
-            Thread.sleep(350);
-            generationTimes++;
-        }
-    }
-
     /***
      * Any live cell with fewer than two live neighbours dies, as if by underpopulation.
      * Any live cell with two or three live neighbours lives on to the next generation.
@@ -57,6 +9,12 @@ public class GameOfLife {
      * @param cells
      * @return
      */
+
+    private static int generationTimes = 0;
+
+    public static int getGenerationTimes() {
+        return generationTimes;
+    }
 
     public static int[][] NextGeneration(int[][] cells) throws InterruptedException {
         int[][] next = new int[cells.length][cells[0].length];
@@ -96,10 +54,12 @@ public class GameOfLife {
                 }
             }
         }
+
+        generationTimes++;
         return next;
     }
 
-    private static int GetNeighbourAliveCount(int[][] cells, int i, int j) {
+    public static int GetNeighbourAliveCount(int[][] cells, int i, int j) {
         int neighbourAliveCount = 0;
         /*scan neighbour in 3*3 */
         for (int y = -1; y < 2; y++) {
@@ -128,7 +88,7 @@ public class GameOfLife {
         return neighbourAliveCount;
     }
 
-    private static void OutputCellPlayGrid(int[][] next) {
+    public static void OutputCellPlayGrid(int[][] next) {
         /*for convert to String, for clear to see*/
         String[][] nextStr = new String[next.length][next[0].length];
         for (int i = 0; i < next.length; i++) {
@@ -148,7 +108,7 @@ public class GameOfLife {
 //        System.out.println(outputString);
     }
 
-    private static int[][] CreateRandomCellGrid(int gridx, int gridy, int precent) {
+    public static int[][] CreateRandomCellGrid(int gridx, int gridy, int precent) {
 
         int origin[][] = new int[gridx][gridy];
         for (int i = 0; i < gridx; i++) {
@@ -164,7 +124,7 @@ public class GameOfLife {
         return ((r.nextInt(100) + 1) <= percent);
     }
 
-    private static boolean CheckAllCellAlive(int[][] cells) {
+    public static boolean CheckAllCellAlive(int[][] cells) {
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
                 if (cells[i][j] == 1) {
