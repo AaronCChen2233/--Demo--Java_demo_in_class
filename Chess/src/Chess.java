@@ -8,6 +8,10 @@ public class Chess {
         int boardSize = sizeOfSquares * 8;
         ArrayList<Square> squares = new ArrayList<Square>();
 
+        public ArrayList<Square> getSquares() {
+            return squares;
+        }
+
         ChessBoard() {
             /*create new chess board*/
             for (int i = 1; i <= NUMBER_OF_SQUARES; i++) {
@@ -87,7 +91,7 @@ public class Chess {
         }
     }
 
-    private class Square {
+    public class Square {
         int id;
         /*Square also have two kind color*/
         ChessColors type;
@@ -102,6 +106,10 @@ public class Chess {
         int row;
         int col;
 
+        public Piece getPiece() {
+            return piece;
+        }
+
         Square(int _id, Piece _piece) {
             /*id is 1~64*/
             this.id = _id;
@@ -110,13 +118,13 @@ public class Chess {
             /*convert to row and col*/
             int row = (_id / 8) + 1;
             int col = _id % 8;
-            row = col == 0 ? row-1: row;
+            row = col == 0 ? row - 1 : row;
             col = col == 0 ? 8 : col;
-            System.out.print(" "+row);
+            System.out.print(" " + row);
             System.out.print(col);
         }
 
-        Square(){
+        Square() {
 
         }
     }
@@ -126,7 +134,7 @@ public class Chess {
         White
     }
 
-    private enum NameOfPieces {
+    public enum NameOfPieces {
         /*capital is White, lower case is black*/
         K("White King"),
         k("Black King"),
@@ -143,23 +151,31 @@ public class Chess {
 
         private final String label;
 
+        public String getLabel() {
+            return label;
+        }
+
         private NameOfPieces(String label) {
             this.label = label;
         }
     }
 
-    private abstract class Piece {
+    public abstract class Piece {
         int id;
         ChessColors color;
         NameOfPieces nameOfPieces;
         Square StayPosition;
+
+        public NameOfPieces getNameOfPieces() {
+            return nameOfPieces;
+        }
 
         /*every pieces can move and they have different rule so use 'abstract'*/
         public abstract void Move(int row, int col);
 
         public Square GetRecommendMove() {
 
-        /*just for now no error*/
+            /*just for now no error*/
             return new Square();
         }
 

@@ -22,8 +22,8 @@ public class App {
         }
 
         if(_runWindow){
-            Tic_Tac_ToeWindow gameOfLifeWindows = new Tic_Tac_ToeWindow();
-            gameOfLifeWindows.setVisible(true);
+            Tic_Tac_ToeWindow ticTacToeWindow = new Tic_Tac_ToeWindow();
+            ticTacToeWindow.setVisible(true);
         }
 
         /*If run windows don't run StartGameByUseTerminal*/
