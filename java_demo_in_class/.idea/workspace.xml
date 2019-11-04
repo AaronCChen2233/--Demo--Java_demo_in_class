@@ -2,15 +2,44 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6307893e-b895-42e9-a9af-ef2c9f74c81c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Tic_Tac_Toe/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Tic_Tac_Toe/src/Tic_Tac_ToeWindow.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Tic_Tac_Toe/src/Tic_Tac_ToeWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tic_Tac_Toe/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Tic_Tac_Toe/src/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tic_Tac_Toe/src/Tic_Tac_Toe.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Tic_Tac_Toe/src/Tic_Tac_Toe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AaronNotePad/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AaronNotePad/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AaronNotePad/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AaronNotePad/AaronNotePad.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AaronNotePad/src/AaronNotePad.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AaronNotePad/src/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Aaron_GUI_Based_Password_Generator/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Aaron_GUI_Based_Password_Generator/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Aaron_GUI_Based_Password_Generator/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Aaron_GUI_Based_Password_Generator/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Aaron_GUI_Based_Password_Generator/Aaron_GUI_Based_Password_Generator.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Aaron_GUI_Based_Password_Generator/src/AaronSwingPalette/AaronJCheckBox.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Aaron_GUI_Based_Password_Generator/src/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Aaron_GUI_Based_Password_Generator/src/PasswordGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Aaron_GUI_Based_Password_Generator/src/PasswordGeneratorWindow.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Aaron_GUI_Based_Password_Generator/src/PasswordGeneratorWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/MigLayout.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/miglayout-core-javadoc.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/miglayout-core-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/miglayout-core.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/miglayout-swing-javadoc.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/miglayout-swing-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/miglayout-swing.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ElasticCollisionTestWindow.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ElasticCollisionTestWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dialogTest.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dialogTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Chess/src/Chess.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Chess/src/Chess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Game_of_Life/src/GameOfLife.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Game_of_Life/src/GameOfLife.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Game_of_Life/src/GameOfLifeWindows.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Game_of_Life/src/GameOfLifeWindows.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tic_Tac_Toe/src/Tic_Tac_ToeWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Tic_Tac_Toe/src/Tic_Tac_ToeWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StudentInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StudentInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StudentInfoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StudentInfoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_demo_in_class.iml" beforeDir="false" afterPath="$PROJECT_DIR$/java_demo_in_class.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_demo_in_class/Fish.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_demo_in_class/Fish.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_demo_in_class/StudentInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_demo_in_class/StudentInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_demo_in_class/StudentInfoTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_demo_in_class/StudentInfoTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_demo_in_class/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_demo_in_class/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,6 +55,7 @@
       <list>
         <option value="JavaFXApplication" />
         <option value="Class" />
+        <option value="DesignerCompanion" />
       </list>
     </option>
   </component>
@@ -37,9 +67,10 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../AaronRipper" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -53,7 +84,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Test">
+  <component name="RunManager" selected="Application.ElasticCollisionTestWindow">
     <configuration name="CheckPalindrome" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="11" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -63,16 +94,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FourSeasons" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="FourSeasons" />
+    <configuration name="ElasticCollisionTestWindow" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ElasticCollisionTestWindow" />
       <module name="java_demo_in_class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StudentInfoTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="StudentInfoTest" />
+    <configuration name="FourSeasons" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="FourSeasons" />
       <module name="java_demo_in_class" />
+      <option name="ENABLE_SWING_INSPECTOR" value="true" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -94,17 +126,17 @@
     <list>
       <item itemvalue="Application.CheckPalindrome" />
       <item itemvalue="Application.FourSeasons" />
-      <item itemvalue="Application.StudentInfoTest" />
       <item itemvalue="Application.TwoDArrayOutput" />
       <item itemvalue="Application.Test" />
+      <item itemvalue="Application.ElasticCollisionTestWindow" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Test" />
         <item itemvalue="Application.FourSeasons" />
+        <item itemvalue="Application.ElasticCollisionTestWindow" />
+        <item itemvalue="Application.Test" />
         <item itemvalue="Application.CheckPalindrome" />
         <item itemvalue="Application.TwoDArrayOutput" />
-        <item itemvalue="Application.StudentInfoTest" />
       </list>
     </recent_temporary>
   </component>
@@ -120,6 +152,27 @@
       <updated>1570467639120</updated>
     </task>
     <servers />
+  </component>
+  <component name="VaadinDesigner.SizePresetsSettingsComponent">
+    <option name="sizePresets">
+      <list>
+        <SizePreset>
+          <option name="caption" value="Phone" />
+          <option name="height" value="568" />
+          <option name="width" value="320" />
+        </SizePreset>
+        <SizePreset>
+          <option name="caption" value="Tablet" />
+          <option name="height" value="1024" />
+          <option name="width" value="768" />
+        </SizePreset>
+        <SizePreset>
+          <option name="caption" value="Desktop" />
+          <option name="height" value="900" />
+          <option name="width" value="1440" />
+        </SizePreset>
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -170,5 +223,10 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/intellij_create_project_test$HelloWorld.ic" NAME="HelloWorld Coverage Results" MODIFIED="1570470074654" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+  <component name="designer.settings">
+    <option name="autodetectServerAddress" value="true" />
+    <option name="serverIp" value="10.196.240.80" />
+    <option name="serverPort" value="30989" />
   </component>
 </project>
