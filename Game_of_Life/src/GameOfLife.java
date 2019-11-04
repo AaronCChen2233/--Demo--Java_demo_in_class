@@ -35,14 +35,8 @@ public class GameOfLife {
 
                 /*Rule2
                 Any live cell with two or three live neighbours lives on to the next generation.*/
-                if (neighbourAliveCount == 2 || neighbourAliveCount == 3) {
+                if (neighbourAliveCount == 2) {
                     next[i][j] = cells[i][j];
-
-                    /*Rule4
-                    Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.*/
-                    if (neighbourAliveCount == 3) {
-                        next[i][j] = 1;
-                    }
                     continue;
                 }
 
@@ -50,6 +44,13 @@ public class GameOfLife {
                 Any live cell with more than three live neighbours dies, as if by overpopulation.*/
                 if (neighbourAliveCount > 3) {
                     next[i][j] = 0;
+                    continue;
+                }
+
+                /*Rule4
+                Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.*/
+                if (neighbourAliveCount == 3) {
+                    next[i][j] = 1;
                     continue;
                 }
             }

@@ -1,14 +1,10 @@
 
 import javax.swing.*;
-import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class GameOfLifeWindows extends JFrame {
     private JButton createButton;
@@ -41,9 +37,10 @@ public class GameOfLifeWindows extends JFrame {
                 try {
                     cellPlayGrid.removeAll();
                     origin = GameOfLife.NextGeneration(origin);
-                    if (!GameOfLife.CheckAllCellAlive(origin)) {
-                        timer.stop();
-                    }
+                    /*for better performance comment it for now*/
+//                    if (!GameOfLife.CheckAllCellAlive(origin)) {
+//                        timer.stop();
+//                    }
                     ShowoncellPlayGrid(origin);
                     cellPlayGrid.updateUI();
                 } catch (Exception ex) {
