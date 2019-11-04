@@ -1,3 +1,5 @@
+import com.sun.prism.Image;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,6 +20,8 @@ public class Tic_Tac_ToeWindow extends JFrame {
         broadPanel.setMinimumSize(new Dimension(630, 630));
         setTitle("Aaron Tic Tac Toe Game");
         setSize(730, 800);
+        ImageIcon img = new ImageIcon("src/images/tic-tac-toe.png");
+        setIconImage(img.getImage());
         messageLabel.setText("Welcome! New game start " + tic_tac_toe.GetWhoseTurnMessage());
         broadPanel.setLayout(new GridLayout(3, 3));
         /*close*/
@@ -48,7 +52,7 @@ public class Tic_Tac_ToeWindow extends JFrame {
             broadPanel.add(blockButton);
         }
 
-        /*Set button action command*/
+       /*Set button action command*/
 //        button1.setActionCommand("1");
 //        button2.setActionCommand("2");
 //        button3.setActionCommand("3");
