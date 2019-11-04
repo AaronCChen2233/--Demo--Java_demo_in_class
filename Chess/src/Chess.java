@@ -192,6 +192,7 @@ public class Chess {
             nameOfPieces = this.color == ChessColors.White ? NameOfPieces.K : NameOfPieces.k;
         }
 
+        @Override
         public void Move(int row, int col) {
 
         }
@@ -205,6 +206,7 @@ public class Chess {
             nameOfPieces = this.color == ChessColors.White ? NameOfPieces.Q : NameOfPieces.q;
         }
 
+        @Override
         public void Move(int row, int col) {
 
         }
@@ -218,6 +220,7 @@ public class Chess {
             nameOfPieces = this.color == ChessColors.White ? NameOfPieces.R : NameOfPieces.r;
         }
 
+        @Override
         public void Move(int row, int col) {
 
         }
@@ -231,6 +234,7 @@ public class Chess {
             nameOfPieces = this.color == ChessColors.White ? NameOfPieces.B : NameOfPieces.b;
         }
 
+        @Override
         public void Move(int row, int col) {
 
         }
@@ -244,6 +248,7 @@ public class Chess {
             nameOfPieces = this.color == ChessColors.White ? NameOfPieces.N : NameOfPieces.n;
         }
 
+        @Override
         public void Move(int row, int col) {
 
         }
@@ -257,6 +262,7 @@ public class Chess {
             nameOfPieces = this.color == ChessColors.White ? NameOfPieces.P : NameOfPieces.p;
         }
 
+        @Override
         public void Move(int row, int col) {
 
         }
