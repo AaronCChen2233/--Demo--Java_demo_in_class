@@ -2,44 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6307893e-b895-42e9-a9af-ef2c9f74c81c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../AaronNotePad/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AaronNotePad/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AaronNotePad/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AaronNotePad/AaronNotePad.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AaronNotePad/src/AaronNotePad.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AaronNotePad/src/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Aaron_GUI_Based_Password_Generator/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Aaron_GUI_Based_Password_Generator/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Aaron_GUI_Based_Password_Generator/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Aaron_GUI_Based_Password_Generator/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Aaron_GUI_Based_Password_Generator/Aaron_GUI_Based_Password_Generator.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Aaron_GUI_Based_Password_Generator/src/AaronSwingPalette/AaronJCheckBox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Aaron_GUI_Based_Password_Generator/src/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Aaron_GUI_Based_Password_Generator/src/PasswordGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Aaron_GUI_Based_Password_Generator/src/PasswordGeneratorWindow.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Aaron_GUI_Based_Password_Generator/src/PasswordGeneratorWindow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/MigLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/miglayout-core-javadoc.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/miglayout-core-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/miglayout-core.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/miglayout-swing-javadoc.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/miglayout-swing-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/miglayout-swing.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ElasticCollisionTestWindow.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ElasticCollisionTestWindow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dialogTest.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dialogTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Chess/src/Chess.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Chess/src/Chess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Game_of_Life/src/GameOfLife.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Game_of_Life/src/GameOfLife.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Game_of_Life/src/GameOfLifeWindows.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Game_of_Life/src/GameOfLifeWindows.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tic_Tac_Toe/src/Tic_Tac_ToeWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Tic_Tac_Toe/src/Tic_Tac_ToeWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java_demo_in_class.iml" beforeDir="false" afterPath="$PROJECT_DIR$/java_demo_in_class.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_demo_in_class/Fish.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_demo_in_class/Fish.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_demo_in_class/StudentInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_demo_in_class/StudentInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_demo_in_class/StudentInfoTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_demo_in_class/StudentInfoTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_demo_in_class/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_demo_in_class/Test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
