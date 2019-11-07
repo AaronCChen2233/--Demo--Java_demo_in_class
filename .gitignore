@@ -247,3 +247,9 @@ CardGame/out/production/CardGame/View/JCard.class
 GuessNumber/GuessNumber.iml
 GuessNumber/.idea/$PRODUCT_WORKSPACE_FILE$
 GuessNumber/.idea/misc.xml
+CardGame/out/production/CardGame/Model/BlackJackResult.class
+CardGame/out/production/CardGame/View/BlackJackDeckPanel$1.class
+CardGame/out/production/CardGame/View/BlackJackDeckPanel$2.class
+CardGame/out/production/CardGame/View/BlackJackDeckPanel$3.class
+CardGame/out/production/CardGame/View/BlackJackDeckPanel$4.class
+CardGame/out/production/CardGame/View/BlackJackDeckPanel$TimeSetter.class
