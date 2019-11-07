@@ -35,6 +35,7 @@
           <component id="f3b95" class="javax.swing.JLabel" binding="suiteImageLabel">
             <constraints border-constraint="Center"/>
             <properties>
+              <font name="Droid Sans Mono" size="28"/>
               <horizontalAlignment value="0"/>
               <text value=""/>
             </properties>

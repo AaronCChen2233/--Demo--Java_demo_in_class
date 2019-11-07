@@ -6,6 +6,8 @@ import Model.Tools;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -29,6 +31,8 @@ public class JCard extends JPanel {
         InitialFaceUp();
         InitialFaceDown();
 
+        Border cardBorder = new LineBorder(Color.BLACK, 3, true);
+        setBorder(cardBorder);
         add(mainPanel);
     }
 

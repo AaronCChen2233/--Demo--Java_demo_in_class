@@ -5,7 +5,7 @@ import java.util.Collections;
 
 public class BlackJackDeck {
     private ArrayList<Card> cards = new ArrayList<Card>();
-    private Player banker;
+    private Player dealer;
 
     /*Because if multiple players so use list*/
     private ArrayList<Player> players;
@@ -16,18 +16,18 @@ public class BlackJackDeck {
         return cards;
     }
 
-    public Player getBanker() {
-        return banker;
+    public Player getDealer() {
+        return dealer;
     }
 
     public ArrayList<Player> getPlayers() {
         return players;
     }
 
-    public int GetBankerHandCardsValue() {
+    public int GetDealerHandCardsValue() {
         int total = 0;
         boolean hasAce = false;
-        for (Card c : banker.getHoldCards()) {
+        for (Card c : dealer.getHoldCards()) {
             total += c.getCardValueInt();
             if (c.getCardValue().equals(CardValue.Ace)) {
                 hasAce = true;
@@ -75,7 +75,7 @@ public class BlackJackDeck {
 
     public void NextRound(int playersCount) {
         Shuffle();
-        banker = new Player();
+        dealer = new Player();
         players = new ArrayList<Player>();
         for (int i = 0; i < playersCount; i++) {
             Player player = new Player();
@@ -86,13 +86,13 @@ public class BlackJackDeck {
             players.add(player);
         }
 
-        banker.GetCard(cards.get(cardIndex));
+        dealer.GetCard(cards.get(cardIndex));
         cardIndex++;
-        banker.GetCard(cards.get(cardIndex));
+        dealer.GetCard(cards.get(cardIndex));
         cardIndex++;
 
-        /*Banker first card is face down*/
-        banker.getHoldCards().get(0).setCardDirection(CardDirection.FaceDown);
+        /*Dealer first card is face down*/
+        dealer.getHoldCards().get(0).setCardDirection(CardDirection.FaceDown);
     }
 
     public Card PlayerHit(int playerIndex) {
@@ -101,15 +101,15 @@ public class BlackJackDeck {
         return cards.get(cardIndex);
     }
 
-    public Card BankerHit() {
+    public Card DealerHit() {
         cardIndex++;
-        banker.GetCard(cards.get(cardIndex));
+        dealer.GetCard(cards.get(cardIndex));
         return cards.get(cardIndex);
     }
 
-    public void BankerShowCards() {
+    public void DealerShowCards() {
         /*Set every cards are face up*/
-        for (Card c : banker.getHoldCards()) {
+        for (Card c : dealer.getHoldCards()) {
             c.setCardDirection(CardDirection.FaceUp);
         }
     }
@@ -117,22 +117,22 @@ public class BlackJackDeck {
     public BlackJackResult GetResult(int playerIndex) {
         if (GetPlayerHandCardsValue(playerIndex) > 21) {
             /*Player Bust*/
-            return BlackJackResult.BankerWin;
+            return BlackJackResult.DealerWin;
         }
 
-        if (GetBankerHandCardsValue() > 21) {
-            /*Banker Bust*/
+        if (GetDealerHandCardsValue() > 21) {
+            /*Dealer Bust*/
             return BlackJackResult.PlayerWin;
         }
 
-        if (GetBankerHandCardsValue() > GetPlayerHandCardsValue(playerIndex)) {
-            /*Banker card value bigger than player BankerWin*/
-            return BlackJackResult.BankerWin;
-        } else if (GetBankerHandCardsValue() == GetPlayerHandCardsValue(playerIndex)) {
-            /*Player card value equal banker Push*/
+        if (GetDealerHandCardsValue() > GetPlayerHandCardsValue(playerIndex)) {
+            /*Dealer card value bigger than player DealerWin*/
+            return BlackJackResult.DealerWin;
+        } else if (GetDealerHandCardsValue() == GetPlayerHandCardsValue(playerIndex)) {
+            /*Player card value equal dealer Push*/
             return BlackJackResult.Push;
         } else {
-            /*Player card value bigger than banker*/
+            /*Player card value bigger than dealer*/
             return BlackJackResult.PlayerWin;
         }
     }
@@ -143,8 +143,8 @@ public class BlackJackDeck {
     }
 
     /*true is Bust*/
-    public boolean CheckBankerBust() {
-        return GetBankerHandCardsValue() > 21;
+    public boolean CheckDealerBust() {
+        return GetDealerHandCardsValue() > 21;
     }
 
     /*Because different card value for different card game so put card value when initial the card game not in the Card class*/

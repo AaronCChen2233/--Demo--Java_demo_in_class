@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="View.BlackJackDeckPanel">
-  <grid id="27dc6" binding="mainPanel" layout-manager="BorderLayout" hgap="500" vgap="200">
+  <grid id="27dc6" binding="mainPanel" layout-manager="BorderLayout" hgap="500" vgap="150">
     <constraints>
       <xy x="20" y="20" width="1520" height="483"/>
     </constraints>
@@ -45,7 +45,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="1238e" class="javax.swing.JLabel" binding="bankerPointsLable">
+          <component id="1238e" class="javax.swing.JLabel" binding="dealerPointsLable">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
@@ -56,7 +56,7 @@
               <text value=""/>
             </properties>
           </component>
-          <grid id="4ee29" binding="bankerCardPanel" layout-manager="GridBagLayout">
+          <grid id="4ee29" binding="dealerCardPanel" layout-manager="GridBagLayout">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
@@ -104,7 +104,7 @@
           </component>
           <component id="a2898" class="javax.swing.JButton" binding="playAgainButton" default-binding="true">
             <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font name="Droid Sans Mono" size="36"/>
