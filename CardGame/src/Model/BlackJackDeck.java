@@ -6,10 +6,10 @@ import java.util.Collections;
 public class BlackJackDeck {
     private ArrayList<Card> cards = new ArrayList<Card>();
     private Player banker;
+
+    /*Because if multiple players so use list*/
     private ArrayList<Player> players;
 
-//    private ArrayList<Card> playerHandCards = new ArrayList<Card>();
-//    private ArrayList<Card> bankerHandCards = new ArrayList<Card>();
     private int cardIndex = 0;
 
     public ArrayList<Card> getCards() {
@@ -24,15 +24,6 @@ public class BlackJackDeck {
         return players;
     }
 
-    //    public ArrayList<Card> getPlayerHandCards() {
-//        return playerHandCards;
-//    }
-//
-//    public ArrayList<Card> getBankerHandCards() {
-//        return bankerHandCards;
-//    }
-
-    /*hadn't check Ace equal 1 or 11*/
     public int GetBankerHandCardsValue() {
         int total = 0;
         boolean hasAce = false;
@@ -43,8 +34,8 @@ public class BlackJackDeck {
             }
         }
 
-        /*Rule for Ace Because if hadn't bust point bigger is better*/
-        /*so if hadn't bust say Ace is 11 points*/
+        /*Rule for Ace Because if haven't bust more point is better*/
+        /*so if haven't bust say Ace is 11 points*/
         /*already add 1 point in foreach loop so only +10 points*/
         if ((total + 10) <= 21 && hasAce) {
             total += 10;
@@ -62,8 +53,8 @@ public class BlackJackDeck {
             }
         }
 
-        /*Rule for Ace Because if hadn't bust point bigger is better*/
-        /*so if hadn't bust say Ace is 11 points*/
+        /*Rule for Ace Because if haven't bust more point is better*/
+        /*so if haven't bust say Ace is 11 points*/
         /*already add 1 point in foreach loop so only +10 points*/
         if ((total + 10) <= 21 && hasAce) {
             total += 10;
@@ -80,14 +71,13 @@ public class BlackJackDeck {
                 }
             }
         }
-        /*next round*/
     }
 
     public void NextRound(int playersCount) {
         Shuffle();
         banker = new Player();
         players = new ArrayList<Player>();
-        for(int i =0;i<playersCount;i++){
+        for (int i = 0; i < playersCount; i++) {
             Player player = new Player();
             player.GetCard(cards.get(cardIndex));
             cardIndex++;
@@ -95,10 +85,6 @@ public class BlackJackDeck {
             cardIndex++;
             players.add(player);
         }
-
-
-//        playerHandCards = new ArrayList<Card>();
-//        bankerHandCards = new ArrayList<Card>();
 
         banker.GetCard(cards.get(cardIndex));
         cardIndex++;

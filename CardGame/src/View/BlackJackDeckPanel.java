@@ -26,7 +26,7 @@ public class BlackJackDeckPanel extends JPanel {
     public BlackJackDeckPanel() throws IOException {
         super();
         blackJackDeck = new BlackJackDeck();
-        /*Now only for one player*/
+        /*Now only for one player, multiple coming soon~*/
         blackJackDeck.NextRound(1);
 //        /*just for test*/
 //        mainPanel.setLayout(new GridLayout(4, 13));
@@ -45,6 +45,7 @@ public class BlackJackDeckPanel extends JPanel {
         standButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                /*Use another thread for the effect banker hit card one by one per second*/
                 TimeSetter timeSetter = new TimeSetter();
                 Thread t = new Thread(timeSetter);
                 t.start();
@@ -57,7 +58,8 @@ public class BlackJackDeckPanel extends JPanel {
                 try {
                     playerCardPanel.add(new JCard(blackJackDeck.PlayerHit(0)));
                     playerCardPanel.updateUI();
-                    playerPointsLable.setText(String.valueOf(blackJackDeck.GetPlayerHandCardsValue(0)));
+                    String playerPointsString = blackJackDeck.GetPlayerHandCardsValue(0)==21?"Black Jack":String.valueOf(blackJackDeck.GetPlayerHandCardsValue(0));
+                    playerPointsLable.setText(playerPointsString);
                     if (blackJackDeck.CheckPlayerBust(0)) {
                         /*Bust*/
                         ShowResult("Yor bust you lost~");
@@ -83,7 +85,8 @@ public class BlackJackDeckPanel extends JPanel {
 
     private void BankerShowCards() {
         blackJackDeck.BankerShowCards();
-        bankerPointsLable.setText(String.valueOf(blackJackDeck.GetBankerHandCardsValue()));
+        String bankerPointsString = blackJackDeck.GetBankerHandCardsValue()==21?"Black Jack":String.valueOf(blackJackDeck.GetBankerHandCardsValue());
+        bankerPointsLable.setText(bankerPointsString);
         bankerPointsLable.setVisible(true);
         bankerCardPanel.removeAll();
         for (Card c : blackJackDeck.getBanker().getHoldCards()) {
@@ -97,6 +100,18 @@ public class BlackJackDeckPanel extends JPanel {
     }
 
     private void ShowResult(String s) {
+        /*different color for different result*/
+        switch (blackJackDeck.GetResult(0)) {
+            case PlayerWin:
+                resultLable.setForeground(Color.yellow);
+                break;
+            case BankerWin:
+                resultLable.setForeground(Color.red);
+                break;
+            case Push:
+                resultLable.setForeground(Color.blue);
+                break;
+        }
         standButton.setVisible(false);
         hitButton.setVisible(false);
         resultPanel.setVisible(true);
@@ -117,7 +132,8 @@ public class BlackJackDeckPanel extends JPanel {
             playerCardPanel.add(new JCard(c));
         }
 
-        playerPointsLable.setText(String.valueOf(blackJackDeck.GetPlayerHandCardsValue(0)));
+        String playerPointsString = blackJackDeck.GetPlayerHandCardsValue(0) == 21 ? "Black Jack" : String.valueOf(blackJackDeck.GetPlayerHandCardsValue(0));
+        playerPointsLable.setText(playerPointsString);
 
         for (Card c : blackJackDeck.getBanker().getHoldCards()) {
             bankerCardPanel.add(new JCard(c));
@@ -149,13 +165,13 @@ public class BlackJackDeckPanel extends JPanel {
             /*if hadn't bust and banker points is bigger than 17 check*/
             switch (blackJackDeck.GetResult(0)) {
                 case PlayerWin:
-                    ShowResult("Banker has "+ String.valueOf(blackJackDeck.GetBankerHandCardsValue())+" points"+" you win!");
+                    ShowResult("Banker has " + String.valueOf(blackJackDeck.GetBankerHandCardsValue()) + " points" + " you win!");
                     break;
                 case BankerWin:
-                    ShowResult("Banker has "+ String.valueOf(blackJackDeck.GetBankerHandCardsValue())+" points"+" you lost!");
+                    ShowResult("Banker has " + String.valueOf(blackJackDeck.GetBankerHandCardsValue()) + " points" + " you lost!");
                     break;
                 case Push:
-                    ShowResult("Banker has "+ String.valueOf(blackJackDeck.GetBankerHandCardsValue())+" points"+" that push");
+                    ShowResult("Banker has " + String.valueOf(blackJackDeck.GetBankerHandCardsValue()) + " points" + " that push");
                     break;
             }
         }
