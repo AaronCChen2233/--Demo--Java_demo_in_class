@@ -5,27 +5,38 @@ import java.util.Collections;
 
 public class BlackJackDeck {
     private ArrayList<Card> cards = new ArrayList<Card>();
-    private ArrayList<Card> playerHandCards = new ArrayList<Card>();
-    private ArrayList<Card> bankerHandCards = new ArrayList<Card>();
+    private Player banker;
+    private ArrayList<Player> players;
+
+//    private ArrayList<Card> playerHandCards = new ArrayList<Card>();
+//    private ArrayList<Card> bankerHandCards = new ArrayList<Card>();
     private int cardIndex = 0;
 
     public ArrayList<Card> getCards() {
         return cards;
     }
 
-    public ArrayList<Card> getPlayerHandCards() {
-        return playerHandCards;
+    public Player getBanker() {
+        return banker;
     }
 
-    public ArrayList<Card> getBankerHandCards() {
-        return bankerHandCards;
+    public ArrayList<Player> getPlayers() {
+        return players;
     }
+
+    //    public ArrayList<Card> getPlayerHandCards() {
+//        return playerHandCards;
+//    }
+//
+//    public ArrayList<Card> getBankerHandCards() {
+//        return bankerHandCards;
+//    }
 
     /*hadn't check Ace equal 1 or 11*/
     public int GetBankerHandCardsValue() {
         int total = 0;
         boolean hasAce = false;
-        for (Card c : bankerHandCards) {
+        for (Card c : banker.getHoldCards()) {
             total += c.getCardValueInt();
             if (c.getCardValue().equals(CardValue.Ace)) {
                 hasAce = true;
@@ -41,10 +52,10 @@ public class BlackJackDeck {
         return total;
     }
 
-    public int GetPlayerHandCardsValue() {
+    public int GetPlayerHandCardsValue(int i) {
         int total = 0;
         boolean hasAce = false;
-        for (Card c : playerHandCards) {
+        for (Card c : players.get(i).getHoldCards()) {
             total += c.getCardValueInt();
             if (c.getCardValue().equals(CardValue.Ace)) {
                 hasAce = true;
@@ -69,46 +80,56 @@ public class BlackJackDeck {
                 }
             }
         }
-        NextRound();
+        /*next round*/
     }
 
-    public void NextRound() {
+    public void NextRound(int playersCount) {
         Shuffle();
-        playerHandCards = new ArrayList<Card>();
-        bankerHandCards = new ArrayList<Card>();
-        playerHandCards.add(cards.get(0));
-        playerHandCards.add(cards.get(1));
-        bankerHandCards.add(cards.get(2));
-        bankerHandCards.add(cards.get(3));
-        bankerHandCards.get(0).setCardDirection(CardDirection.FaceDown);
-        cardIndex = 3;
+        banker = new Player();
+        players = new ArrayList<Player>();
+        for(int i =0;i<playersCount;i++){
+            Player player = new Player();
+            player.GetCard(cards.get(cardIndex));
+            cardIndex++;
+            player.GetCard(cards.get(cardIndex));
+            cardIndex++;
+            players.add(player);
+        }
+
+
+//        playerHandCards = new ArrayList<Card>();
+//        bankerHandCards = new ArrayList<Card>();
+
+        banker.GetCard(cards.get(cardIndex));
+        cardIndex++;
+        banker.GetCard(cards.get(cardIndex));
+        cardIndex++;
+
+        /*Banker first card is face down*/
+        banker.getHoldCards().get(0).setCardDirection(CardDirection.FaceDown);
     }
 
-    public Card PlayerHit() {
+    public Card PlayerHit(int playerIndex) {
         cardIndex++;
-        playerHandCards.add(cards.get(cardIndex));
+        players.get(playerIndex).GetCard(cards.get(cardIndex));
         return cards.get(cardIndex);
     }
 
     public Card BankerHit() {
         cardIndex++;
-        bankerHandCards.add(cards.get(cardIndex));
+        banker.GetCard(cards.get(cardIndex));
         return cards.get(cardIndex);
-    }
-
-    public void PlayerStand() {
-
     }
 
     public void BankerShowCards() {
         /*Set every cards are face up*/
-        for (Card c : bankerHandCards) {
+        for (Card c : banker.getHoldCards()) {
             c.setCardDirection(CardDirection.FaceUp);
         }
     }
 
-    public BlackJackResult GetResult() {
-        if (GetPlayerHandCardsValue() > 21) {
+    public BlackJackResult GetResult(int playerIndex) {
+        if (GetPlayerHandCardsValue(playerIndex) > 21) {
             /*Player Bust*/
             return BlackJackResult.BankerWin;
         }
@@ -118,10 +139,10 @@ public class BlackJackDeck {
             return BlackJackResult.PlayerWin;
         }
 
-        if (GetBankerHandCardsValue() > GetPlayerHandCardsValue()) {
+        if (GetBankerHandCardsValue() > GetPlayerHandCardsValue(playerIndex)) {
             /*Banker card value bigger than player BankerWin*/
             return BlackJackResult.BankerWin;
-        } else if (GetBankerHandCardsValue() == GetPlayerHandCardsValue()) {
+        } else if (GetBankerHandCardsValue() == GetPlayerHandCardsValue(playerIndex)) {
             /*Player card value equal banker Push*/
             return BlackJackResult.Push;
         } else {
@@ -131,8 +152,8 @@ public class BlackJackDeck {
     }
 
     /*true is Bust*/
-    public boolean CheckPlayerBust() {
-        return GetPlayerHandCardsValue() > 21;
+    public boolean CheckPlayerBust(int playerIndex) {
+        return GetPlayerHandCardsValue(playerIndex) > 21;
     }
 
     /*true is Bust*/
@@ -173,5 +194,6 @@ public class BlackJackDeck {
 
     public void Shuffle() {
         Collections.shuffle(cards);
+        cardIndex = 0;
     }
 }

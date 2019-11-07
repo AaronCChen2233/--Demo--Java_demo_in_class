@@ -26,6 +26,8 @@ public class BlackJackDeckPanel extends JPanel {
     public BlackJackDeckPanel() throws IOException {
         super();
         blackJackDeck = new BlackJackDeck();
+        /*Now only for one player*/
+        blackJackDeck.NextRound(1);
 //        /*just for test*/
 //        mainPanel.setLayout(new GridLayout(4, 13));
 //        for(Card card : blackJackDeck.getCards()){
@@ -53,10 +55,10 @@ public class BlackJackDeckPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    playerCardPanel.add(new JCard(blackJackDeck.PlayerHit()));
+                    playerCardPanel.add(new JCard(blackJackDeck.PlayerHit(0)));
                     playerCardPanel.updateUI();
-                    playerPointsLable.setText(String.valueOf(blackJackDeck.GetPlayerHandCardsValue()));
-                    if (blackJackDeck.CheckPlayerBust()) {
+                    playerPointsLable.setText(String.valueOf(blackJackDeck.GetPlayerHandCardsValue(0)));
+                    if (blackJackDeck.CheckPlayerBust(0)) {
                         /*Bust*/
                         ShowResult("Yor bust you lost~");
                     }
@@ -69,7 +71,7 @@ public class BlackJackDeckPanel extends JPanel {
         playAgainButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                blackJackDeck.NextRound();
+                blackJackDeck.NextRound(1);
                 try {
                     NewGameStart();
                 } catch (IOException ex) {
@@ -81,8 +83,10 @@ public class BlackJackDeckPanel extends JPanel {
 
     private void BankerShowCards() {
         blackJackDeck.BankerShowCards();
+        bankerPointsLable.setText(String.valueOf(blackJackDeck.GetBankerHandCardsValue()));
+        bankerPointsLable.setVisible(true);
         bankerCardPanel.removeAll();
-        for (Card c : blackJackDeck.getBankerHandCards()) {
+        for (Card c : blackJackDeck.getBanker().getHoldCards()) {
             try {
                 bankerCardPanel.add(new JCard(c));
             } catch (IOException ex) {
@@ -105,16 +109,17 @@ public class BlackJackDeckPanel extends JPanel {
         standButton.setVisible(true);
         hitButton.setVisible(true);
         resultPanel.setVisible(false);
+        bankerPointsLable.setVisible(false);
         playerCardPanel.removeAll();
         bankerCardPanel.removeAll();
 
-        for (Card c : blackJackDeck.getPlayerHandCards()) {
+        for (Card c : blackJackDeck.getPlayers().get(0).getHoldCards()) {
             playerCardPanel.add(new JCard(c));
         }
 
-        playerPointsLable.setText(String.valueOf(blackJackDeck.GetPlayerHandCardsValue()));
+        playerPointsLable.setText(String.valueOf(blackJackDeck.GetPlayerHandCardsValue(0)));
 
-        for (Card c : blackJackDeck.getBankerHandCards()) {
+        for (Card c : blackJackDeck.getBanker().getHoldCards()) {
             bankerCardPanel.add(new JCard(c));
         }
 
@@ -142,7 +147,7 @@ public class BlackJackDeckPanel extends JPanel {
             }
 
             /*if hadn't bust and banker points is bigger than 17 check*/
-            switch (blackJackDeck.GetResult()) {
+            switch (blackJackDeck.GetResult(0)) {
                 case PlayerWin:
                     ShowResult("Banker has "+ String.valueOf(blackJackDeck.GetBankerHandCardsValue())+" points"+" you win!");
                     break;
