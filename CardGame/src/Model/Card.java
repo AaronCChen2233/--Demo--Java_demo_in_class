@@ -1,7 +1,7 @@
 package Model;
 
 public class Card {
-    public static final int CARDWIDTH = 200;
+    public static final int CARDWIDTH = 120;
     public static final int CARDHEIGHT = 270;
     private CardSuite cardSuite;
     private CardValue cardValue;

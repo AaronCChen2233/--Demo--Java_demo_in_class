@@ -71,11 +71,12 @@ public class BlackJackDeck {
                 }
             }
         }
+        dealer = new Player();
     }
 
     public void NextRound(int playersCount) {
         Shuffle();
-        dealer = new Player();
+        dealer.RemoveAllHoldCard();
         players = new ArrayList<Player>();
         for (int i = 0; i < playersCount; i++) {
             Player player = new Player();
@@ -180,6 +181,9 @@ public class BlackJackDeck {
 
     public void Shuffle() {
         Collections.shuffle(cards);
+        for(Card card :cards){
+            card.setCardDirection(CardDirection.FaceUp);
+        }
         cardIndex = 0;
     }
 }

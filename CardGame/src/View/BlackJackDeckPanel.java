@@ -47,6 +47,8 @@ public class BlackJackDeckPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 /*Use another thread for the effect dealer hit card one by one per second*/
                 dealerPointsLable.setVisible(true);
+                standButton.setEnabled(false);
+                hitButton.setEnabled(false);
                 TimeSetter timeSetter = new TimeSetter();
                 Thread t = new Thread(timeSetter);
                 t.start();
@@ -86,15 +88,10 @@ public class BlackJackDeckPanel extends JPanel {
 
     private void DealerShowCards() {
         blackJackDeck.DealerShowCards();
-        dealerCardPanel.removeAll();
         String dealerPointsString = blackJackDeck.GetDealerHandCardsValue() == 21 ? "Black Jack" : String.valueOf(blackJackDeck.GetDealerHandCardsValue());
         dealerPointsLable.setText(dealerPointsString);
-        for (Card c : blackJackDeck.getDealer().getHoldCards()) {
-            try {
-                dealerCardPanel.add(new JCard(c));
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+        for(Component jcard:dealerCardPanel.getComponents()){
+            ((JCard)jcard).FaceUp();
         }
         dealerCardPanel.updateUI();
     }
@@ -112,17 +109,17 @@ public class BlackJackDeckPanel extends JPanel {
                 resultLable.setForeground(Color.blue);
                 break;
         }
+        resultPanel.setVisible(true);
         standButton.setVisible(false);
         hitButton.setVisible(false);
-        resultPanel.setVisible(true);
         resultLable.setText(s);
-        /*dealer show card*/
-        DealerShowCards();
     }
 
     private void NewGameStart() throws IOException {
         standButton.setVisible(true);
         hitButton.setVisible(true);
+        standButton.setEnabled(true);
+        hitButton.setEnabled(true);
         resultPanel.setVisible(false);
         dealerPointsLable.setVisible(false);
         playerCardPanel.removeAll();
@@ -146,14 +143,19 @@ public class BlackJackDeckPanel extends JPanel {
     class TimeSetter implements Runnable {
         @Override
         public void run() {
+
             DealerHit();
         }
     }
 
     private void DealerHit() {
-        /*If Dealer hand cards value smaller than 17 dealer will keep hit*/
-        while (blackJackDeck.GetDealerHandCardsValue() < 17) {
-            try {
+        try {
+            /*dealer show card*/
+            DealerShowCards();
+            Thread.sleep(1000);
+            /*If Dealer hand cards value smaller than 17 dealer will keep hit*/
+            while (blackJackDeck.GetDealerHandCardsValue() < 17) {
+
                 dealerCardPanel.add(new JCard(blackJackDeck.DealerHit()));
                 dealerCardPanel.updateUI();
                 String dealerPointsString = blackJackDeck.GetDealerHandCardsValue() == 21 ? "Black Jack" : String.valueOf(blackJackDeck.GetDealerHandCardsValue());
@@ -164,9 +166,9 @@ public class BlackJackDeckPanel extends JPanel {
                     return;
                 }
                 Thread.sleep(1000);
-            } catch (IOException | InterruptedException ex) {
-                ex.printStackTrace();
             }
+        } catch (IOException | InterruptedException ex) {
+            ex.printStackTrace();
         }
 
         /*if hadn't bust and dealer points is bigger than 17 check*/

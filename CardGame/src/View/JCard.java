@@ -98,10 +98,12 @@ public class JCard extends JPanel {
 
     public void FaceDown() {
         card.setCardDirection(CardDirection.FaceDown);
+        SetFaceDirection();
     }
 
     public void FaceUp() {
         card.setCardDirection(CardDirection.FaceUp);
+        SetFaceDirection();
     }
 
     public JCard() {

@@ -27,6 +27,6 @@ public class Player {
     }
 
     public void RemoveAllHoldCard(){
-        HoldCards = new ArrayList<Card>();
+        HoldCards.clear();
     }
 }
