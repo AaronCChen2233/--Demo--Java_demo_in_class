@@ -24,10 +24,10 @@ public class BlackJackDeck {
         return players;
     }
 
-    public int GetDealerHandCardsValue() {
+    private int GetCardsValue(ArrayList<Card> cards) {
         int total = 0;
         boolean hasAce = false;
-        for (Card c : dealer.getHoldCards()) {
+        for (Card c : cards) {
             total += c.getCardValueInt();
             if (c.getCardValue().equals(CardValue.Ace)) {
                 hasAce = true;
@@ -43,23 +43,25 @@ public class BlackJackDeck {
         return total;
     }
 
-    public int GetPlayerHandCardsValue(int i) {
-        int total = 0;
-        boolean hasAce = false;
-        for (Card c : players.get(i).getHoldCards()) {
-            total += c.getCardValueInt();
-            if (c.getCardValue().equals(CardValue.Ace)) {
-                hasAce = true;
-            }
-        }
+    public int GetDealerHandCardsValue() {
+        return GetCardsValue(dealer.getHoldCards());
+    }
 
-        /*Rule for Ace Because if haven't bust more point is better*/
-        /*so if haven't bust say Ace is 11 points*/
-        /*already add 1 point in foreach loop so only +10 points*/
-        if ((total + 10) <= 21 && hasAce) {
-            total += 10;
-        }
-        return total;
+    public int GetPlayerHandCardsValue(int i) {
+        return GetCardsValue(players.get(i).getHoldCards());
+    }
+
+    private boolean CheckIsBlackJack(ArrayList<Card> cards) {
+        /*If cards value is 21 and only have 2 cards is black jack*/
+        return GetCardsValue(cards) == 21 && cards.size() == 2;
+    }
+
+    public boolean CheckDealerIsBlackJack() {
+        return CheckIsBlackJack(dealer.getHoldCards());
+    }
+
+    public boolean CheckPlayerIsBlackJack(int i) {
+        return CheckIsBlackJack(players.get(i).getHoldCards());
     }
 
     public BlackJackDeck() {
@@ -116,20 +118,22 @@ public class BlackJackDeck {
     }
 
     public BlackJackResult GetResult(int playerIndex) {
-        if (GetPlayerHandCardsValue(playerIndex) > 21) {
+        int playerCardValue = GetPlayerHandCardsValue(playerIndex);
+        int dealerCardValue = GetDealerHandCardsValue();
+        if (playerCardValue > 21) {
             /*Player Bust*/
             return BlackJackResult.DealerWin;
         }
 
-        if (GetDealerHandCardsValue() > 21) {
+        if (dealerCardValue > 21) {
             /*Dealer Bust*/
             return BlackJackResult.PlayerWin;
         }
 
-        if (GetDealerHandCardsValue() > GetPlayerHandCardsValue(playerIndex)) {
+        if (dealerCardValue > playerCardValue) {
             /*Dealer card value bigger than player DealerWin*/
             return BlackJackResult.DealerWin;
-        } else if (GetDealerHandCardsValue() == GetPlayerHandCardsValue(playerIndex)) {
+        } else if (dealerCardValue == playerCardValue) {
             /*Player card value equal dealer Push*/
             return BlackJackResult.Push;
         } else {
@@ -145,7 +149,7 @@ public class BlackJackDeck {
 
     /*true is Bust*/
     public boolean CheckDealerBust() {
-        return GetDealerHandCardsValue() > 21;
+        return GetCardsValue(dealer.getHoldCards()) > 21;
     }
 
     /*Because different card value for different card game so put card value when initial the card game not in the Card class*/
@@ -181,7 +185,7 @@ public class BlackJackDeck {
 
     public void Shuffle() {
         Collections.shuffle(cards);
-        for(Card card :cards){
+        for (Card card : cards) {
             card.setCardDirection(CardDirection.FaceUp);
         }
         cardIndex = 0;

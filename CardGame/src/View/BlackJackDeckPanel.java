@@ -61,7 +61,7 @@ public class BlackJackDeckPanel extends JPanel {
                 try {
                     playerCardPanel.add(new JCard(blackJackDeck.PlayerHit(0)));
                     playerCardPanel.updateUI();
-                    String playerPointsString = blackJackDeck.GetPlayerHandCardsValue(0) == 21 && blackJackDeck.getPlayers().get(0).getHoldCards().size()==2? "Black Jack" : String.valueOf(blackJackDeck.GetPlayerHandCardsValue(0));
+                    String playerPointsString = blackJackDeck.CheckPlayerIsBlackJack(0) ? "Black Jack" : String.valueOf(blackJackDeck.GetPlayerHandCardsValue(0));
                     playerPointsLable.setText(playerPointsString);
                     if (blackJackDeck.CheckPlayerBust(0)) {
                         /*Bust*/
@@ -88,10 +88,10 @@ public class BlackJackDeckPanel extends JPanel {
 
     private void DealerShowCards() {
         blackJackDeck.DealerShowCards();
-        String dealerPointsString = blackJackDeck.GetDealerHandCardsValue() == 21 && blackJackDeck.getDealer().getHoldCards().size()==2 ? "Black Jack" : String.valueOf(blackJackDeck.GetDealerHandCardsValue());
+        String dealerPointsString = blackJackDeck.CheckDealerIsBlackJack() ? "Black Jack" : String.valueOf(blackJackDeck.GetDealerHandCardsValue());
         dealerPointsLable.setText(dealerPointsString);
-        for(Component jcard:dealerCardPanel.getComponents()){
-            ((JCard)jcard).FaceUp();
+        for (Component jcard : dealerCardPanel.getComponents()) {
+            ((JCard) jcard).FaceUp();
         }
         dealerCardPanel.updateUI();
     }
@@ -129,7 +129,7 @@ public class BlackJackDeckPanel extends JPanel {
             playerCardPanel.add(new JCard(c));
         }
 
-        String playerPointsString = blackJackDeck.GetPlayerHandCardsValue(0) == 21&& blackJackDeck.getPlayers().get(0).getHoldCards().size()==2 ? "Black Jack" : String.valueOf(blackJackDeck.GetPlayerHandCardsValue(0));
+        String playerPointsString = blackJackDeck.CheckPlayerIsBlackJack(0) ? "Black Jack" : String.valueOf(blackJackDeck.GetPlayerHandCardsValue(0));
         playerPointsLable.setText(playerPointsString);
 
         for (Card c : blackJackDeck.getDealer().getHoldCards()) {
@@ -143,7 +143,6 @@ public class BlackJackDeckPanel extends JPanel {
     class TimeSetter implements Runnable {
         @Override
         public void run() {
-
             DealerHit();
         }
     }
@@ -157,7 +156,7 @@ public class BlackJackDeckPanel extends JPanel {
             while (blackJackDeck.GetDealerHandCardsValue() < 17) {
                 dealerCardPanel.add(new JCard(blackJackDeck.DealerHit()));
                 dealerCardPanel.updateUI();
-                String dealerPointsString = blackJackDeck.GetDealerHandCardsValue() == 21 && blackJackDeck.getDealer().getHoldCards().size()==2 ? "Black Jack" : String.valueOf(blackJackDeck.GetDealerHandCardsValue());
+                String dealerPointsString = blackJackDeck.CheckDealerIsBlackJack() ? "Black Jack" : String.valueOf(blackJackDeck.GetDealerHandCardsValue());
                 dealerPointsLable.setText(dealerPointsString);
                 if (blackJackDeck.CheckDealerBust()) {
                     /*Bust*/
@@ -171,7 +170,7 @@ public class BlackJackDeckPanel extends JPanel {
         }
 
         /*if hadn't bust and dealer points is bigger than 17 check*/
-        String dealerPointsString = blackJackDeck.GetDealerHandCardsValue() == 21 && blackJackDeck.getDealer().getHoldCards().size()==2 ? "Black Jack" : String.valueOf(blackJackDeck.GetDealerHandCardsValue()) + " points";
+        String dealerPointsString = blackJackDeck.CheckDealerIsBlackJack() ? "Black Jack" : String.valueOf(blackJackDeck.GetDealerHandCardsValue()) + " points";
         switch (blackJackDeck.GetResult(0)) {
             case PlayerWin:
                 ShowResult("Dealer has " + dealerPointsString + " you win!");
