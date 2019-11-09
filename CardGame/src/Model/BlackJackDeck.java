@@ -3,23 +3,24 @@ package Model;
 import java.util.ArrayList;
 import java.util.Collections;
 /*
-* rule change list
-* 1.black jack is bigger than 21 point
-* 2.if player got black jack and dealer's face up card isn't 10 point cards or ace is player win
-* (because that mean dealer won't get black jack)
-*
-* 3.Player got BlackJack or 21 should stand automatically(for sure)
-* 4.dealer keep hit until have 17 point if is soft 17 will keep hit(soft 17 means have Ace)
-* 5.Allow players have tokens for bet
-*
-* About Multiple players rules
-* 1.if is face up game(players can see each other cards)use 8 decks of cards
-* if is face down game(players can't see each other cards, but got 21 or BlackJack or bust shout show cards)
-* use 2 decks of cards
-*
-* 2.player bust already lose dealer will take the token.
-* after that if dealer fight with other player bust or not doesn't matter
-* */
+ * rule change list
+ * V1.blackJack is bigger than 21 point
+ * 2.if player got black jack and dealer's face up card isn't 10 point cards or ace is player win
+ * (because that mean dealer won't get black jack)
+ *
+ * V3.Player got BlackJack or 21 should stand automatically(for sure)
+ * 4.dealer keep hit until have 17 point if is soft 17 will keep hit(soft 17 means have Ace for Example have Ace and 6)
+ * 5.Allow players have tokens for bet
+ * 6.not shuffle ever round only when cards not enough
+ *
+ * About Multiple players rules
+ * 1.if is face up game(players can see each other cards)use 8 decks of cards
+ * if is face down game(players can't see each other cards, but got 21 or BlackJack or bust shout show cards)
+ * use 2 decks of cards
+ *
+ * 2.player bust already lose dealer will take the token.
+ * after that if dealer fight with other player bust or not doesn't matter
+ * */
 
 public class BlackJackDeck {
     private ArrayList<Card> cards = new ArrayList<Card>();
@@ -154,6 +155,20 @@ public class BlackJackDeck {
             /*Dealer card value bigger than player DealerWin*/
             return BlackJackResult.DealerWin;
         } else if (dealerCardValue == playerCardValue) {
+            if (dealerCardValue == 21 || playerCardValue == 21) {
+                /*Because BlackJack and 21 points in this function will get same value, but rule say BlackJack is bigger than 21 point*/
+                /*Only have two card that BlackJack*/
+                if (dealer.getHoldCards().size() == 2 && players.get(playerIndex).getHoldCards().size() == 2) {
+                    /*Both are BlackJack*/
+                    return BlackJackResult.Push;
+                }else if(dealer.getHoldCards().size() == 2&&players.get(playerIndex).getHoldCards().size() != 2){
+                    /*Dealer have BlackJack*/
+                    return BlackJackResult.DealerWin;
+                }else if(dealer.getHoldCards().size() != 2&&players.get(playerIndex).getHoldCards().size() == 2){
+                    /*Player have BlackJack*/
+                    return BlackJackResult.PlayerWin;
+                }
+            }
             /*Player card value equal dealer Push*/
             return BlackJackResult.Push;
         } else {

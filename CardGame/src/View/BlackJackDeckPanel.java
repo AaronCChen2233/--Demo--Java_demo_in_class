@@ -44,13 +44,7 @@ public class BlackJackDeckPanel extends JPanel {
         standButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                /*Use another thread for the effect dealer hit card one by one per second*/
-                dealerPointsLable.setVisible(true);
-                standButton.setEnabled(false);
-                hitButton.setEnabled(false);
-                TimeSetter timeSetter = new TimeSetter();
-                Thread t = new Thread(timeSetter);
-                t.start();
+                AllPlayerAreStand();
             }
         });
 
@@ -62,6 +56,12 @@ public class BlackJackDeckPanel extends JPanel {
                     playerCardPanel.updateUI();
                     String playerPointsString = blackJackDeck.CheckPlayerIsBlackJack(0) ? "Black Jack" : String.valueOf(blackJackDeck.GetPlayerHandCardsValue(0));
                     playerPointsLable.setText(playerPointsString);
+
+                    /*if player got BlackJack or 21 point stand automatically*/
+                    if(CheckPlayerHasBlackJackOr21Point(0)){
+                        AllPlayerAreStand();
+                    }
+
                     if (blackJackDeck.CheckPlayerBust(0)) {
                         /*Bust*/
                         ShowResult("You bust you lose~");
@@ -83,6 +83,16 @@ public class BlackJackDeckPanel extends JPanel {
                 }
             }
         });
+    }
+
+    private void AllPlayerAreStand() {
+        /*Use another thread for the effect dealer hit card one by one per second*/
+        dealerPointsLable.setVisible(true);
+        standButton.setEnabled(false);
+        hitButton.setEnabled(false);
+        TimeSetter timeSetter = new TimeSetter();
+        Thread t = new Thread(timeSetter);
+        t.start();
     }
 
     private void DealerShowCards() {
@@ -137,6 +147,15 @@ public class BlackJackDeckPanel extends JPanel {
 
         dealerCardPanel.updateUI();
         playerCardPanel.updateUI();
+
+        /*if player got BlackJack or 21 point stand automatically*/
+        if(CheckPlayerHasBlackJackOr21Point(0)){
+            AllPlayerAreStand();
+        }
+    }
+
+    private boolean CheckPlayerHasBlackJackOr21Point(int playerIndex) {
+        return blackJackDeck.GetPlayerHandCardsValue(playerIndex) == 21;
     }
 
     class TimeSetter implements Runnable {
