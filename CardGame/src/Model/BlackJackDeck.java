@@ -2,6 +2,24 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.Collections;
+/*
+* rule change list
+* 1.black jack is bigger than 21 point
+* 2.if player got black jack and dealer's face up card isn't 10 point cards or ace is player win
+* (because that mean dealer won't get black jack)
+*
+* 3.Player got BlackJack or 21 should stand automatically(for sure)
+* 4.dealer keep hit until have 17 point if is soft 17 will keep hit(soft 17 means have Ace)
+* 5.Allow players have tokens for bet
+*
+* About Multiple players rules
+* 1.if is face up game(players can see each other cards)use 8 decks of cards
+* if is face down game(players can't see each other cards, but got 21 or BlackJack or bust shout show cards)
+* use 2 decks of cards
+*
+* 2.player bust already lose dealer will take the token.
+* after that if dealer fight with other player bust or not doesn't matter
+* */
 
 public class BlackJackDeck {
     private ArrayList<Card> cards = new ArrayList<Card>();
@@ -37,6 +55,8 @@ public class BlackJackDeck {
         /*Rule for Ace Because if haven't bust more point is better*/
         /*so if haven't bust say Ace is 11 points*/
         /*already add 1 point in foreach loop so only +10 points*/
+        /*allow player say Ace have difference values*/
+        /*if player have more than one Ace player can say one is 11 point another is 1 point*/
         if ((total + 10) <= 21 && hasAce) {
             total += 10;
         }

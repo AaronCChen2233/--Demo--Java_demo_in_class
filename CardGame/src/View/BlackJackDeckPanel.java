@@ -2,7 +2,6 @@ package View;
 
 import Model.BlackJackDeck;
 import Model.Card;
-import Model.CardDirection;
 
 import javax.swing.*;
 import java.awt.*;
