@@ -22,11 +22,11 @@ public class Player {
         HoldCards = new ArrayList<Card>();
     }
 
-    public void GetCard(Card card){
+    public void getCard(Card card){
         HoldCards.add(card);
     }
 
-    public void RemoveAllHoldCard(){
+    public void removeAllHoldCard(){
         HoldCards.clear();
     }
 }

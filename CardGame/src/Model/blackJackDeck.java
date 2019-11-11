@@ -20,9 +20,11 @@ import java.util.Collections;
  *
  * 2.player bust already lose dealer will take the token.
  * after that if dealer fight with other player bust or not doesn't matter
+ *
+ * 3.Multiple players can up to 8 people
  * */
 
-public class BlackJackDeck {
+public class blackJackDeck {
     private ArrayList<Card> cards = new ArrayList<Card>();
     private Player dealer;
 
@@ -43,7 +45,7 @@ public class BlackJackDeck {
         return players;
     }
 
-    private int GetCardsValue(ArrayList<Card> cards) {
+    private int getCardsValue(ArrayList<Card> cards) {
         int total = 0;
         boolean hasAce = false;
         for (Card c : cards) {
@@ -64,83 +66,83 @@ public class BlackJackDeck {
         return total;
     }
 
-    public int GetDealerHandCardsValue() {
-        return GetCardsValue(dealer.getHoldCards());
+    public int getDealerHandCardsValue() {
+        return getCardsValue(dealer.getHoldCards());
     }
 
-    public int GetPlayerHandCardsValue(int i) {
-        return GetCardsValue(players.get(i).getHoldCards());
+    public int getPlayerHandCardsValue(int i) {
+        return getCardsValue(players.get(i).getHoldCards());
     }
 
-    private boolean CheckIsBlackJack(ArrayList<Card> cards) {
+    private boolean checkIsBlackJack(ArrayList<Card> cards) {
         /*If cards value is 21 and only have 2 cards is black jack*/
-        return GetCardsValue(cards) == 21 && cards.size() == 2;
+        return getCardsValue(cards) == 21 && cards.size() == 2;
     }
 
-    public boolean CheckDealerIsBlackJack() {
-        return CheckIsBlackJack(dealer.getHoldCards());
+    public boolean checkDealerIsBlackJack() {
+        return checkIsBlackJack(dealer.getHoldCards());
     }
 
-    public boolean CheckPlayerIsBlackJack(int i) {
-        return CheckIsBlackJack(players.get(i).getHoldCards());
+    public boolean checkPlayerIsBlackJack(int i) {
+        return checkIsBlackJack(players.get(i).getHoldCards());
     }
 
-    public BlackJackDeck() {
+    public blackJackDeck() {
         for (CardSuite cardSuite : CardSuite.values()) {
             for (CardValue cardValue : CardValue.values()) {
                 /*black jack doesn't use Joker*/
                 if (!cardValue.equals(CardValue.Joker)) {
-                    cards.add(new Card(cardSuite, cardValue, CardDirection.FaceUp, GetCardValueInt(cardValue)));
+                    cards.add(new Card(cardSuite, cardValue, CardDirection.FaceUp, getCardValueInt(cardValue)));
                 }
             }
         }
         dealer = new Player();
     }
 
-    public void NextRound(int playersCount) {
-        Shuffle();
-        dealer.RemoveAllHoldCard();
+    public void nextRound(int playersCount) {
+        shuffle();
+        dealer.removeAllHoldCard();
         players = new ArrayList<Player>();
         for (int i = 0; i < playersCount; i++) {
             Player player = new Player();
-            player.GetCard(cards.get(cardIndex));
+            player.getCard(cards.get(cardIndex));
             cardIndex++;
-            player.GetCard(cards.get(cardIndex));
+            player.getCard(cards.get(cardIndex));
             cardIndex++;
             players.add(player);
         }
 
-        dealer.GetCard(cards.get(cardIndex));
+        dealer.getCard(cards.get(cardIndex));
         cardIndex++;
-        dealer.GetCard(cards.get(cardIndex));
+        dealer.getCard(cards.get(cardIndex));
         cardIndex++;
 
         /*Dealer first card is face down*/
         dealer.getHoldCards().get(0).setCardDirection(CardDirection.FaceDown);
     }
 
-    public Card PlayerHit(int playerIndex) {
+    public Card playerHit(int playerIndex) {
         cardIndex++;
-        players.get(playerIndex).GetCard(cards.get(cardIndex));
+        players.get(playerIndex).getCard(cards.get(cardIndex));
         return cards.get(cardIndex);
     }
 
-    public Card DealerHit() {
+    public Card dealerHit() {
         cardIndex++;
-        dealer.GetCard(cards.get(cardIndex));
+        dealer.getCard(cards.get(cardIndex));
         return cards.get(cardIndex);
     }
 
-    public void DealerShowCards() {
+    public void dealerShowCards() {
         /*Set every cards are face up*/
         for (Card c : dealer.getHoldCards()) {
             c.setCardDirection(CardDirection.FaceUp);
         }
     }
 
-    public BlackJackResult GetResult(int playerIndex) {
-        int playerCardValue = GetPlayerHandCardsValue(playerIndex);
-        int dealerCardValue = GetDealerHandCardsValue();
+    public BlackJackResult getResult(int playerIndex) {
+        int playerCardValue = getPlayerHandCardsValue(playerIndex);
+        int dealerCardValue = getDealerHandCardsValue();
         if (playerCardValue > 21) {
             /*Player Bust*/
             return BlackJackResult.DealerWin;
@@ -178,17 +180,17 @@ public class BlackJackDeck {
     }
 
     /*true is Bust*/
-    public boolean CheckPlayerBust(int playerIndex) {
-        return GetPlayerHandCardsValue(playerIndex) > 21;
+    public boolean checkPlayerBust(int playerIndex) {
+        return getPlayerHandCardsValue(playerIndex) > 21;
     }
 
     /*true is Bust*/
-    public boolean CheckDealerBust() {
-        return GetCardsValue(dealer.getHoldCards()) > 21;
+    public boolean checkDealerBust() {
+        return getCardsValue(dealer.getHoldCards()) > 21;
     }
 
     /*Because different card value for different card game so put card value when initial the card game not in the Card class*/
-    private int GetCardValueInt(CardValue cardValue) {
+    private int getCardValueInt(CardValue cardValue) {
         switch (cardValue) {
             case Ace:
                 return 1;
@@ -218,7 +220,7 @@ public class BlackJackDeck {
         }
     }
 
-    public void Shuffle() {
+    public void shuffle() {
         Collections.shuffle(cards);
         for (Card card : cards) {
             card.setCardDirection(CardDirection.FaceUp);

@@ -26,22 +26,22 @@ public class JCard extends JPanel {
         super();
         card = _card;
 
-        SetFaceDirection();
+        setFaceDirection();
 
-        InitialFaceUp();
-        InitialFaceDown();
+        initialFaceUp();
+        initialFaceDown();
 
         Border cardBorder = new LineBorder(Color.BLACK, 3, true);
         setBorder(cardBorder);
         add(mainPanel);
     }
 
-    private void SetFaceDirection() {
+    private void setFaceDirection() {
         faceUpPanel.setVisible(card.getCardDirection().equals(CardDirection.FaceUp));
         faceDownPanel.setVisible(card.getCardDirection().equals(CardDirection.FaceDown));
     }
 
-    private void InitialFaceUp() {
+    private void initialFaceUp() {
         String suiteImagePath = String.format("src/images/%s.png", card.getCardSuite().toString());
         /*If can't find the image put word*/
         try {
@@ -73,7 +73,7 @@ public class JCard extends JPanel {
         suiteImageLabel.setForeground(valueColor);
     }
 
-    private void InitialFaceDown() {
+    private void initialFaceDown() {
         faceDownPanel.setLayout(new GridLayout(11, 9));
 
         try {
@@ -96,14 +96,14 @@ public class JCard extends JPanel {
         }
     }
 
-    public void FaceDown() {
+    public void faceDown() {
         card.setCardDirection(CardDirection.FaceDown);
-        SetFaceDirection();
+        setFaceDirection();
     }
 
-    public void FaceUp() {
+    public void faceUp() {
         card.setCardDirection(CardDirection.FaceUp);
-        SetFaceDirection();
+        setFaceDirection();
     }
 
     public JCard() {

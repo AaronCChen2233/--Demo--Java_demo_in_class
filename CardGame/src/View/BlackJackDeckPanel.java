@@ -1,6 +1,6 @@
 package View;
 
-import Model.BlackJackDeck;
+import Model.blackJackDeck;
 import Model.Card;
 
 import javax.swing.*;
@@ -10,41 +10,42 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class BlackJackDeckPanel extends JPanel {
-    private BlackJackDeck blackJackDeck;
+    private Model.blackJackDeck blackJackDeck;
     private JPanel mainPanel;
     private JButton hitButton;
     private JButton standButton;
-    private JPanel playerCardPanel;
+//    private JPanel playerCardPanel;
     private JPanel dealerCardPanel;
-    private JLabel playerPointsLable;
+//    private JLabel playerPointsLable;
     private JLabel dealerPointsLable;
     private JLabel resultLable;
     private JButton playAgainButton;
     private JPanel resultPanel;
+    private PlayerPanel playerPanel;
 
     public BlackJackDeckPanel() throws IOException {
         super();
-        blackJackDeck = new BlackJackDeck();
+        blackJackDeck = new blackJackDeck();
         /*Now only for one player, multiple coming soon~*/
-        blackJackDeck.NextRound(1);
+        blackJackDeck.nextRound(1);
 //        /*just for test*/
 //        mainPanel.setLayout(new GridLayout(4, 13));
 //        for(Card card : blackJackDeck.getCards()){
 //            mainPanel.add(new JCard(card));
 //        }
 
-        NewGameStart();
+        newGameStart();
 
         setBackground(new Color(2, 74, 40));
         mainPanel.setBackground(new Color(2, 74, 40));
         dealerCardPanel.setBackground(new Color(2, 74, 40));
-        playerCardPanel.setBackground(new Color(2, 74, 40));
+        playerPanel.setBackground(new Color(2, 74, 40));
         add(mainPanel);
 
         standButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AllPlayerAreStand();
+                allPlayerAreStand();
             }
         });
 
@@ -52,19 +53,18 @@ public class BlackJackDeckPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    playerCardPanel.add(new JCard(blackJackDeck.PlayerHit(0)));
-                    playerCardPanel.updateUI();
-                    String playerPointsString = blackJackDeck.CheckPlayerIsBlackJack(0) ? "Black Jack" : String.valueOf(blackJackDeck.GetPlayerHandCardsValue(0));
-                    playerPointsLable.setText(playerPointsString);
+                    playerPanel.addPlayerHoldCard(blackJackDeck.playerHit(0));
+                    String playerPointsString = blackJackDeck.checkPlayerIsBlackJack(0) ? "Black Jack" : String.valueOf(blackJackDeck.getPlayerHandCardsValue(0));
+                    playerPanel.setPlayerCardValue(playerPointsString);
 
                     /*if player got BlackJack or 21 point stand automatically*/
-                    if(CheckPlayerHasBlackJackOr21Point(0)){
-                        AllPlayerAreStand();
+                    if(checkPlayerHasBlackJackOr21Point(0)){
+                        allPlayerAreStand();
                     }
 
-                    if (blackJackDeck.CheckPlayerBust(0)) {
+                    if (blackJackDeck.checkPlayerBust(0)) {
                         /*Bust*/
-                        ShowResult("You bust you lose~");
+                        showResult("You bust you lose~");
                     }
                 } catch (IOException ex) {
                     ex.printStackTrace();
@@ -75,9 +75,9 @@ public class BlackJackDeckPanel extends JPanel {
         playAgainButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                blackJackDeck.NextRound(1);
+                blackJackDeck.nextRound(1);
                 try {
-                    NewGameStart();
+                    newGameStart();
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -85,7 +85,7 @@ public class BlackJackDeckPanel extends JPanel {
         });
     }
 
-    private void AllPlayerAreStand() {
+    private void allPlayerAreStand() {
         /*Use another thread for the effect dealer hit card one by one per second*/
         dealerPointsLable.setVisible(true);
         standButton.setEnabled(false);
@@ -95,19 +95,19 @@ public class BlackJackDeckPanel extends JPanel {
         t.start();
     }
 
-    private void DealerShowCards() {
-        blackJackDeck.DealerShowCards();
-        String dealerPointsString = blackJackDeck.CheckDealerIsBlackJack() ? "Black Jack" : String.valueOf(blackJackDeck.GetDealerHandCardsValue());
+    private void dealerShowCards() {
+        blackJackDeck.dealerShowCards();
+        String dealerPointsString = blackJackDeck.checkDealerIsBlackJack() ? "Black Jack" : String.valueOf(blackJackDeck.getDealerHandCardsValue());
         dealerPointsLable.setText(dealerPointsString);
         for (Component jcard : dealerCardPanel.getComponents()) {
-            ((JCard) jcard).FaceUp();
+            ((JCard) jcard).faceUp();
         }
         dealerCardPanel.updateUI();
     }
 
-    private void ShowResult(String s) {
+    private void showResult(String s) {
         /*different color for different result*/
-        switch (blackJackDeck.GetResult(0)) {
+        switch (blackJackDeck.getResult(0)) {
             case PlayerWin:
                 resultLable.setForeground(Color.yellow);
                 break;
@@ -124,61 +124,60 @@ public class BlackJackDeckPanel extends JPanel {
         resultLable.setText(s);
     }
 
-    private void NewGameStart() throws IOException {
+    private void newGameStart() throws IOException {
         standButton.setVisible(true);
         hitButton.setVisible(true);
         standButton.setEnabled(true);
         hitButton.setEnabled(true);
         resultPanel.setVisible(false);
         dealerPointsLable.setVisible(false);
-        playerCardPanel.removeAll();
+        playerPanel.removeAllCard();
         dealerCardPanel.removeAll();
 
         for (Card c : blackJackDeck.getPlayers().get(0).getHoldCards()) {
-            playerCardPanel.add(new JCard(c));
+            playerPanel.addPlayerHoldCard(c);
         }
 
-        String playerPointsString = blackJackDeck.CheckPlayerIsBlackJack(0) ? "Black Jack" : String.valueOf(blackJackDeck.GetPlayerHandCardsValue(0));
-        playerPointsLable.setText(playerPointsString);
+        String playerPointsString = blackJackDeck.checkPlayerIsBlackJack(0) ? "Black Jack" : String.valueOf(blackJackDeck.getPlayerHandCardsValue(0));
+        playerPanel.setPlayerCardValue(playerPointsString);
 
         for (Card c : blackJackDeck.getDealer().getHoldCards()) {
             dealerCardPanel.add(new JCard(c));
         }
 
         dealerCardPanel.updateUI();
-        playerCardPanel.updateUI();
 
         /*if player got BlackJack or 21 point stand automatically*/
-        if(CheckPlayerHasBlackJackOr21Point(0)){
-            AllPlayerAreStand();
+        if(checkPlayerHasBlackJackOr21Point(0)){
+            allPlayerAreStand();
         }
     }
 
-    private boolean CheckPlayerHasBlackJackOr21Point(int playerIndex) {
-        return blackJackDeck.GetPlayerHandCardsValue(playerIndex) == 21;
+    private boolean checkPlayerHasBlackJackOr21Point(int playerIndex) {
+        return blackJackDeck.getPlayerHandCardsValue(playerIndex) == 21;
     }
 
     class TimeSetter implements Runnable {
         @Override
         public void run() {
-            DealerHit();
+            dealerHit();
         }
     }
 
-    private void DealerHit() {
+    private void dealerHit() {
         try {
             /*dealer show card*/
-            DealerShowCards();
+            dealerShowCards();
             Thread.sleep(1000);
             /*If Dealer hand cards value smaller than 17 dealer will keep hit*/
-            while (blackJackDeck.GetDealerHandCardsValue() < 17) {
-                dealerCardPanel.add(new JCard(blackJackDeck.DealerHit()));
+            while (blackJackDeck.getDealerHandCardsValue() < 17) {
+                dealerCardPanel.add(new JCard(blackJackDeck.dealerHit()));
                 dealerCardPanel.updateUI();
-                String dealerPointsString = blackJackDeck.CheckDealerIsBlackJack() ? "Black Jack" : String.valueOf(blackJackDeck.GetDealerHandCardsValue());
+                String dealerPointsString = blackJackDeck.checkDealerIsBlackJack() ? "Black Jack" : String.valueOf(blackJackDeck.getDealerHandCardsValue());
                 dealerPointsLable.setText(dealerPointsString);
-                if (blackJackDeck.CheckDealerBust()) {
+                if (blackJackDeck.checkDealerBust()) {
                     /*Bust*/
-                    ShowResult("Dealer bust you win!");
+                    showResult("Dealer bust you win!");
                     return;
                 }
                 Thread.sleep(1000);
@@ -188,16 +187,16 @@ public class BlackJackDeckPanel extends JPanel {
         }
 
         /*if hadn't bust and dealer points is bigger than 17 check*/
-        String dealerPointsString = blackJackDeck.CheckDealerIsBlackJack() ? "Black Jack" : String.valueOf(blackJackDeck.GetDealerHandCardsValue()) + " points";
-        switch (blackJackDeck.GetResult(0)) {
+        String dealerPointsString = blackJackDeck.checkDealerIsBlackJack() ? "Black Jack" : String.valueOf(blackJackDeck.getDealerHandCardsValue()) + " points";
+        switch (blackJackDeck.getResult(0)) {
             case PlayerWin:
-                ShowResult("Dealer has " + dealerPointsString + " you win!");
+                showResult("Dealer has " + dealerPointsString + " you win!");
                 break;
             case DealerWin:
-                ShowResult("Dealer has " + dealerPointsString + " you lose~");
+                showResult("Dealer has " + dealerPointsString + " you lose~");
                 break;
             case Push:
-                ShowResult("Dealer also has " + dealerPointsString + " that push");
+                showResult("Dealer also has " + dealerPointsString + " that push");
                 break;
         }
     }
