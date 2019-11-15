@@ -1,5 +1,6 @@
 package View;
 
+import Model.BlackJackResult;
 import Model.blackJackDeck;
 import Model.Card;
 
@@ -14,27 +15,40 @@ public class BlackJackDeckPanel extends JPanel {
     private JPanel mainPanel;
     private JButton hitButton;
     private JButton standButton;
-//    private JPanel playerCardPanel;
     private JPanel dealerCardPanel;
-//    private JLabel playerPointsLable;
     private JLabel dealerPointsLable;
     private JLabel resultLable;
     private JButton playAgainButton;
     private JPanel resultPanel;
+    private JPanel playersPanel;
     private PlayerPanel playerPanel;
 
     public BlackJackDeckPanel() throws IOException {
         super();
         blackJackDeck = new blackJackDeck();
         /*Now only for one player, multiple coming soon~*/
-        blackJackDeck.nextRound(1);
-//        /*just for test*/
+        blackJackDeck.playersJoinGame(1);
+
+        /*just for test*/
 //        mainPanel.setLayout(new GridLayout(4, 13));
 //        for(Card card : blackJackDeck.getCards()){
 //            mainPanel.add(new JCard(card));
 //        }
 
-        newGameStart();
+        playerPanel = new PlayerPanel(blackJackDeck.getPlayers().get(0)) {
+            @Override
+            public void betConfirmNewGameStart() throws IOException {
+                blackJackDeck.nextRound();
+                newGameStart();
+            }
+        };
+
+        playersPanel.add(playerPanel);
+        playersPanel.updateUI();
+
+        standButton.setVisible(false);
+        hitButton.setVisible(false);
+        playAgainButton.setVisible(false);
 
         setBackground(new Color(2, 74, 40));
         mainPanel.setBackground(new Color(2, 74, 40));
@@ -58,7 +72,7 @@ public class BlackJackDeckPanel extends JPanel {
                     playerPanel.setPlayerCardValue(playerPointsString);
 
                     /*if player got BlackJack or 21 point stand automatically*/
-                    if(checkPlayerHasBlackJackOr21Point(0)){
+                    if (checkPlayerHasBlackJackOr21Point(0)) {
                         allPlayerAreStand();
                     }
 
@@ -75,7 +89,7 @@ public class BlackJackDeckPanel extends JPanel {
         playAgainButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                blackJackDeck.nextRound(1);
+                blackJackDeck.nextRound();
                 try {
                     newGameStart();
                 } catch (IOException ex) {
@@ -107,7 +121,8 @@ public class BlackJackDeckPanel extends JPanel {
 
     private void showResult(String s) {
         /*different color for different result*/
-        switch (blackJackDeck.getResult(0)) {
+        BlackJackResult result =blackJackDeck.getResult(0);
+        switch (result) {
             case PlayerWin:
                 resultLable.setForeground(Color.yellow);
                 break;
@@ -118,6 +133,7 @@ public class BlackJackDeckPanel extends JPanel {
                 resultLable.setForeground(Color.blue);
                 break;
         }
+        playerPanel.setResult(result);
         resultPanel.setVisible(true);
         standButton.setVisible(false);
         hitButton.setVisible(false);
@@ -148,7 +164,7 @@ public class BlackJackDeckPanel extends JPanel {
         dealerCardPanel.updateUI();
 
         /*if player got BlackJack or 21 point stand automatically*/
-        if(checkPlayerHasBlackJackOr21Point(0)){
+        if (checkPlayerHasBlackJackOr21Point(0)) {
             allPlayerAreStand();
         }
     }

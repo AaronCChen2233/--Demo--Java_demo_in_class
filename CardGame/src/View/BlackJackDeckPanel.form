@@ -84,9 +84,14 @@
           </component>
         </children>
       </grid>
-      <nested-form id="f15e0" form-file="View/PlayerPanel.form" binding="playerPanel">
+      <grid id="4ec6b" binding="playersPanel" layout-manager="CardLayout" hgap="0" vgap="0">
         <constraints border-constraint="South"/>
-      </nested-form>
+        <properties>
+          <background color="-16627160"/>
+        </properties>
+        <border type="none"/>
+        <children/>
+      </grid>
     </children>
   </grid>
 </form>

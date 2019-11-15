@@ -10,7 +10,7 @@ import java.util.Collections;
  *
  * V3.Player got BlackJack or 21 should stand automatically(for sure)
  * 4.dealer keep hit until have 17 point if is soft 17 will keep hit(soft 17 means have Ace for Example have Ace and 6)
- * 5.Allow players have tokens for bet
+ * V5.Allow players have tokens for bet
  * 6.not shuffle ever round only when cards not enough
  *
  * About Multiple players rules
@@ -99,17 +99,23 @@ public class blackJackDeck {
         dealer = new Player();
     }
 
-    public void nextRound(int playersCount) {
-        shuffle();
-        dealer.removeAllHoldCard();
+    public void playersJoinGame(int playersCount) {
         players = new ArrayList<Player>();
         for (int i = 0; i < playersCount; i++) {
             Player player = new Player();
-            player.getCard(cards.get(cardIndex));
-            cardIndex++;
-            player.getCard(cards.get(cardIndex));
-            cardIndex++;
             players.add(player);
+        }
+    }
+
+    public void nextRound() {
+        shuffle();
+        dealer.removeAllHoldCard();
+        for (Player player : players) {
+            player.removeAllHoldCard();
+            player.getCard(cards.get(cardIndex));
+            cardIndex++;
+            player.getCard(cards.get(cardIndex));
+            cardIndex++;
         }
 
         dealer.getCard(cards.get(cardIndex));
@@ -163,10 +169,10 @@ public class blackJackDeck {
                 if (dealer.getHoldCards().size() == 2 && players.get(playerIndex).getHoldCards().size() == 2) {
                     /*Both are BlackJack*/
                     return BlackJackResult.Push;
-                }else if(dealer.getHoldCards().size() == 2&&players.get(playerIndex).getHoldCards().size() != 2){
+                } else if (dealer.getHoldCards().size() == 2 && players.get(playerIndex).getHoldCards().size() != 2) {
                     /*Dealer have BlackJack*/
                     return BlackJackResult.DealerWin;
-                }else if(dealer.getHoldCards().size() != 2&&players.get(playerIndex).getHoldCards().size() == 2){
+                } else if (dealer.getHoldCards().size() != 2 && players.get(playerIndex).getHoldCards().size() == 2) {
                     /*Player have BlackJack*/
                     return BlackJackResult.PlayerWin;
                 }
