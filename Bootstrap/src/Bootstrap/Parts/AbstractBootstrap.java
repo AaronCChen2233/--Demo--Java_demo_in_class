@@ -30,7 +30,7 @@ public class AbstractBootstrap implements IAbstractBootstrap {
             errorCount++;
             setAppState(EApp.Exception);
         }
-        Alog.logInfo("I see:" + CommandLineArguments.length + "Command Line Arguments");
+        Alog.logInfo("I see: " + CommandLineArguments.length + " Command Line Arguments");
 
         try
         {

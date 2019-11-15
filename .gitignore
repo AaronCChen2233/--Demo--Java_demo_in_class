@@ -289,3 +289,13 @@ Bootstrap/out/production/Bootstrap/Bootstrap/Tools/Alog.class
 Bootstrap/out/production/Bootstrap/BootstrapTest/BootstrapTest.class
 Bootstrap/out/production/Bootstrap/META-INF/Bootstrap.kotlin_module
 Bootstrap/out/production/Bootstrap/META-INF/MANIFEST.MF
+Bootstrap/out/production/Bootstrap/BootstrapTest/CalcTest.class
+Bootstrap/out/production/Bootstrap/MVC/Parts/Controller/IMVC_Controller.class
+Bootstrap/out/production/Bootstrap/MVC/Parts/Model/IMVC_Model.class
+Bootstrap/out/production/Bootstrap/MVC/Parts/View/IMVC_View.class
+Bootstrap/out/production/Bootstrap/MVVM/Parts/Model/IMVVM_Model.class
+Bootstrap/out/production/Bootstrap/MVVM/Parts/View/IMVVM_View.class
+Bootstrap/out/production/Bootstrap/MVVM/Parts/ViewModel/IMVVM_ViewModel.class
+CardGame/out/production/CardGame/View/BlackJackDeckPanel$5.class
+CardGame/out/production/CardGame/View/PlayerPanel$1.class
+CardGame/out/production/CardGame/View/PlayerPanel$2.class
