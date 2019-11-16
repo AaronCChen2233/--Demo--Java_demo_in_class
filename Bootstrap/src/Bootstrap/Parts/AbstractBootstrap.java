@@ -12,7 +12,6 @@ public class AbstractBootstrap implements IAbstractBootstrap {
     private boolean threwErrors = false;
     private int errorCount = 0;
     private int exceptionCount = 0;
-    GetConfigProperty configProperty = new GetConfigProperty();
 
     public AbstractBootstrap() {
 

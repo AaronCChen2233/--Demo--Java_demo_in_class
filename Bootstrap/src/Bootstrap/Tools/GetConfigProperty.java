@@ -9,7 +9,7 @@ public class GetConfigProperty {
     public static boolean isRunInIDE = false;
     public static boolean isUseColorLog = false;
 
-    public GetConfigProperty()  {
+    static {
         InputStream inputStream = null;
         try {
             /*load config file*/
@@ -26,9 +26,8 @@ public class GetConfigProperty {
             isRunInIDE = Boolean.parseBoolean(prop.getProperty("runInIDE"));
             isUseColorLog = Boolean.parseBoolean(prop.getProperty("useColorLog"));
 
-            
             /*Because log will use property so here use println*/
-            System.out.println("Load " + propFileName + "Success!");
+            System.out.println("Load " + propFileName + " Success!");
         } catch (Exception e) {
             System.out.println("Exception: " + e);
         } finally {
