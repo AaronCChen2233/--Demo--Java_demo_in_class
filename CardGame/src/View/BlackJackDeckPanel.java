@@ -48,6 +48,8 @@ public class BlackJackDeckPanel extends JPanel {
 
         standButton.setVisible(false);
         hitButton.setVisible(false);
+
+        /*Now playAgainButton might not use because when player bet confirm new game will start automatically*/
         playAgainButton.setVisible(false);
 
         setBackground(new Color(2, 74, 40));

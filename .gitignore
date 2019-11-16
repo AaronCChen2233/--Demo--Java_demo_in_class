@@ -299,3 +299,5 @@ Bootstrap/out/production/Bootstrap/MVVM/Parts/ViewModel/IMVVM_ViewModel.class
 CardGame/out/production/CardGame/View/BlackJackDeckPanel$5.class
 CardGame/out/production/CardGame/View/PlayerPanel$1.class
 CardGame/out/production/CardGame/View/PlayerPanel$2.class
+Bootstrap/out/production/Bootstrap/config.properties
+Bootstrap/out/production/Bootstrap/Bootstrap/Tools/GetConfigProperty.class

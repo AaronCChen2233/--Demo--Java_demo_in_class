@@ -43,5 +43,6 @@ public interface IAbstractBootstrap {
         Alog.logWarningWithDate("Warning: " + message);
     }
 
+    /*Called in applications main loop*/
     void OnApplicationUpdate();
 }

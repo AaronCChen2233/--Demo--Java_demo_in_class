@@ -2,6 +2,9 @@ package Bootstrap.Parts;
 
 import Bootstrap.App.EApp;
 import Bootstrap.Tools.Alog;
+import Bootstrap.Tools.GetConfigProperty;
+
+import java.io.IOException;
 
 public class AbstractBootstrap implements IAbstractBootstrap {
     private EApp _appState = EApp.StateUnknown;
@@ -9,6 +12,7 @@ public class AbstractBootstrap implements IAbstractBootstrap {
     private boolean threwErrors = false;
     private int errorCount = 0;
     private int exceptionCount = 0;
+    GetConfigProperty configProperty = new GetConfigProperty();
 
     public AbstractBootstrap() {
 

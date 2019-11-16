@@ -20,15 +20,7 @@ import Bootstrap.Tools.Alog;
         9.Now this project is in JavaDemoInClass repository After finish I will separate to another repository
     * */
 
-public class Bootstrap extends AbstractBootstrap {
-
-    private static Bootstrap instance;
-
-    public static void main(String[] args) {
-        instance = new Bootstrap(args);
-        Alog.logStartup("Bootstrap Main Called");
-    }
-
+public abstract class Bootstrap extends AbstractBootstrap {
     public Bootstrap() {
         super();
     }
