@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="NameGenerater:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/NameGenerater_jar</output-path>
+    <root id="archive" name="NameGenerater.jar">
+      <element id="module-output" name="NameGenerater" />
+    </root>
+  </artifact>
+</component>
