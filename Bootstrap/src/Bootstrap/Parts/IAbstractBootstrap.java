@@ -3,7 +3,12 @@ package Bootstrap.Parts;
 import Bootstrap.App.EApp;
 import Bootstrap.Tools.Alog;
 
+import java.util.ArrayList;
+import java.util.Hashtable;
+
 public interface IAbstractBootstrap {
+    Hashtable<String, String> argumentAndParamaters = new Hashtable<String, String>();
+
     default boolean OnAppStateChange(EApp eAppOldState, EApp eAppNewState) {
         Alog.logInfo(this.getClass().getCanonicalName() + "is going from " + eAppOldState + " to " + eAppNewState);
         return true;

@@ -5,6 +5,7 @@ import Bootstrap.Tools.Alog;
 import Bootstrap.Tools.GetConfigProperty;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class AbstractBootstrap implements IAbstractBootstrap {
     private EApp _appState = EApp.StateUnknown;
@@ -35,27 +36,39 @@ public class AbstractBootstrap implements IAbstractBootstrap {
         }
         Alog.logInfo("I see: " + CommandLineArguments.length + " Command Line Arguments");
 
-        try
-        {
+        /*put Argument and Paramater in argumentAndParamaters Hashtable*/
+        ArrayList<String> commandLine = new ArrayList<String>();
+        for (String s : CommandLineArguments) {
+            commandLine.add(s);
+        }
+        commandLine.add("-");
+        ArrayList<String> tempParamaters = new ArrayList<String>();
+        String ThisArgument = "";
+        for (String c : commandLine) {
+            /*if commandLine have switch which mean it is a Argument if not is Paramater*/
+            if (!Switchs.allownSwitch.contains(c.charAt(0))) {
+                tempParamaters.add(c);
+            } else {
+                argumentAndParamaters.put(ThisArgument, String.join(",", tempParamaters));
+                tempParamaters = new ArrayList<String>();
+                ThisArgument = c;
+            }
+        }
+        argumentAndParamaters.remove("");
+
+        try {
             Alog.logInfo("Entering Try..catch - we should catch any 'Exceptions' if they happen");
             this.InitializeApplication();
-        }
-        catch (Exception anyException)
-        {
+        } catch (Exception anyException) {
             threwException = true;
             exceptionCount++;
             Alog.logException("We caught an exception...triggering our error handler");
-            this.OnAppException(anyException,this);
-        }
-        finally
-        {
+            this.OnAppException(anyException, this);
+        } finally {
             Alog.logInfo("Checking application state:" + getAppState());
-            if (getAppState() == EApp.Initialized)
-            {
+            if (getAppState() == EApp.Initialized) {
                 Alog.logInfo(this.getClass().getName() + " initialized successfully");
-            }
-            else
-            {
+            } else {
                 Alog.logError(this.getClass().getName() + " failed to initialize");
                 // record the error happened
                 threwErrors = true;
@@ -68,18 +81,13 @@ public class AbstractBootstrap implements IAbstractBootstrap {
             Alog.logInfo("There were errors    : " + threwErrors + " - " + errorCount);
         }
 
-        if ((threwException == false) && (getAppState() == EApp.Initialized) && (threwErrors == false))
-        {
+        if ((threwException == false) && (getAppState() == EApp.Initialized) && (threwErrors == false)) {
             Alog.logInfo("No issues, setting state to isRunning");
             setAppState(EApp.IsRunning);
-        }
-        else if ((threwException == false) && (getAppState() == EApp.Initialized) && (threwErrors == true))
-        {
+        } else if ((threwException == false) && (getAppState() == EApp.Initialized) && (threwErrors == true)) {
             Alog.logWarning("Some issues, but will continue to setting state to isRunning");
             setAppState(EApp.IsRunning);
-        }
-        else if (threwException == true)
-        {
+        } else if (threwException == true) {
             setAppState(EApp.Exception);
             this.threwErrors = true;
             this.errorCount++;
@@ -88,25 +96,20 @@ public class AbstractBootstrap implements IAbstractBootstrap {
         }
 
         boolean isShuttingDown = false;
-        try
-        {
+        try {
             Alog.logInfo("Entering Try..catch - we should catch any 'Exceptions' if they happen");
-            while ((getAppState() == EApp.IsRunning))
-            {
+            while ((getAppState() == EApp.IsRunning)) {
                 this.OnApplicationUpdate();
             }
 
-            switch (getAppState())
-            {
-                case ShuttingDown:
-                {
+            switch (getAppState()) {
+                case ShuttingDown: {
                     isShuttingDown = true;
                     Alog.logShutdown("Shutting down normally");
                     /*let the try cry..catch.. 'fall through' and we'll continue in the 'finally'*/
                     break;
                 }
-                default:
-                {
+                default: {
                     Alog.logException("Application appears to be terminating due to an unexpected state: " + getAppState());
 
                     errorCount++;
@@ -114,25 +117,18 @@ public class AbstractBootstrap implements IAbstractBootstrap {
                     this.OnAppErrorOrWarning("Application appears to be terminating due to an unexpected state: " + getAppState());
                 }
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             exceptionCount++;
             threwException = true;
             this.OnAppException(e);
-        }
-        finally
-        {
-            if ((isShuttingDown == true || getAppState().equals(EApp.ShuttingDown)) && ((errorCount == 0) && (exceptionCount == 0)))
-            { /*everything are good, shutting down normally, no errors, no exceptions*/
-                setAppState( EApp.Shutdown);
+        } finally {
+            if ((isShuttingDown == true || getAppState().equals(EApp.ShuttingDown)) && ((errorCount == 0) && (exceptionCount == 0))) { /*everything are good, shutting down normally, no errors, no exceptions*/
+                setAppState(EApp.Shutdown);
                 Alog.logInfo(this.getClass().getName() + " shutdown normally");
                 /*call our Shutdown event*/
                 this.ShutdownApplication();
                 System.exit(0);
-            }
-            else
-            {/*shutting down for some other reason*/
+            } else {/*shutting down for some other reason*/
                 Alog.logWarning(this.getClass().getName() + " shutdown abnormally");
                 setAppState(EApp.Exception);
                 /*exit with a non zero status (abnormal)*/

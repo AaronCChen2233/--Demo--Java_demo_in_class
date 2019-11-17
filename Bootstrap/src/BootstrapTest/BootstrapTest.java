@@ -2,7 +2,6 @@ package BootstrapTest;
 
 import Bootstrap.App.Bootstrap;
 import Bootstrap.Tools.Alog;
-import Bootstrap.Tools.GetConfigProperty;
 
 public class BootstrapTest extends Bootstrap {
     public BootstrapTest(String[] CommandLineArguments) {
