@@ -1,5 +1,6 @@
 package MVVM.Parts.Model;
 
+import Bootstrap.Tools.Alog;
 import Bootstrap.Tools.CSVReaderWriter;
 
 import java.util.ArrayList;
@@ -20,7 +21,8 @@ public class SieveofEratosthenes implements IMVVM_Model {
     }
 
     public void Run(int findCount) {
-        ArrayList<String> csvDate = CSVReaderWriter.reader(System.getProperty("user.dir") + "\\PrimeNumbers.csv");
+        String csvPath = System.getProperty("user.dir") + "\\PrimeNumbers.csv";
+        ArrayList<String> csvDate = CSVReaderWriter.reader(csvPath);
         int count = 0;
         try {
             currentNumber = Long.parseLong(csvDate.get(0));
@@ -51,7 +53,10 @@ public class SieveofEratosthenes implements IMVVM_Model {
             }
         }
 
-        CSVReaderWriter.writer(System.getProperty("user.dir") + "\\PrimeNumbers.csv", String.valueOf(currentNumber));
-        CSVReaderWriter.pushWriter(System.getProperty("user.dir") + "\\PrimeNumbers.csv", String.join(",", primeNumbers.stream().map(Object::toString).collect(Collectors.toList())));
+        CSVReaderWriter.writer(csvPath, String.valueOf(currentNumber));
+        CSVReaderWriter.pushWriter(csvPath, String.join(",", primeNumbers.stream().map(Object::toString).collect(Collectors.toList())));
+        CSVReaderWriter.pushWriter(csvPath, String.valueOf(primeNumbers.size()));
+        Alog.logInfo(primeNumbers.size() + " are found");
+        Alog.logInfo("Prime Numbers are save in " + csvPath);
     }
 }

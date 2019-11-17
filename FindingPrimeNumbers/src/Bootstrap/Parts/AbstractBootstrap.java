@@ -167,31 +167,34 @@ public class AbstractBootstrap implements IAbstractBootstrap {
 
     @Override
     public void OnApplicationUpdate() {
-        /*Now just build a scaffolding*/
-        /*Run finish*/
+        if(argumentAndParamaters.size()>0){
+            argumentAndParamaters.forEach((k, v) -> {
+                EArgument eArgument = null;
+                try {
+                    k = k.replace("-", "");
+                    k = k.toLowerCase();
+                    eArgument = EArgument.valueOf(k);
+                } catch (Exception ex) {
 
-        argumentAndParamaters.forEach((k, v) -> {
-            EArgument eArgument = null;
-            try {
-                k = k.replace("-", "");
-                k = k.toLowerCase();
-                eArgument = EArgument.valueOf(k);
-            } catch (Exception ex) {
-
-            }
-
-            if (eArgument != null) {
-                switch (eArgument) {
-                    case run:
-                        SieveofEratosthenes sieveofEratosthenes = new SieveofEratosthenes();
-                        sieveofEratosthenes.Run(Integer.parseInt(v));
-                        break;
-                    case runwindow:
-
-                        break;
                 }
-            }
-        });
+
+                if (eArgument != null) {
+                    switch (eArgument) {
+                        case run:
+                            SieveofEratosthenes sieveofEratosthenes = new SieveofEratosthenes();
+                            sieveofEratosthenes.Run(Integer.parseInt(v));
+                            break;
+                        case runwindow:
+
+                            break;
+                    }
+                }
+            });
+        }else {
+            /*No Argument*/
+            RunArgumentHelper runArgumentHelper =new RunArgumentHelper();
+            runArgumentHelper.showArgumentHelper();
+        }
 
         setAppState(EApp.ShuttingDown);
     }
