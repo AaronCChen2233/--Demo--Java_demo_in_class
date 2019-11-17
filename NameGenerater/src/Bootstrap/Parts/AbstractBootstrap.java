@@ -2,8 +2,10 @@ package Bootstrap.Parts;
 
 import Bootstrap.App.EApp;
 import Bootstrap.Tools.Alog;
-import MVVM.Parts.Model.SieveofEratosthenes;
+import Bootstrap.Tools.GetConfigProperty;
+import MVVM.Parts.Model.NameGeneraterModel;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class AbstractBootstrap implements IAbstractBootstrap {
@@ -181,7 +183,7 @@ public class AbstractBootstrap implements IAbstractBootstrap {
                 if (eArgument != null) {
                     switch (eArgument) {
                         case run:
-                            SieveofEratosthenes sieveofEratosthenes = new SieveofEratosthenes();
+                            NameGeneraterModel sieveofEratosthenes = new NameGeneraterModel();
                             sieveofEratosthenes.Run(Integer.parseInt(v));
                             break;
                         case runwindow:
