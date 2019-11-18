@@ -7,7 +7,7 @@ import Bootstrap.Tools.GetConfigProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class AbstractBootstrap implements IAbstractBootstrap {
+public abstract class AbstractBootstrap implements IAbstractBootstrap {
     private EApp _appState = EApp.StateUnknown;
     private boolean threwException = false;
     private boolean threwErrors = false;
@@ -154,22 +154,5 @@ public class AbstractBootstrap implements IAbstractBootstrap {
     @Override
     public EApp getAppState() {
         return _appState;
-    }
-
-    @Override
-    public void OnInitialized() {
-
-    }
-
-    @Override
-    public void OnShutdown() {
-
-    }
-
-    @Override
-    public void OnApplicationUpdate() {
-        /*Now just build a scaffolding*/
-        /*Run finish*/
-        setAppState(EApp.ShuttingDown);
     }
 }

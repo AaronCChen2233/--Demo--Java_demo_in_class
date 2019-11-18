@@ -12,4 +12,19 @@ public class BootstrapTest extends Bootstrap {
         Alog.logStartup("Started BootstrapTest Main");
         BootstrapTest bootstrapTest = new BootstrapTest(args);
     }
+
+    @Override
+    public void OnInitialized() {
+
+    }
+
+    @Override
+    public void OnShutdown() {
+
+    }
+
+    @Override
+    public void OnApplicationUpdate() {
+
+    }
 }

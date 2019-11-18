@@ -8,7 +8,7 @@ import MVVM.Parts.Model.NameGeneraterModel;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class AbstractBootstrap implements IAbstractBootstrap {
+public abstract class AbstractBootstrap implements IAbstractBootstrap {
     private EApp _appState = EApp.StateUnknown;
     private boolean threwException = false;
     private boolean threwErrors = false;
@@ -155,49 +155,5 @@ public class AbstractBootstrap implements IAbstractBootstrap {
     @Override
     public EApp getAppState() {
         return _appState;
-    }
-
-    @Override
-    public void OnInitialized() {
-
-    }
-
-    @Override
-    public void OnShutdown() {
-
-    }
-
-    @Override
-    public void OnApplicationUpdate() {
-        if (argumentAndParamaters.size() > 0) {
-            argumentAndParamaters.forEach((k, v) -> {
-                EArgument eArgument = null;
-                try {
-                    k = k.replace("-", "");
-                    k = k.toLowerCase();
-                    eArgument = EArgument.valueOf(k);
-                } catch (Exception ex) {
-
-                }
-
-                if (eArgument != null) {
-                    switch (eArgument) {
-                        case run:
-                            NameGeneraterModel sieveofEratosthenes = new NameGeneraterModel();
-                            sieveofEratosthenes.Run(Integer.parseInt(v));
-                            break;
-                        case runwindow:
-                            /*window version coming soon*/
-                            break;
-                    }
-                }
-            });
-        } else {
-            /*No Argument*/
-            RunArgumentHelper runArgumentHelper = new RunArgumentHelper();
-            runArgumentHelper.showArgumentHelper();
-        }
-
-        setAppState(EApp.ShuttingDown);
     }
 }
