@@ -3,6 +3,7 @@ package Bootstrap.Parts;
 import Bootstrap.App.EApp;
 import Bootstrap.Tools.Alog;
 import Bootstrap.Tools.GetConfigProperty;
+import MVVM.Parts.Model.SUDOKUGeneraterModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -169,7 +170,45 @@ public class AbstractBootstrap implements IAbstractBootstrap {
     @Override
     public void OnApplicationUpdate() {
         /*Now just build a scaffolding*/
-        /*Run finish*/
+        if (argumentAndParamaters.size() > 0) {
+            argumentAndParamaters.forEach((k, v) -> {
+                EArgument eArgument = null;
+                try {
+                    k = k.replace("-", "");
+                    k = k.toLowerCase();
+                    eArgument = EArgument.valueOf(k);
+                } catch (Exception ex) {
+
+                }
+
+                if (eArgument != null) {
+                    switch (eArgument) {
+                        case run:
+                            if (Integer.parseInt(v) > 5 || Integer.parseInt(v) < 1) {
+                                showRunHelper();
+                                break;
+                            }
+                            SUDOKUGeneraterModel sudokuGeneraterModel = new SUDOKUGeneraterModel();
+                            sudokuGeneraterModel.generate(Integer.parseInt(v));
+                            break;
+                        case runwindow:
+                            /*window version coming soon*/
+
+                            break;
+                    }
+                }
+            });
+        } else {
+            /*No Argument*/
+            showRunHelper();
+        }
+
+
         setAppState(EApp.ShuttingDown);
+    }
+
+    private void showRunHelper() {
+        RunArgumentHelper runArgumentHelper = new RunArgumentHelper();
+        runArgumentHelper.showArgumentHelper();
     }
 }

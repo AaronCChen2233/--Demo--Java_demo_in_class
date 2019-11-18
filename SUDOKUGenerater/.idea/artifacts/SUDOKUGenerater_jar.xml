@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SUDOKUGenerater:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SUDOKUGenerater_jar</output-path>
+    <root id="archive" name="SUDOKUGenerater.jar">
+      <element id="module-output" name="SUDOKUGenerater" />
+    </root>
+  </artifact>
+</component>
