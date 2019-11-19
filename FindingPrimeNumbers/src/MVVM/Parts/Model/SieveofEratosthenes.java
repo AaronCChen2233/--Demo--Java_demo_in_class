@@ -40,6 +40,8 @@ public class SieveofEratosthenes implements IMVVM_Model {
         }
 
         boolean isPrimeNumber = true;
+
+        long startTime = System.nanoTime();
         while (!stop) {
             currentNumber++;
             isPrimeNumber = true;
@@ -57,6 +59,8 @@ public class SieveofEratosthenes implements IMVVM_Model {
                 stop = true;
             }
         }
+        long endTime = System.nanoTime();
+        Alog.logInfo(String.valueOf(endTime-startTime));
 
         CSVReaderWriter.writer(csvPath, String.valueOf(currentNumber));
         CSVReaderWriter.pushWriter(csvPath, String.join(",", primeNumbers.stream().map(Object::toString).collect(Collectors.toList())));
