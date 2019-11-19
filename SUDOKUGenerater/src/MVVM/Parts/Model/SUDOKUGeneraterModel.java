@@ -55,10 +55,20 @@ public class SUDOKUGeneraterModel {
         ArrayList<String> list1;
         String csvPath = System.getProperty("user.dir") + "\\SUDOKUTable.csv";
 
-        /*Random take out numbers to become question*/
+        /*Generate the diagonal boolean array*/
+        boolean[] Blanks = new boolean[81];
+        for (int i = 0; i < 40; i++) {
+            boolean isBlank = RandomTools.getRandomBooleanByPercent(difficultyPercent);
+            Blanks[i] = isBlank;
+            Blanks[(Blanks.length - 1) - i] = isBlank;
+        }
+        /*The center block*/
+        Blanks[40]=RandomTools.getRandomBooleanByPercent(difficultyPercent);
+
+        /*Take out numbers to become question*/
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                SUDOKUQuestionTable[i][j] = RandomTools.getRandomBooleanByPercent(difficultyPercent) ? "" : SUDOKUTable[i][j];
+                SUDOKUQuestionTable[i][j] = Blanks[(i * 9) + j] ? "" : SUDOKUTable[i][j];
             }
         }
 
