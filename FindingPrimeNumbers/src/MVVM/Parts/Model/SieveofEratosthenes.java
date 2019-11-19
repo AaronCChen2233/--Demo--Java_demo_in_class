@@ -3,6 +3,7 @@ package MVVM.Parts.Model;
 import Bootstrap.Tools.Alog;
 import Bootstrap.Tools.CSVReaderWriter;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -22,11 +23,15 @@ public class SieveofEratosthenes implements IMVVM_Model {
 
     public void Run(int findCount) {
         String csvPath = System.getProperty("user.dir") + "\\PrimeNumbers.csv";
-        ArrayList<String> csvDate = CSVReaderWriter.reader(csvPath);
         int count = 0;
         try {
-            currentNumber = Long.parseLong(csvDate.get(0));
-            primeNumbers = (ArrayList<Long>) Arrays.stream(csvDate.get(1).split(",")).map(Long::parseLong).collect(Collectors.toList());
+            File file = new File(System.getProperty("user.dir"), "PrimeNumbers.csv");
+            if (file.isFile())
+            {
+                ArrayList<String> csvDate = CSVReaderWriter.reader(csvPath);
+                currentNumber = Long.parseLong(csvDate.get(0));
+                primeNumbers = (ArrayList<Long>) Arrays.stream(csvDate.get(1).split(",")).map(Long::parseLong).collect(Collectors.toList());
+            }
         } catch (Exception e) {
             /*If is empty csv file or format is not correct finding prime number will start run from 2*/
             currentNumber = 2L;
