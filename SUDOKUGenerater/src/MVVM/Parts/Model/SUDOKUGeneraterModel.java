@@ -63,7 +63,7 @@ public class SUDOKUGeneraterModel {
             Blanks[(Blanks.length - 1) - i] = isBlank;
         }
         /*The center block*/
-        Blanks[40]=RandomTools.getRandomBooleanByPercent(difficultyPercent);
+        Blanks[40] = RandomTools.getRandomBooleanByPercent(difficultyPercent);
 
         /*Take out numbers to become question*/
         for (int i = 0; i < 9; i++) {
@@ -74,22 +74,23 @@ public class SUDOKUGeneraterModel {
 
         /*Create file*/
         /*Write Question first*/
-        CSVReaderWriter.writer(csvPath, "Question");
+        String dataString = "Question\n";
         for (int i = 0; i < 9; i++) {
             list1 = new ArrayList<String>();
             Collections.addAll(list1, SUDOKUQuestionTable[i]);
-            CSVReaderWriter.pushWriter(csvPath, String.join(",", list1));
+            dataString += String.join(",", list1) + "\n";
         }
-
-        CSVReaderWriter.pushWriter(csvPath, " ");
+        dataString += "\n";
 
         /*Write Answer*/
-        CSVReaderWriter.pushWriter(csvPath, "Answer");
+        dataString += "Answer\n";
         for (int i = 0; i < 9; i++) {
             list1 = new ArrayList<String>();
             Collections.addAll(list1, SUDOKUTable[i]);
-            CSVReaderWriter.pushWriter(csvPath, String.join(",", list1));
+            dataString += String.join(",", list1) + "\n";
         }
+
+        CSVReaderWriter.writer(csvPath, dataString);
     }
 
     private boolean allowPutChecker(String[][] table, int checki, int checkj, String checkNumberString) {
