@@ -97,12 +97,22 @@ public class SUDOKUGeneraterModel {
         try {
             /*check Row and Col*/
             for (int j = 0; j < 8; j++) {
+                /*Skip it self*/
+                if (j == checkj) {
+                    continue;
+                }
+
                 if (checkNumberString.equals(table[checki][j])) {
                     return false;
                 }
             }
 
             for (int i = 0; i < 8; i++) {
+                /*Skip it self*/
+                if (i == checki) {
+                    continue;
+                }
+
                 if (checkNumberString.equals(table[i][checkj])) {
                     return false;
                 }
@@ -114,6 +124,12 @@ public class SUDOKUGeneraterModel {
 
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
+                    /*Skip it self*/
+                    if ((indexInSmallBlocki * 3 + i) == checki && (indexInSmallBlockj * 3 + j) == checkj) {
+                        continue;
+                    }
+
+
                     if (checkNumberString.equals(table[indexInSmallBlocki * 3 + i][indexInSmallBlockj * 3 + j])) {
                         return false;
                     }
