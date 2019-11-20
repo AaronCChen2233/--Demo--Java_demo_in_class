@@ -8,7 +8,7 @@ public class CSVReaderWriter {
      * @param scvPath
      * @return
      */
-    public static ArrayList<String> reader(String scvPath)  {
+    public static ArrayList<String> reader(String scvPath) {
         ArrayList<String> lines = null;
         InputStreamReader isr = null;
         BufferedReader reader = null;
@@ -25,9 +25,8 @@ public class CSVReaderWriter {
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }
-        finally {
-            if(isr !=null){
+        } finally {
+            if (isr != null) {
                 try {
                     isr.close();
                 } catch (IOException e) {
@@ -35,7 +34,7 @@ public class CSVReaderWriter {
                 }
             }
 
-            if(reader !=null){
+            if (reader != null) {
                 try {
                     reader.close();
                 } catch (IOException e) {
@@ -54,6 +53,7 @@ public class CSVReaderWriter {
     public static boolean pushWriter(String scvPath, String pushData) {
         InputStreamReader isr = null;
         BufferedReader reader = null;
+        BufferedWriter bw = null;
         try {
             /*Read*/
             isr = new InputStreamReader(new FileInputStream(scvPath));
@@ -67,23 +67,21 @@ public class CSVReaderWriter {
             }
 
             /*write*/
-            BufferedWriter bw = new BufferedWriter(new FileWriter(scvPath));
-            for(String ostr :lines){
+            new BufferedWriter(new FileWriter(scvPath));
+            for (String ostr : lines) {
                 bw.write(ostr);
                 bw.newLine();
             }
 
             /*push*/
             bw.write(pushData);
-            bw.close();
             return true;
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
             return false;
-        }
-        finally {
-            if(isr !=null){
+        } finally {
+            if (isr != null) {
                 try {
                     isr.close();
                 } catch (IOException e) {
@@ -91,9 +89,17 @@ public class CSVReaderWriter {
                 }
             }
 
-            if(reader !=null){
+            if (reader != null) {
                 try {
                     reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (bw != null) {
+                try {
+                    bw.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -109,17 +115,15 @@ public class CSVReaderWriter {
     public static boolean writer(String scvPath, String Data) {
         BufferedWriter bw = null;
         try {
-            bw= new BufferedWriter(new FileWriter(scvPath));
+            bw = new BufferedWriter(new FileWriter(scvPath));
             bw.write(Data);
-            bw.close();
             return true;
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
             return false;
-        }
-        finally {
-            if(bw !=null){
+        } finally {
+            if (bw != null) {
                 try {
                     bw.close();
                 } catch (IOException e) {

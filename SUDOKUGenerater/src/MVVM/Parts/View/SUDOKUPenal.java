@@ -1,4 +1,7 @@
 package MVVM.Parts.View;
 
-public class SUDOKUPenal {
+import javax.swing.*;
+
+public class SUDOKUPenal extends JPanel {
+
 }
