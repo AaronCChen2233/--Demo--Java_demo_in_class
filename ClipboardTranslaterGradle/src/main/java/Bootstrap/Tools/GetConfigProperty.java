@@ -8,6 +8,12 @@ import java.util.Properties;
 public class GetConfigProperty {
     public static boolean isRunInIDE = false;
     public static boolean isUseColorLog = false;
+    public static String vURL = "";
+    public static String oFURL = "";
+    public static String gISURL = "";
+    public static String vDclass = "";
+    public static String oFDclass = "";
+    public static String Imclass = "";
 
     static {
         InputStream inputStream = null;
@@ -25,6 +31,12 @@ public class GetConfigProperty {
             /*load property*/
             isRunInIDE = Boolean.parseBoolean(prop.getProperty("runInIDE"));
             isUseColorLog = Boolean.parseBoolean(prop.getProperty("useColorLog"));
+            vURL = prop.getProperty("vURL");
+            oFURL = prop.getProperty("oFURL");
+            gISURL = prop.getProperty("gISURL");
+            vDclass = prop.getProperty("vDclass");
+            oFDclass = prop.getProperty("oFDclass");
+            Imclass = prop.getProperty("Imclass");
 
             /*Because log will use property so here use println*/
             System.out.println("Load " + propFileName + " Success!");
