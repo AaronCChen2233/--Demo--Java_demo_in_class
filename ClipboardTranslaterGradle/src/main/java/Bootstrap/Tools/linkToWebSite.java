@@ -1,7 +1,9 @@
 package Bootstrap.Tools;
 
+import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -12,7 +14,13 @@ public class linkToWebSite {
         String content = "";
         try {
             document = Jsoup.connect(url).get();
-            content = document.getElementById(id).outerHtml();
+            Element element = document.getElementById(id);
+            /*if element is null return "" */
+            if (element != null) {
+                content = element.outerHtml();
+            } else {
+                return "";
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -26,7 +34,11 @@ public class linkToWebSite {
             document = Jsoup.connect(url).get();
             content = document.select(className);
         } catch (IOException e) {
-            e.printStackTrace();
+            if (((HttpStatusException) e).getStatusCode() == 404) {
+                Alog.logError(url + " return 404 Not Found");
+            } else {
+                e.printStackTrace();
+            }
         }
         return content;
     }

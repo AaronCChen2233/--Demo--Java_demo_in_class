@@ -1,9 +1,12 @@
 package MVVM.Parts.Model;
 
+import jdk.nashorn.internal.runtime.regexp.joni.Regex;
+
 import java.awt.*;
 import java.awt.datatransfer.*;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.regex.Pattern;
 
 public class DetectClipboard implements ClipboardOwner, IMVVM_Model {
     private Clipboard clipboard;
@@ -56,7 +59,12 @@ public class DetectClipboard implements ClipboardOwner, IMVVM_Model {
             timer.schedule(new DateTask() {
                 @Override
                 public void clipboardStringChange(String newString) {
-                    detectClipboardStringChange(newString);
+                    /*If newString have space don't search because now only support single vocabulary*/
+                    newString = newString.trim();
+                    newString = newString.toLowerCase();
+                    if(Pattern.matches("([a-z])\\w+", newString)){
+                        detectClipboardStringChange(newString);
+                    }
                 }
             }, 1000, 1000);
         }

@@ -36,6 +36,10 @@ import java.util.Scanner;
 *   5.Setting function-let user can setting
 *       1.is windows popup automatically?
 *       2.Max showing Example count
+*
+* III.Found Bugs List:
+*   1.If Vocabulary not found will show error
+*
 * * */
 public class App extends AbstractBootstrap {
     static App app;
@@ -51,12 +55,15 @@ public class App extends AbstractBootstrap {
 
     @Override
     public void OnInitialized() {
+
+
+        /*test for now after will move to other class*/
         DetectClipboard.DetectClipboardThread timeSetter = new DetectClipboard.DetectClipboardThread() {
             @Override
             public void detectClipboardStringChange(String newString) {
                 System.out.println(newString);
-                GetTranslateInfo.getByVoiceTube(newString);
-                GetTranslateInfo.getByOxford(newString);
+                System.out.println(GetTranslateInfo.getByVoiceTube(newString));
+                System.out.println(GetTranslateInfo.getByOxford(newString));
             }
         };
         Thread t = new Thread(timeSetter);

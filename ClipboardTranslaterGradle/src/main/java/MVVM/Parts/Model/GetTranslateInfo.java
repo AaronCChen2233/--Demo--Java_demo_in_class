@@ -17,10 +17,8 @@ public class GetTranslateInfo {
         return linkToWebSite.getInnerStringByElementId(url, VC);
     }
 
-    public static void getByOxford(String word) {
+    public static Elements getByOxford(String word) {
         String url = OURL + word;
-        Elements e = linkToWebSite.getElementsByClass(url, OC);
-        System.out.println(linkToWebSite.getElementsByClass(url, OC));
+        return linkToWebSite.getElementsByClass(url, OC);
     }
-
 }
