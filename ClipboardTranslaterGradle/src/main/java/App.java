@@ -11,8 +11,8 @@ import java.util.Scanner;
  */
 /*
 * App Description:
-*   For people learning vocabulary in English.
-*   When you copy a vocabulary will Popup a small window automatically
+*   This Application is for people learning vocabulary in English. Couldn't for commercial use
+*   When user copy a vocabulary will Popup a small window automatically
 *   that show some information about this vocabulary.
 *   User can save this vocabulary and use "Anki" app for study those vocabulary which you had saved.
 *
@@ -22,7 +22,7 @@ import java.util.Scanner;
 *   V2.How to get website info
 *   3.Popup a small window at corner
 *   4.How to open web browser
-*   5.Save a .txt file use html format
+*   5.Save in a .txt file use html format
 *
 * II.Function:
 *   1.Copy a vocabulary then show a small popup window at corner
