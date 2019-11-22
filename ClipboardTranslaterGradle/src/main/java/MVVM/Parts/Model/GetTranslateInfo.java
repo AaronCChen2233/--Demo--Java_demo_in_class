@@ -2,6 +2,7 @@ package MVVM.Parts.Model;
 
 import Bootstrap.Tools.GetConfigProperty;
 import Bootstrap.Tools.linkToWebSite;
+import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 public class GetTranslateInfo {
@@ -20,5 +21,15 @@ public class GetTranslateInfo {
     public static Elements getByOxford(String word) {
         String url = OURL + word;
         return linkToWebSite.getElementsByClass(url, OC);
+    }
+
+    public static Document getOxfordDocument(String word){
+        String url = OURL + word;
+        return linkToWebSite.getDocumentURL(url);
+    }
+
+    public static Elements getImgSrcs(String word){
+        String url = IURL + word;
+        return linkToWebSite.getElementsByClass(url, IC);
     }
 }

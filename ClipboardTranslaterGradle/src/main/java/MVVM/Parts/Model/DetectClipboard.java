@@ -1,7 +1,5 @@
 package MVVM.Parts.Model;
 
-import jdk.nashorn.internal.runtime.regexp.joni.Regex;
-
 import java.awt.*;
 import java.awt.datatransfer.*;
 import java.util.Timer;

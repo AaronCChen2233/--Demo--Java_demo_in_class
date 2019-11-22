@@ -42,4 +42,19 @@ public class linkToWebSite {
         }
         return content;
     }
+
+    public static Document getDocumentURL(String url) {
+        Document document = null;
+        try {
+            document = Jsoup.connect(url).get();
+            return document;
+        } catch (IOException e) {
+            if (((HttpStatusException) e).getStatusCode() == 404) {
+                Alog.logError(url + " return 404 Not Found");
+            } else {
+                e.printStackTrace();
+            }
+        }
+        return document;
+    }
 }
