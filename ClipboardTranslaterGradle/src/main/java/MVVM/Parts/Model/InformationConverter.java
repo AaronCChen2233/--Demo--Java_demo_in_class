@@ -83,5 +83,8 @@ public class InformationConverter {
 
             vocabularyInfoViewModel.reloadInfo(word, definitionInEnglish, definitionInChinese, example, imgSrcList);
         }
+        else {
+            vocabularyInfoViewModel.showNotFound();
+        }
     }
 }

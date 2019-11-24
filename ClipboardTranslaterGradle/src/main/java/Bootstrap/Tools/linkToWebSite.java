@@ -35,7 +35,7 @@ public class linkToWebSite {
             content = document.select(className);
         } catch (IOException e) {
             if (((HttpStatusException) e).getStatusCode() == 404) {
-                Alog.logError(url + " return 404 Not Found");
+                Alog.logWarning(url + " return 404 Not Found");
             } else {
                 e.printStackTrace();
             }
@@ -50,7 +50,7 @@ public class linkToWebSite {
             return document;
         } catch (IOException e) {
             if (((HttpStatusException) e).getStatusCode() == 404) {
-                Alog.logError(url + " return 404 Not Found");
+                Alog.logWarning(url + " return 404 Not Found");
             } else {
                 e.printStackTrace();
             }
