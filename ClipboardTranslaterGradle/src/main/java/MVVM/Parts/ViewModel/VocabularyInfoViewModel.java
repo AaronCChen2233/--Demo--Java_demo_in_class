@@ -1,8 +1,10 @@
 package MVVM.Parts.ViewModel;
 
 import Bootstrap.Tools.ListTool;
+import Bootstrap.Tools.ReaderWriter;
 import MVVM.Parts.View.VocabularyInfoView;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
@@ -90,14 +92,30 @@ public class VocabularyInfoViewModel implements IMVVM_ViewModel {
 
     public void showNotFound() {
         isNotFound = true;
-//        definitionInEnglish = ListTool.clearList(definitionInEnglish);
-//        definitionInChinese = ListTool.clearList(definitionInChinese);
-//        example  = ListTool.clearList(example);
-//        imgSrcList = ListTool.clearList(imgSrcList);
         vocabulary = "404 Not found!";
         vocabularyInfoView.windowPopUp(this);
     }
 
 
+    public void save() {
+        /*ClipboardTranslaterSave.txt*/
+        String savePath = System.getProperty("user.dir") + "\\ClipboardTranslaterSave.txt";
+        File file = new File(System.getProperty("user.dir"), "ClipboardTranslaterSave.txt");
+        if (file.isFile()) {
+            /*If file exist*/
+            ReaderWriter.pushWriter(savePath, convertFormatForAnki());
+        } else {
+            /*If file not exist*/
+            ReaderWriter.writer(savePath, convertFormatForAnki());
+        }
+    }
 
+    private String convertFormatForAnki() {
+        String saveString = vocabulary;
+        saveString += "\t";
+        saveString += String.join("<br>", definitionInChinese).replaceAll("\n", "<br>");
+        saveString += String.join("<br>", definitionInEnglish).replaceAll("\n", "<br>");
+        saveString += String.join("<br>", example).replaceAll("\n", "<br>");
+        return saveString;
+    }
 }

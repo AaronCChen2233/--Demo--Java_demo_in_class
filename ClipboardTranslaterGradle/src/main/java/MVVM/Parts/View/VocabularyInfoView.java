@@ -1,16 +1,23 @@
 package MVVM.Parts.View;
 
 import Bootstrap.Tools.ImageTools;
+import Bootstrap.Tools.ReaderWriter;
 import MVVM.Parts.ViewModel.VocabularyInfoViewModel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class VocabularyInfoView extends JFrame {
     private VocabularyInfoViewModel vocabularyInfoViewModel;
@@ -89,7 +96,13 @@ public class VocabularyInfoView extends JFrame {
 
             }
         });
-        ;
+
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                vocabularyInfoViewModel.save();
+            }
+        });
     }
 
     private static void setJScrollPaneStyle(JScrollPane scrollPane) {

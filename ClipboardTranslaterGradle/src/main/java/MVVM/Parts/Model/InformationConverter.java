@@ -5,10 +5,12 @@ import MVVM.Parts.ViewModel.VocabularyInfoViewModel;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 public class InformationConverter {
     static VocabularyInfoViewModel vocabularyInfoViewModel = new VocabularyInfoViewModel();

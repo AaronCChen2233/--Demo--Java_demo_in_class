@@ -77,3 +77,4 @@ nb-configuration.xml
 NameGenerater/generate.csv
 SUDOKUGenerater/SUDOKUTable.csv
 ClipboardTranslaterGradle/src/main/resources/config.properties
+ClipboardTranslaterGradle/ClipboardTranslaterSave.txt
