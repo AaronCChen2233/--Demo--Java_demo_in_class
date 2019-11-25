@@ -28,6 +28,11 @@ public class GetTranslateInfo {
         return linkToWebSite.getDocumentURL(url);
     }
 
+    public static Document getVocDocument(String word){
+        String url = VURL + word;
+        return linkToWebSite.getDocumentURL(url);
+    }
+
     public static Elements getImgSrcs(String word){
         String url = IURL + word;
         return linkToWebSite.getElementsByClass(url, IC);

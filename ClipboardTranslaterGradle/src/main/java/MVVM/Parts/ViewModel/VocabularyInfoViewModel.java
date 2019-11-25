@@ -5,16 +5,19 @@ import Bootstrap.Tools.ReaderWriter;
 import MVVM.Parts.View.VocabularyInfoView;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 
 public class VocabularyInfoViewModel implements IMVVM_ViewModel {
     boolean isNotFound;
     String vocabulary;
+    String speechMP3URL;
     List<String> definitionInEnglish;
     List<String> definitionInChinese;
     List<String> example;
     List<String> imgSrcList;
+
 
 
     public String getVocabulary() {
@@ -25,6 +28,13 @@ public class VocabularyInfoViewModel implements IMVVM_ViewModel {
         this.vocabulary = vocabulary;
     }
 
+    public String getSpeechMP3URL() {
+        return speechMP3URL;
+    }
+
+    public void setSpeechMP3URL(String speechMP3URL) {
+        this.speechMP3URL = speechMP3URL;
+    }
 
     public List<String> getDefinitionInEnglish() {
         return definitionInEnglish;
@@ -73,9 +83,10 @@ public class VocabularyInfoViewModel implements IMVVM_ViewModel {
         vocabularyInfoView = new VocabularyInfoView();
     }
 
-    public void reloadInfo(String vocabulary, String[] definitionInEnglish, String[] definitionInChinese, String[] example, String[] imgSrcList) {
+    public void reloadInfo(String vocabulary, String[] definitionInEnglish, String[] definitionInChinese, String[] example, String[] imgSrcList,String speechMP3URL) {
         isNotFound = false;
         this.vocabulary = vocabulary;
+        this.speechMP3URL = speechMP3URL;
         this.definitionInEnglish = (List<String>) Arrays.asList(definitionInEnglish);
         this.definitionInChinese = (List<String>) Arrays.asList(definitionInChinese);
         this.example = (List<String>) Arrays.asList(example);
@@ -103,10 +114,10 @@ public class VocabularyInfoViewModel implements IMVVM_ViewModel {
         File file = new File(System.getProperty("user.dir"), "ClipboardTranslaterSave.txt");
         if (file.isFile()) {
             /*If file exist*/
-            ReaderWriter.pushWriter(savePath, convertFormatForAnki());
+            ReaderWriter.pushWriterStandardCharset(savePath, convertFormatForAnki(), StandardCharsets.UTF_8);
         } else {
             /*If file not exist*/
-            ReaderWriter.writer(savePath, convertFormatForAnki());
+            ReaderWriter.writerStandardCharset(savePath, convertFormatForAnki(),StandardCharsets.UTF_8);
         }
     }
 

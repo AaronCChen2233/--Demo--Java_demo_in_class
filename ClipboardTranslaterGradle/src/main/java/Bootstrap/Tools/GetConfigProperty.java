@@ -14,6 +14,8 @@ public class GetConfigProperty {
     public static String vDclass = "";
     public static String oFDclass = "";
     public static String Imclass = "";
+    public static String Vau = "";
+    public static String oFau = "";
 
     static {
         InputStream inputStream = null;
@@ -37,6 +39,8 @@ public class GetConfigProperty {
             vDclass = prop.getProperty("vDclass");
             oFDclass = prop.getProperty("oFDclass");
             Imclass = prop.getProperty("Imclass");
+            Vau = prop.getProperty("Vau");
+            oFau = prop.getProperty("oFau");
 
             /*Because log will use property so here use println*/
             System.out.println("Load " + propFileName + " Success!");

@@ -21,12 +21,22 @@ public class InformationConverter {
         String[] definitionInChinese = new String[0];
         String[] example = new String[0];
         String[] imgSrcList = new String[0];
+        String speechMP3URL = "";
+        boolean isVocFound;
+        boolean isOFFound;
 
         List<String> tempExample = new ArrayList<>();
         /*definitionInChinese Part*/
         String[] Temp;
-        String info = GetTranslateInfo.getByVoiceTube(word);
-        if (!info.equals("")) {
+
+        Document infoDocument = GetTranslateInfo.getVocDocument(word);
+        String info;
+        Element element = infoDocument.getElementById(GetConfigProperty.vDclass);
+        /*if element is null info is "" */
+        info = element != null ? element.outerHtml() : "";
+        isVocFound = !info.equals("");
+
+        if (isVocFound) {
             Temp = info.split("<h3>([^<]*)</h3>");
             for (int i = 0; i < Temp.length; i++) {
                 Temp[i] = Temp[i].replace("\n", "");
@@ -43,6 +53,8 @@ public class InformationConverter {
             if (Temp.length == 3) {
                 tempExample = new ArrayList<String>(Arrays.asList((Temp[2].split("\n \n"))));
             }
+
+            speechMP3URL = infoDocument.selectFirst(GetConfigProperty.Vau).attr("abs:href");
         }
 
         /*definitionInEnglish Part*/
@@ -64,18 +76,24 @@ public class InformationConverter {
                 /*Remove definitionInEnglish html tag*/
                 definitionInEnglish[i] = definitionInEnglish[i].replaceAll("<.*?>", "");
             }
+
+            /*If already have speech mp3 don't load here*/
+            if (speechMP3URL.equals("")) {
+                speechMP3URL = tempDocument.selectFirst(GetConfigProperty.oFau).attr("abs:data-src-mp3");
+            }
         }
+        isOFFound = tempElements.size() != 0;
 
 
         /*if vocabulary is found*/
-        if (!(info.equals("") && tempElements.size() == 0)) {
+        if (isOFFound || isVocFound) {
             /*imgSrcList Part*/
             tempElements = GetTranslateInfo.getImgSrcs(word).select("img");
             tempStringList = tempElements.stream()
                     .map(t -> t.attr("abs:data-src")).filter(t -> !t.equals("")).collect(Collectors.toList());
             imgSrcList = new String[tempStringList.size()];
             imgSrcList = tempStringList.toArray(imgSrcList);
-            
+
             example = new String[tempExample.size()];
             example = tempExample.toArray(example);
             for (int i = 0; i < example.length; i++) {
@@ -83,9 +101,8 @@ public class InformationConverter {
                 example[i] = example[i].replaceAll("<.*?>", "");
             }
 
-            vocabularyInfoViewModel.reloadInfo(word, definitionInEnglish, definitionInChinese, example, imgSrcList);
-        }
-        else {
+            vocabularyInfoViewModel.reloadInfo(word, definitionInEnglish, definitionInChinese, example, imgSrcList, speechMP3URL);
+        } else {
             vocabularyInfoViewModel.showNotFound();
         }
     }

@@ -30,18 +30,20 @@ import java.util.Scanner;
  *       V2.Vocabulary definition in Chinese
  *       V3.Vocabulary example
  *       V4.Vocabulary image
- *   3.Click will show on web browser
+ *   V3.Click will show on web browser
  *   V4.Save this Vocabulary use a special html format which can import by use "Anki" app
  *   5.Setting function-let user can setting
  *       1.is windows popup automatically?
  *       2.Max showing Example count
+ *       3.is speech automatically?
+ *       4.default open url
  *   6.Speech button
  *
  * III.Found Bugs List:
- *   1.If Vocabulary not found will show error
- *   2.new vocabulary popup scrollView should scroll to top
- *   3.Save in a .txt file use html format should save as UTF-8
- *
+ *   V1.If Vocabulary not found should show error
+ *   V2.new vocabulary popup scrollView should scroll to top
+ *   V3.Save in a .txt file use html format should save as UTF-8
+ *   4.If vocabulary already saved disable save button
  * * */
 public class App extends AbstractBootstrap {
     static App app;

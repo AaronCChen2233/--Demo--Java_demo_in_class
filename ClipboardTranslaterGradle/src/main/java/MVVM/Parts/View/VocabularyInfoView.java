@@ -1,9 +1,9 @@
 package MVVM.Parts.View;
 
+import Bootstrap.Tools.GetConfigProperty;
 import Bootstrap.Tools.ImageTools;
-import Bootstrap.Tools.ReaderWriter;
+import Bootstrap.Tools.OpenBrowse;
 import MVVM.Parts.ViewModel.VocabularyInfoViewModel;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -12,28 +12,27 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public class VocabularyInfoView extends JFrame {
     private VocabularyInfoViewModel vocabularyInfoViewModel;
-    private JPanel infoPanel;
-    private JLabel vocabularyLabel;
+    //    private JLabel vocabularyLabel;
     private JTextArea definitionInEnglishLabel;
     private JTextArea definitionInChineseLabel;
     private JTextArea exampleLabel;
-    private JPanel imgPanel;
     private JPanel mainPanel;
+    private JPanel infoPanel;
+    private JPanel imgPanel;
+    private JPanel buttonsPanel;
     private JScrollPane definitionInEnglishScrollPane;
     private JScrollPane definitionInChineseScrollPane;
     private JScrollPane exampleScrollPane;
     private JScrollPane imgScrollPane;
     private JButton saveButton;
-
+    private JButton speechButton;
+    private JButton showOnBrowserButton;
 
     public VocabularyInfoView() {
         super();
@@ -41,12 +40,16 @@ public class VocabularyInfoView extends JFrame {
         infoPanel = new JPanel(new GridLayout(3, 1));
         mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
+        buttonsPanel = new JPanel();
+        buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.LINE_AXIS));
+
         infoPanel.setMinimumSize(new Dimension(450, 300));
         infoPanel.setMaximumSize(new Dimension(450, 300));
         setAlwaysOnTop(true);
-        vocabularyLabel = new JLabel();
-        vocabularyLabel.setFont(new Font("Microsoft JhengHei", Font.BOLD, 28));
-        vocabularyLabel.setHorizontalAlignment(SwingConstants.LEFT);
+
+//        vocabularyLabel = new JLabel();
+//        vocabularyLabel.setFont(new Font("Microsoft JhengHei", Font.BOLD, 28));
+//        vocabularyLabel.setHorizontalAlignment(SwingConstants.LEFT);
 
         definitionInEnglishLabel = new JTextArea();
         setTextAreaStyle(definitionInEnglishLabel);
@@ -70,13 +73,18 @@ public class VocabularyInfoView extends JFrame {
         imgScrollPane.setMaximumSize(new Dimension(450, 200));
 
         saveButton = new JButton("Save");
+        speechButton = new JButton("Speech");
+        showOnBrowserButton = new JButton("Open");
+        buttonsPanel.add(saveButton);
+        buttonsPanel.add(speechButton);
+        buttonsPanel.add(showOnBrowserButton);
 
         mainPanel.add(infoPanel);
         infoPanel.add(definitionInEnglishScrollPane);
         infoPanel.add(definitionInChineseScrollPane);
         infoPanel.add(exampleScrollPane);
         mainPanel.add(imgScrollPane);
-        mainPanel.add(saveButton);
+        mainPanel.add(buttonsPanel);
 
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         add(mainPanel);
@@ -101,6 +109,33 @@ public class VocabularyInfoView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 vocabularyInfoViewModel.save();
+            }
+        });
+
+        speechButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    OpenBrowse.open(vocabularyInfoViewModel.getSpeechMP3URL());
+                } catch (URISyntaxException ex) {
+                    ex.printStackTrace();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+
+        showOnBrowserButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String url = GetConfigProperty.vURL + vocabularyInfoViewModel.getVocabulary();
+                try {
+                    OpenBrowse.open(url);
+                } catch (URISyntaxException ex) {
+                    ex.printStackTrace();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
     }
@@ -129,6 +164,9 @@ public class VocabularyInfoView extends JFrame {
     public void windowPopUp(VocabularyInfoViewModel vocabularyInfoViewModel) {
         this.vocabularyInfoViewModel = vocabularyInfoViewModel;
         setVisible(true);
+
+        allScrollPanelScrollToTop();
+
         if (vocabularyInfoViewModel.isNotFound()) {
             setTitle(vocabularyInfoViewModel.getVocabulary());
             imgPanel.removeAll();
@@ -136,9 +174,13 @@ public class VocabularyInfoView extends JFrame {
             definitionInChineseLabel.setText("");
             exampleLabel.setText("");
             saveButton.setEnabled(false);
+            showOnBrowserButton.setEnabled(false);
+            speechButton.setEnabled(false);
             setState(Frame.NORMAL);
         } else {
             saveButton.setEnabled(true);
+            showOnBrowserButton.setEnabled(true);
+            speechButton.setEnabled(true);
             setState(Frame.NORMAL);
             setTitle(vocabularyInfoViewModel.getVocabulary());
             definitionInEnglishLabel.setText(String.join("\n", vocabularyInfoViewModel.getDefinitionInEnglish()));
@@ -161,5 +203,12 @@ public class VocabularyInfoView extends JFrame {
             imgPanel.updateUI();
             mainPanel.updateUI();
         }
+    }
+
+    private void allScrollPanelScrollToTop() {
+        definitionInEnglishScrollPane.getVerticalScrollBar().setValue(0);
+        definitionInChineseScrollPane.getVerticalScrollBar().setValue(0);
+        exampleScrollPane.getVerticalScrollBar().setValue(0);
+        imgScrollPane.getVerticalScrollBar().setValue(0);
     }
 }

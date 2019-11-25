@@ -70,7 +70,7 @@ public class CSVReaderWriter {
             }
 
             /*write*/
-            new BufferedWriter(new FileWriter(scvPath));
+            bw = new BufferedWriter(new FileWriter(scvPath));
             for (String ostr : lines) {
                 bw.write(ostr);
                 bw.newLine();
