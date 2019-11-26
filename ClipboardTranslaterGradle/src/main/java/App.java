@@ -22,7 +22,7 @@ import java.util.Scanner;
  *   V3.Popup a small window at corner
  *   V4.How to open web browser
  *   V5.Save in a .txt file use html format(Save use UTF-8)
- *   6.How to play a .mp3 url
+ *   V6.How to play a .mp3 url
  *
  * II.Function:
  *   V1.Copy a vocabulary then show a small popup window at corner
@@ -38,7 +38,7 @@ import java.util.Scanner;
  *       2.Max showing Example count
  *       3.is speech automatically?
  *       4.default open url
- *   6.Speech button
+ *   V6.Speech button
  *   7.Need refactoring
  *   8.Add commend
  *

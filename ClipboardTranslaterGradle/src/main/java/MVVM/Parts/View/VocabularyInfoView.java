@@ -4,6 +4,10 @@ import Bootstrap.Tools.GetConfigProperty;
 import Bootstrap.Tools.ImageTools;
 import Bootstrap.Tools.OpenBrowse;
 import MVVM.Parts.ViewModel.VocabularyInfoViewModel;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -118,13 +122,15 @@ public class VocabularyInfoView extends JFrame {
         speechButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    OpenBrowse.open(vocabularyInfoViewModel.getSpeechMP3URL());
-                } catch (URISyntaxException ex) {
-                    ex.printStackTrace();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                Play();
+
+//                try {
+//                    OpenBrowse.open(vocabularyInfoViewModel.getSpeechMP3URL());
+//                } catch (URISyntaxException ex) {
+//                    ex.printStackTrace();
+//                } catch (IOException ex) {
+//                    ex.printStackTrace();
+//                }
             }
         });
 
@@ -218,5 +224,13 @@ public class VocabularyInfoView extends JFrame {
         definitionInChineseScrollPane.getVerticalScrollBar().setValue(0);
         exampleScrollPane.getVerticalScrollBar().setValue(0);
         imgScrollPane.getVerticalScrollBar().setValue(0);
+    }
+
+    private void Play(){
+        JFXPanel fxPanel = new JFXPanel();
+        String bip = vocabularyInfoViewModel.getSpeechMP3URL();
+        Media hit = new Media(bip);
+        MediaPlayer mediaPlayer = new MediaPlayer(hit);
+        mediaPlayer.play();
     }
 }
