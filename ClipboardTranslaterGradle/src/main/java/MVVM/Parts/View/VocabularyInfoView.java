@@ -108,7 +108,10 @@ public class VocabularyInfoView extends JFrame {
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vocabularyInfoViewModel.save();
+                if( vocabularyInfoViewModel.save()){
+                    /*If save success disable saveButton*/
+                    saveButton.setEnabled(false);
+                }
             }
         });
 
@@ -170,6 +173,7 @@ public class VocabularyInfoView extends JFrame {
         if (vocabularyInfoViewModel.isNotFound()) {
             setTitle(vocabularyInfoViewModel.getVocabulary());
             imgPanel.removeAll();
+            imgPanel.updateUI();
             definitionInEnglishLabel.setText("");
             definitionInChineseLabel.setText("");
             exampleLabel.setText("");
@@ -178,7 +182,11 @@ public class VocabularyInfoView extends JFrame {
             speechButton.setEnabled(false);
             setState(Frame.NORMAL);
         } else {
-            saveButton.setEnabled(true);
+            if(vocabularyInfoViewModel.isVocabularySaved()){
+                saveButton.setEnabled(false);
+            }else {
+                saveButton.setEnabled(true);
+            }
             showOnBrowserButton.setEnabled(true);
             speechButton.setEnabled(true);
             setState(Frame.NORMAL);

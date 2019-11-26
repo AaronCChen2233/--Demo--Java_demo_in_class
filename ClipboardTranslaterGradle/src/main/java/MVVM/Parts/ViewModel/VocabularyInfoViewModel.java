@@ -1,13 +1,16 @@
 package MVVM.Parts.ViewModel;
 
+import Bootstrap.Tools.GetConfigProperty;
 import Bootstrap.Tools.ListTool;
 import Bootstrap.Tools.ReaderWriter;
+import MVVM.Parts.Model.SettingModel;
 import MVVM.Parts.View.VocabularyInfoView;
 
-import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class VocabularyInfoViewModel implements IMVVM_ViewModel {
     boolean isNotFound;
@@ -17,8 +20,8 @@ public class VocabularyInfoViewModel implements IMVVM_ViewModel {
     List<String> definitionInChinese;
     List<String> example;
     List<String> imgSrcList;
-
-
+    List<String> savedVocabulary;
+    SettingModel settingModel;
 
     public String getVocabulary() {
         return vocabulary;
@@ -68,6 +71,14 @@ public class VocabularyInfoViewModel implements IMVVM_ViewModel {
         this.imgSrcList = imgSrcList;
     }
 
+    public List<String> getSavedVocabulary() {
+        return savedVocabulary;
+    }
+
+    public void setSavedVocabulary(List<String> savedVocabulary) {
+        this.savedVocabulary = savedVocabulary;
+    }
+
     public boolean isNotFound() {
         return isNotFound;
     }
@@ -81,6 +92,7 @@ public class VocabularyInfoViewModel implements IMVVM_ViewModel {
 
     public VocabularyInfoViewModel() {
         vocabularyInfoView = new VocabularyInfoView();
+        savedVocabulary = getSavedVocabularyFromTxtFile();
     }
 
     public void reloadInfo(String vocabulary, String[] definitionInEnglish, String[] definitionInChinese, String[] example, String[] imgSrcList,String speechMP3URL) {
@@ -108,16 +120,15 @@ public class VocabularyInfoViewModel implements IMVVM_ViewModel {
     }
 
 
-    public void save() {
+    public boolean save() {
         /*ClipboardTranslaterSave.txt*/
-        String savePath = System.getProperty("user.dir") + "\\ClipboardTranslaterSave.txt";
-        File file = new File(System.getProperty("user.dir"), "ClipboardTranslaterSave.txt");
-        if (file.isFile()) {
+        String savePath = System.getProperty("user.dir") + "\\"+ GetConfigProperty.saveFileName;
+        if (ReaderWriter.isFileExist(GetConfigProperty.saveFileName)) {
             /*If file exist*/
-            ReaderWriter.pushWriterStandardCharset(savePath, convertFormatForAnki(), StandardCharsets.UTF_8);
+            return ReaderWriter.pushWriterStandardCharset(savePath, convertFormatForAnki(), StandardCharsets.UTF_8);
         } else {
             /*If file not exist*/
-            ReaderWriter.writerStandardCharset(savePath, convertFormatForAnki(),StandardCharsets.UTF_8);
+            return ReaderWriter.writerStandardCharset(savePath, convertFormatForAnki(),StandardCharsets.UTF_8);
         }
     }
 
@@ -128,5 +139,19 @@ public class VocabularyInfoViewModel implements IMVVM_ViewModel {
         saveString += String.join("<br>", definitionInEnglish).replaceAll("\n", "<br>");
         saveString += String.join("<br>", example).replaceAll("\n", "<br>");
         return saveString;
+    }
+
+    private List<String> getSavedVocabularyFromTxtFile(){
+        String savePath = System.getProperty("user.dir") + "\\"+ GetConfigProperty.saveFileName;
+        if (ReaderWriter.isFileExist(GetConfigProperty.saveFileName)) {
+            /*If file exist*/
+            return ReaderWriter.reader(savePath).stream().map(s->s.split("\t")[0]).collect(Collectors.toList());
+        } else {
+           return new ArrayList<>();
+        }
+    }
+
+    public boolean isVocabularySaved(){
+        return savedVocabulary.contains(vocabulary);
     }
 }

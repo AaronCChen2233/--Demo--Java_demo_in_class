@@ -20,8 +20,9 @@ import java.util.Scanner;
  *   V1.How to get clipboard string
  *   V2.How to get website info
  *   V3.Popup a small window at corner
- *   4.How to open web browser
+ *   V4.How to open web browser
  *   V5.Save in a .txt file use html format(Save use UTF-8)
+ *   6.How to play a .mp3 url
  *
  * II.Function:
  *   V1.Copy a vocabulary then show a small popup window at corner
@@ -38,12 +39,16 @@ import java.util.Scanner;
  *       3.is speech automatically?
  *       4.default open url
  *   6.Speech button
+ *   7.Need refactoring
+ *   8.Add commend
  *
  * III.Found Bugs List:
  *   V1.If Vocabulary not found should show error
  *   V2.new vocabulary popup scrollView should scroll to top
  *   V3.Save in a .txt file use html format should save as UTF-8
- *   4.If vocabulary already saved disable save button
+ *   V4.If vocabulary already saved disable save button
+ * ` V5.If coped vocabulary is Camel-Case don't search (special rule for software engineer ha ha)
+ *
  * * */
 public class App extends AbstractBootstrap {
     static App app;

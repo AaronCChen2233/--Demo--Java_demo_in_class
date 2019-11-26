@@ -1,7 +1,12 @@
 package MVVM.Parts.Model;
 
+import Bootstrap.Tools.StringTools;
+
 import java.awt.*;
-import java.awt.datatransfer.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.ClipboardOwner;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.regex.Pattern;
@@ -59,12 +64,18 @@ public class DetectClipboard implements ClipboardOwner, IMVVM_Model {
                 public void clipboardStringChange(String newString) {
                     /*If newString have space don't search because now only support single vocabulary*/
                     newString = newString.trim();
+
+                    /*If coped vocabulary is Camel-Case don't search(special rule for software engineer haha)*/
+                    if(StringTools.checkIsCamelCase(newString)){
+                        return;
+                    }
+
                     newString = newString.toLowerCase();
                     if(Pattern.matches("([a-z])\\w+", newString)){
                         detectClipboardStringChange(newString);
                     }
                 }
-            }, 1000, 1000);
+            }, 500, 500);
         }
         public abstract void detectClipboardStringChange(String newString);
     }

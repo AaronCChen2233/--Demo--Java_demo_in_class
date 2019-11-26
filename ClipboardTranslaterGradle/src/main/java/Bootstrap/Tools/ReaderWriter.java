@@ -225,4 +225,9 @@ public class ReaderWriter {
             }
         }
     }
+
+    public static boolean isFileExist(String fileName){
+        File file = new File(System.getProperty("user.dir"), fileName);
+        return  file.isFile();
+    }
 }

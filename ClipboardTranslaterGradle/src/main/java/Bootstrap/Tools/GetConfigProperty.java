@@ -16,6 +16,7 @@ public class GetConfigProperty {
     public static String Imclass = "";
     public static String Vau = "";
     public static String oFau = "";
+    public static String saveFileName = "";
 
     static {
         InputStream inputStream = null;
@@ -41,6 +42,7 @@ public class GetConfigProperty {
             Imclass = prop.getProperty("Imclass");
             Vau = prop.getProperty("Vau");
             oFau = prop.getProperty("oFau");
+            saveFileName= prop.getProperty("saveFileName");
 
             /*Because log will use property so here use println*/
             System.out.println("Load " + propFileName + " Success!");
