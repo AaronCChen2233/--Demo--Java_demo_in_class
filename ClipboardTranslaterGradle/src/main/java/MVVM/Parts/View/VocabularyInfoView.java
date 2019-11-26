@@ -144,6 +144,8 @@ public class VocabularyInfoView extends JFrame {
                     ex.printStackTrace();
                 } catch (IOException ex) {
                     ex.printStackTrace();
+                } catch (Exception ex){
+                    ex.printStackTrace();
                 }
             }
         });

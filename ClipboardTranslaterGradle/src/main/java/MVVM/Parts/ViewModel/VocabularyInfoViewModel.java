@@ -95,7 +95,7 @@ public class VocabularyInfoViewModel implements IMVVM_ViewModel {
         savedVocabulary = getSavedVocabularyFromTxtFile();
     }
 
-    public void reloadInfo(String vocabulary, String[] definitionInEnglish, String[] definitionInChinese, String[] example, String[] imgSrcList,String speechMP3URL) {
+    public void reloadInfo(String vocabulary, String[] definitionInEnglish, String[] definitionInChinese, String[] example, String[] imgSrcList, String speechMP3URL) {
         isNotFound = false;
         this.vocabulary = vocabulary;
         this.speechMP3URL = speechMP3URL;
@@ -122,14 +122,19 @@ public class VocabularyInfoViewModel implements IMVVM_ViewModel {
 
     public boolean save() {
         /*ClipboardTranslaterSave.txt*/
-        String savePath = System.getProperty("user.dir") + "\\"+ GetConfigProperty.saveFileName;
+        String savePath = System.getProperty("user.dir") + "\\" + GetConfigProperty.saveFileName;
+        boolean isSaveSuccess = false;
         if (ReaderWriter.isFileExist(GetConfigProperty.saveFileName)) {
             /*If file exist*/
-            return ReaderWriter.pushWriterStandardCharset(savePath, convertFormatForAnki(), StandardCharsets.UTF_8);
+            isSaveSuccess = ReaderWriter.pushWriterStandardCharset(savePath, convertFormatForAnki(), StandardCharsets.UTF_8);
         } else {
             /*If file not exist*/
-            return ReaderWriter.writerStandardCharset(savePath, convertFormatForAnki(),StandardCharsets.UTF_8);
+            isSaveSuccess = ReaderWriter.writerStandardCharset(savePath, convertFormatForAnki(), StandardCharsets.UTF_8);
         }
+        if (isSaveSuccess) {
+            this.savedVocabulary.add(vocabulary);
+        }
+        return isSaveSuccess;
     }
 
     private String convertFormatForAnki() {
@@ -141,17 +146,17 @@ public class VocabularyInfoViewModel implements IMVVM_ViewModel {
         return saveString;
     }
 
-    private List<String> getSavedVocabularyFromTxtFile(){
-        String savePath = System.getProperty("user.dir") + "\\"+ GetConfigProperty.saveFileName;
+    private List<String> getSavedVocabularyFromTxtFile() {
+        String savePath = System.getProperty("user.dir") + "\\" + GetConfigProperty.saveFileName;
         if (ReaderWriter.isFileExist(GetConfigProperty.saveFileName)) {
             /*If file exist*/
-            return ReaderWriter.reader(savePath).stream().map(s->s.split("\t")[0]).collect(Collectors.toList());
+            return ReaderWriter.reader(savePath).stream().map(s -> s.split("\t")[0]).collect(Collectors.toList());
         } else {
-           return new ArrayList<>();
+            return new ArrayList<>();
         }
     }
 
-    public boolean isVocabularySaved(){
+    public boolean isVocabularySaved() {
         return savedVocabulary.contains(vocabulary);
     }
 }
