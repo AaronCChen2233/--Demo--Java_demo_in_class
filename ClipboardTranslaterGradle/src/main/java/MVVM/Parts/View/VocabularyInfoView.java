@@ -7,7 +7,6 @@ import MVVM.Parts.ViewModel.VocabularyInfoViewModel;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +21,6 @@ import java.net.URL;
 
 public class VocabularyInfoView extends JFrame {
     private VocabularyInfoViewModel vocabularyInfoViewModel;
-    //    private JLabel vocabularyLabel;
     private JTextArea definitionInEnglishLabel;
     private JTextArea definitionInChineseLabel;
     private JTextArea exampleLabel;
@@ -40,20 +38,30 @@ public class VocabularyInfoView extends JFrame {
 
     public VocabularyInfoView() {
         super();
+        JFXPanel fxPanel = new JFXPanel();
         setSize(450, 600);
-        infoPanel = new JPanel(new GridLayout(3, 1));
+        setAlwaysOnTop(true);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        /*Set location at corner*/
+        Dimension scrSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Insets toolHeight = Toolkit.getDefaultToolkit().getScreenInsets(getGraphicsConfiguration());
+        setLocation(scrSize.width - getWidth(), scrSize.height - toolHeight.bottom - getHeight());
+
         mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
-        buttonsPanel = new JPanel();
-        buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.LINE_AXIS));
 
+        infoPanel = new JPanel(new GridLayout(3, 1));
         infoPanel.setMinimumSize(new Dimension(450, 300));
         infoPanel.setMaximumSize(new Dimension(450, 300));
-        setAlwaysOnTop(true);
 
-//        vocabularyLabel = new JLabel();
-//        vocabularyLabel.setFont(new Font("Microsoft JhengHei", Font.BOLD, 28));
-//        vocabularyLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        imgPanel = new JPanel(new GridLayout(10, 3));
+        imgScrollPane = new JScrollPane(imgPanel);
+        setJScrollPaneStyle(imgScrollPane);
+        imgScrollPane.setMinimumSize(new Dimension(450, 200));
+        imgScrollPane.setMaximumSize(new Dimension(450, 200));
+
+        buttonsPanel = new JPanel();
+        buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.LINE_AXIS));
 
         definitionInEnglishLabel = new JTextArea();
         setTextAreaStyle(definitionInEnglishLabel);
@@ -70,15 +78,9 @@ public class VocabularyInfoView extends JFrame {
         exampleScrollPane = new JScrollPane(exampleLabel);
         setJScrollPaneStyle(exampleScrollPane);
 
-        imgPanel = new JPanel(new GridLayout(10, 3));
-        imgScrollPane = new JScrollPane(imgPanel);
-        setJScrollPaneStyle(imgScrollPane);
-        imgScrollPane.setMinimumSize(new Dimension(450, 200));
-        imgScrollPane.setMaximumSize(new Dimension(450, 200));
-
         saveButton = new JButton("Save");
         speechButton = new JButton("Speech");
-        showOnBrowserButton = new JButton("Open");
+        showOnBrowserButton = new JButton("Show on Browser");
         buttonsPanel.add(saveButton);
         buttonsPanel.add(speechButton);
         buttonsPanel.add(showOnBrowserButton);
@@ -90,12 +92,7 @@ public class VocabularyInfoView extends JFrame {
         mainPanel.add(imgScrollPane);
         mainPanel.add(buttonsPanel);
 
-        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         add(mainPanel);
-
-        Dimension scrSize = Toolkit.getDefaultToolkit().getScreenSize();
-        Insets toolHeight = Toolkit.getDefaultToolkit().getScreenInsets(getGraphicsConfiguration());
-        setLocation(scrSize.width - getWidth(), scrSize.height - toolHeight.bottom - getHeight());
 
         addWindowFocusListener(new WindowFocusListener() {
             @Override
@@ -122,15 +119,7 @@ public class VocabularyInfoView extends JFrame {
         speechButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Play();
-
-//                try {
-//                    OpenBrowse.open(vocabularyInfoViewModel.getSpeechMP3URL());
-//                } catch (URISyntaxException ex) {
-//                    ex.printStackTrace();
-//                } catch (IOException ex) {
-//                    ex.printStackTrace();
-//                }
+                Speech();
             }
         });
 
@@ -175,7 +164,6 @@ public class VocabularyInfoView extends JFrame {
     public void windowPopUp(VocabularyInfoViewModel vocabularyInfoViewModel) {
         this.vocabularyInfoViewModel = vocabularyInfoViewModel;
         setVisible(true);
-
         allScrollPanelScrollToTop();
 
         if (vocabularyInfoViewModel.isNotFound()) {
@@ -198,10 +186,14 @@ public class VocabularyInfoView extends JFrame {
             showOnBrowserButton.setEnabled(true);
             speechButton.setEnabled(true);
             setState(Frame.NORMAL);
+
+            /*Set information*/
             setTitle(vocabularyInfoViewModel.getVocabulary());
             definitionInEnglishLabel.setText(String.join("\n", vocabularyInfoViewModel.getDefinitionInEnglish()));
             definitionInChineseLabel.setText(String.join("\n", vocabularyInfoViewModel.getDefinitionInChinese()));
             exampleLabel.setText(String.join("\n", vocabularyInfoViewModel.getExample()));
+
+            /*Set images*/
             imgPanel.removeAll();
             for (String imgs : vocabularyInfoViewModel.getImgSrcList()) {
                 BufferedImage suiteImage = null;
@@ -228,8 +220,7 @@ public class VocabularyInfoView extends JFrame {
         imgScrollPane.getVerticalScrollBar().setValue(0);
     }
 
-    private void Play(){
-        JFXPanel fxPanel = new JFXPanel();
+    private void Speech(){
         String bip = vocabularyInfoViewModel.getSpeechMP3URL();
         Media hit = new Media(bip);
         MediaPlayer mediaPlayer = new MediaPlayer(hit);

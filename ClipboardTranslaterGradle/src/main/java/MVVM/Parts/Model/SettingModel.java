@@ -6,18 +6,18 @@ public class SettingModel implements IMVVM_Model {
     boolean isPopAutomatically;
     boolean isSpeechAutomatically;
     int maxShowCount;
-    DefaultURL defaultURL;
+    EDefaultURL defaultURL;
     List<String> savedVocabulary;
 
     public SettingModel() {
         this.isPopAutomatically = false;
         this.isSpeechAutomatically = false;
         this.maxShowCount = 5;
-        this.defaultURL = DefaultURL.Voc;
+        this.defaultURL = EDefaultURL.Voc;
         this.savedVocabulary = new ArrayList<>();
     }
 
-    public SettingModel(boolean isPopAutomatically, boolean isSpeechAutomatically, int maxShowCount, DefaultURL defaultURL, List<String> savedVocabulary) {
+    public SettingModel(boolean isPopAutomatically, boolean isSpeechAutomatically, int maxShowCount, EDefaultURL defaultURL, List<String> savedVocabulary) {
         this.isPopAutomatically = isPopAutomatically;
         this.isSpeechAutomatically = isSpeechAutomatically;
         this.maxShowCount = maxShowCount;
@@ -49,11 +49,11 @@ public class SettingModel implements IMVVM_Model {
         this.maxShowCount = maxShowCount;
     }
 
-    public DefaultURL getDefaultURL() {
+    public EDefaultURL getDefaultURL() {
         return defaultURL;
     }
 
-    public void setDefaultURL(DefaultURL defaultURL) {
+    public void setDefaultURL(EDefaultURL defaultURL) {
         this.defaultURL = defaultURL;
     }
 

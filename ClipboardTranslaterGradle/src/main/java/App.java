@@ -1,8 +1,8 @@
 import Bootstrap.App.EApp;
 import Bootstrap.Parts.AbstractBootstrap;
 import Bootstrap.Tools.Alog;
-import MVVM.Parts.Model.DetectClipboard;
-import MVVM.Parts.Model.InformationConverter;
+import MVVM.Parts.Model.DetectClipboardModel;
+import MVVM.Parts.Model.InformationConverterModel;
 import java.util.Scanner;
 
 /***
@@ -39,16 +39,18 @@ import java.util.Scanner;
  *       3.is speech automatically?
  *       4.default open url
  *   V6.Speech button
- *   7.Need refactoring
- *   8.Add commend
+ *   V7.Need refactoring
+ *   V8.Add commend
+ *   9.Made the popup windows more beautiful
  *
  * III.Found Bugs List:
  *   V1.If Vocabulary not found should show error
  *   V2.new vocabulary popup scrollView should scroll to top
  *   V3.Save in a .txt file use html format should save as UTF-8
  *   V4.If vocabulary already saved disable save button
- * ` V5.If coped vocabulary is Camel-Case don't search (special rule for software engineer ha ha)
+ *   V5.If coped vocabulary is Camel-Case don't search (special rule for software engineer ha ha)
  *
+ *   gradle fatJar
  * * */
 public class App extends AbstractBootstrap {
     static App app;
@@ -64,12 +66,12 @@ public class App extends AbstractBootstrap {
 
     @Override
     public void OnInitialized() {
-        /*test for now after will move to other class*/
-        DetectClipboard.DetectClipboardThread timeSetter = new DetectClipboard.DetectClipboardThread() {
+        /*When Clipboard change*/
+        DetectClipboardModel.DetectClipboardThread timeSetter = new DetectClipboardModel.DetectClipboardThread() {
             @Override
             public void detectClipboardStringChange(String newString) {
                 try {
-                    InformationConverter.ConvertInformationToVocabularyInfo(newString);
+                    InformationConverterModel.ConvertInformationToVocabularyInfo(newString);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -88,13 +90,6 @@ public class App extends AbstractBootstrap {
     public void OnApplicationUpdate() {
         Scanner input = new Scanner(System.in);
         Alog.logInfo("If you want to close this application please type \"exit\"");
-
-        /*test */
-//        String dataString = "English Dictionary Before moving towards the tutorial of downloading, let me share a quick review with you Get clear definitions and audio pronunciations of words phrases and idioms in British and American English from the three most popular Cambridge dictionaries of English with just one search the Cambridge Advanced";
-//        List<String> questionList = Arrays.asList(dataString.split(" "));
-//        Collections.shuffle(questionList);
-//        InformationConverter.ConvertInformationToVocabularyInfo(questionList.get(0).toLowerCase());
-        /*test*/
 
         String exit = input.nextLine();
 

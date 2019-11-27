@@ -5,7 +5,7 @@ import Bootstrap.Tools.linkToWebSite;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-public class GetTranslateInfo {
+public class GetTranslateInfoModel {
     private static final String VURL = GetConfigProperty.vURL;
     private static final String OURL = GetConfigProperty.oFURL;
     private static final String IURL = GetConfigProperty.gISURL;

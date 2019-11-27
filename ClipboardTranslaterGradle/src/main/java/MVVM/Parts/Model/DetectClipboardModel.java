@@ -11,11 +11,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.regex.Pattern;
 
-public class DetectClipboard implements ClipboardOwner, IMVVM_Model {
+public class DetectClipboardModel implements ClipboardOwner, IMVVM_Model {
     private Clipboard clipboard;
     private Transferable content;
 
-    public DetectClipboard() {
+    public DetectClipboardModel() {
         clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
     }
 
@@ -24,9 +24,8 @@ public class DetectClipboard implements ClipboardOwner, IMVVM_Model {
      * @return if return is null mean doesn't have string
      */
     public String tryGetClipboardString() {
-        content = clipboard.getContents(this);
-
         try {
+            content = clipboard.getContents(this);
             if (content.isDataFlavorSupported(DataFlavor.stringFlavor)) {
                 String clipboardString = (String) content.getTransferData(DataFlavor.stringFlavor);
                 return clipboardString;
@@ -37,19 +36,6 @@ public class DetectClipboard implements ClipboardOwner, IMVVM_Model {
         return null;
     }
 
-//    public boolean isDataChange() {
-//        if (content.isDataFlavorSupported(DataFlavor.stringFlavor)) {
-//            try {
-//                return !transferData.equals(content.getTransferData(DataFlavor.stringFlavor));
-//            } catch (UnsupportedFlavorException e) {
-//                e.printStackTrace();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        return false;
-//    }
-
     public void lostOwnership(Clipboard clipboard, Transferable contents) {
         //System.out.println("lostOwnership...");
     }
@@ -58,7 +44,6 @@ public class DetectClipboard implements ClipboardOwner, IMVVM_Model {
         public void run() {
             Timer timer = new Timer();
 
-            // check every 1 seconds
             timer.schedule(new DateTask() {
                 @Override
                 public void clipboardStringChange(String newString) {
@@ -71,17 +56,18 @@ public class DetectClipboard implements ClipboardOwner, IMVVM_Model {
                     }
 
                     newString = newString.toLowerCase();
-                    if(Pattern.matches("([a-z])\\w+", newString)){
+                    if(Pattern.matches("([a-z])\\w+", newString)) {
                         detectClipboardStringChange(newString);
                     }
                 }
-            }, 500, 500);
+            // check every 0.2 seconds
+            }, 200, 200);
         }
         public abstract void detectClipboardStringChange(String newString);
     }
 
     static abstract class DateTask extends TimerTask {
-        DetectClipboard dc = new DetectClipboard();
+        DetectClipboardModel dc = new DetectClipboardModel();
         String beforeString = "";
 
         @Override

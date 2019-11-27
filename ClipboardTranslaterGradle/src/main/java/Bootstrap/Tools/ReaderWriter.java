@@ -147,7 +147,7 @@ public class ReaderWriter {
         BufferedWriter bw = null;
         try {
             /*Read*/
-            isr = new InputStreamReader(new FileInputStream(path));
+            isr = new InputStreamReader(new FileInputStream(path), standardCharsets);
             reader = new BufferedReader(isr);
 
             /*keep in lines*/

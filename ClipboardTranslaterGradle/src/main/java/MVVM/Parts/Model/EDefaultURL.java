@@ -1,6 +1,6 @@
 package MVVM.Parts.Model;
 
-public enum DefaultURL {
+public enum EDefaultURL {
     Voc,
     Of
 }

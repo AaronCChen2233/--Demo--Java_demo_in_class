@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class InformationConverter {
+public class InformationConverterModel {
     static VocabularyInfoViewModel vocabularyInfoViewModel = new VocabularyInfoViewModel();
 
     public static void ConvertInformationToVocabularyInfo(String word) {
@@ -26,10 +26,10 @@ public class InformationConverter {
         boolean isOFFound;
 
         List<String> tempExample = new ArrayList<>();
-        /*definitionInChinese Part*/
         String[] Temp;
 
-        Document infoDocument = GetTranslateInfo.getVocDocument(word);
+        /*definitionInChinese Part*/
+        Document infoDocument = GetTranslateInfoModel.getVocDocument(word);
         String info;
         Element element = infoDocument.getElementById(GetConfigProperty.vDclass);
         /*if element is null info is "" */
@@ -58,7 +58,7 @@ public class InformationConverter {
         }
 
         /*definitionInEnglish Part*/
-        Document tempDocument = GetTranslateInfo.getOxfordDocument(word);
+        Document tempDocument = GetTranslateInfoModel.getOxfordDocument(word);
         Elements tempElements = new Elements();
         List<String> tempStringList = new ArrayList<>();
         if (tempDocument != null) {
@@ -88,7 +88,7 @@ public class InformationConverter {
         /*if vocabulary is found*/
         if (isOFFound || isVocFound) {
             /*imgSrcList Part*/
-            tempElements = GetTranslateInfo.getImgSrcs(word).select("img");
+            tempElements = GetTranslateInfoModel.getImgSrcs(word).select("img");
             tempStringList = tempElements.stream()
                     .map(t -> t.attr("abs:data-src")).filter(t -> !t.equals("")).collect(Collectors.toList());
             imgSrcList = new String[tempStringList.size()];

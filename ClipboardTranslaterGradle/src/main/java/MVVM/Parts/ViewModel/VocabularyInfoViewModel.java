@@ -1,16 +1,12 @@
 package MVVM.Parts.ViewModel;
 
-import Bootstrap.Tools.GetConfigProperty;
 import Bootstrap.Tools.ListTool;
-import Bootstrap.Tools.ReaderWriter;
+import MVVM.Parts.Model.SaveModel;
 import MVVM.Parts.Model.SettingModel;
 import MVVM.Parts.View.VocabularyInfoView;
 
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class VocabularyInfoViewModel implements IMVVM_ViewModel {
     boolean isNotFound;
@@ -22,6 +18,8 @@ public class VocabularyInfoViewModel implements IMVVM_ViewModel {
     List<String> imgSrcList;
     List<String> savedVocabulary;
     SettingModel settingModel;
+    int showCount = 5;
+    static VocabularyInfoView vocabularyInfoView;
 
     public String getVocabulary() {
         return vocabulary;
@@ -87,12 +85,9 @@ public class VocabularyInfoViewModel implements IMVVM_ViewModel {
         isNotFound = notFound;
     }
 
-    int showCount = 5;
-    static VocabularyInfoView vocabularyInfoView;
-
     public VocabularyInfoViewModel() {
         vocabularyInfoView = new VocabularyInfoView();
-        savedVocabulary = getSavedVocabularyFromTxtFile();
+        savedVocabulary = SaveModel.getSavedVocabularyFromTxtFile();
     }
 
     public void reloadInfo(String vocabulary, String[] definitionInEnglish, String[] definitionInChinese, String[] example, String[] imgSrcList, String speechMP3URL) {
@@ -119,44 +114,28 @@ public class VocabularyInfoViewModel implements IMVVM_ViewModel {
         vocabularyInfoView.windowPopUp(this);
     }
 
-
-    public boolean save() {
-        /*ClipboardTranslaterSave.txt*/
-        String savePath = System.getProperty("user.dir") + "\\" + GetConfigProperty.saveFileName;
-        boolean isSaveSuccess = false;
-        if (ReaderWriter.isFileExist(GetConfigProperty.saveFileName)) {
-            /*If file exist*/
-            isSaveSuccess = ReaderWriter.pushWriterStandardCharset(savePath, convertFormatForAnki(), StandardCharsets.UTF_8);
-        } else {
-            /*If file not exist*/
-            isSaveSuccess = ReaderWriter.writerStandardCharset(savePath, convertFormatForAnki(), StandardCharsets.UTF_8);
-        }
-        if (isSaveSuccess) {
-            this.savedVocabulary.add(vocabulary);
-        }
-        return isSaveSuccess;
+    public boolean isVocabularySaved() {
+        return savedVocabulary.contains(vocabulary);
     }
 
     private String convertFormatForAnki() {
         String saveString = vocabulary;
         saveString += "\t";
         saveString += String.join("<br>", definitionInChinese).replaceAll("\n", "<br>");
+        saveString += "<br>";
         saveString += String.join("<br>", definitionInEnglish).replaceAll("\n", "<br>");
+        saveString += "<br>";
         saveString += String.join("<br>", example).replaceAll("\n", "<br>");
         return saveString;
     }
 
-    private List<String> getSavedVocabularyFromTxtFile() {
-        String savePath = System.getProperty("user.dir") + "\\" + GetConfigProperty.saveFileName;
-        if (ReaderWriter.isFileExist(GetConfigProperty.saveFileName)) {
-            /*If file exist*/
-            return ReaderWriter.reader(savePath).stream().map(s -> s.split("\t")[0]).collect(Collectors.toList());
-        } else {
-            return new ArrayList<>();
+    public boolean save() {
+        boolean isSaveSuccess = false;
+        String saveString = convertFormatForAnki();
+        isSaveSuccess = SaveModel.save(saveString);
+        if (isSaveSuccess) {
+            this.savedVocabulary.add(vocabulary);
         }
-    }
-
-    public boolean isVocabularySaved() {
-        return savedVocabulary.contains(vocabulary);
+        return isSaveSuccess;
     }
 }
