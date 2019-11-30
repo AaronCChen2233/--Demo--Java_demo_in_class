@@ -12,7 +12,7 @@ public class SUDOKUGeneraterModel {
 
     }
 
-    public void generate(int difficulty) {
+    public static String[][] generate(int difficulty) {
         String[][] SUDOKUTable = new String[9][9];
         String[][] SUDOKUQuestionTable = new String[9][9];
         ArrayList<String> numberList = new ArrayList(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9"));
@@ -91,9 +91,10 @@ public class SUDOKUGeneraterModel {
         }
 
         CSVReaderWriter.writer(csvPath, dataString);
+        return SUDOKUQuestionTable;
     }
 
-    private boolean allowPutChecker(String[][] table, int checki, int checkj, String checkNumberString) {
+    public static boolean allowPutChecker(String[][] table, int checki, int checkj, String checkNumberString) {
         try {
             /*check Row and Col*/
             for (int j = 0; j < 8; j++) {

@@ -3,6 +3,8 @@ import Bootstrap.Parts.AbstractBootstrap;
 import Bootstrap.Parts.EArgument;
 import Bootstrap.Tools.Alog;
 import MVVM.Parts.Model.SUDOKUGeneraterModel;
+import MVVM.Parts.View.SUDOKUWindow;
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 
 public class App extends AbstractBootstrap {
     static App bootstrapTest;
@@ -17,16 +19,6 @@ public class App extends AbstractBootstrap {
 
     @Override
     public void OnInitialized() {
-
-    }
-
-    @Override
-    public void OnShutdown() {
-
-    }
-
-    @Override
-    public void OnApplicationUpdate() {
         /*Now just build a scaffolding*/
         if (argumentAndParamaters.size() > 0) {
             argumentAndParamaters.forEach((k, v) -> {
@@ -46,12 +38,11 @@ public class App extends AbstractBootstrap {
                                 showRunHelper();
                                 break;
                             }
-                            SUDOKUGeneraterModel sudokuGeneraterModel = new SUDOKUGeneraterModel();
-                            sudokuGeneraterModel.generate(Integer.parseInt(v));
+                            SUDOKUGeneraterModel.generate(Integer.parseInt(v));
                             break;
                         case runwindow:
                             /*window version coming soon*/
-
+                            SUDOKUWindow sudokuWindow = new SUDOKUWindow();
                             break;
                     }
                 }
@@ -60,8 +51,15 @@ public class App extends AbstractBootstrap {
             /*No Argument*/
             showRunHelper();
         }
+    }
 
+    @Override
+    public void OnShutdown() {
 
-        setAppState(EApp.ShuttingDown);
+    }
+
+    @Override
+    public void OnApplicationUpdate() {
+//        setAppState(EApp.ShuttingDown);
     }
 }
