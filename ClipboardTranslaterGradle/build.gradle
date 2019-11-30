@@ -3,7 +3,7 @@ plugins {
 }
 
 compileJava.options.encoding = 'UTF-8'
-group 'ClipboardTranslater'
+group 'ClipboardTranslator'
 version '1.0'
 
 sourceCompatibility = 1.8

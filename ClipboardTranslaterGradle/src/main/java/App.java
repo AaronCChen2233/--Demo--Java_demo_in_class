@@ -48,7 +48,7 @@ import java.util.Scanner;
  *   V2.new vocabulary popup scrollView should scroll to top
  *   V3.Save in a .txt file use html format should save as UTF-8
  *   V4.If vocabulary already saved disable save button
- *   V5.If coped vocabulary is Camel-Case don't search (special rule for software engineer ha ha)
+ *   V5.If coped vocabulary is Camel-Case don't search (special rule for programmer ha ha)
  *
  *   gradle fatJar
  * * */
